@@ -1,5 +1,16 @@
 .product {
     width: calc(50% - 1.5em);
+    background: none;
+    border: none;
+    outline: none;
+    text-align: left;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.product:hover {
+    opacity: .9;
+    transform: translateY(-10px);
 }
 
 .cover {
@@ -26,4 +37,10 @@
     display: block;
     margin-top: .4em;
     font-size: 1.3em;
+}
+
+@media screen and (min-width: 768px) {
+    .product {
+        width: calc(25% - 1.5em);
+    }
 }

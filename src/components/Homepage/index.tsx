@@ -1,6 +1,7 @@
 import styles from './styles.module.css'
 
 import ProductCard from './ProductCard'
+import Pagination from './Pagination'
 
 const Homepage = () => {
     return (
@@ -26,6 +27,7 @@ const Homepage = () => {
                 <ProductCard />
                 <ProductCard />
             </div>
+            <Pagination />
         </section>
     )
 }

@@ -1,6 +1,19 @@
 .header {
     background-color: var(--secondary-color);
-    padding: .5em 0;
+    padding: 1em;
+}
+
+.logo span {
     color: #fff;
-    font-size: 2em;
+    font-size: 1.2em;
+}
+
+@media screen and (min-width: 768px) {
+    .header {
+        padding: 1.5em 12em;
+    }
+
+    .logo span {
+        font-size: 1.5em;
+    }
 }

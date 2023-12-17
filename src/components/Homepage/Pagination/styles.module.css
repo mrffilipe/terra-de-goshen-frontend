@@ -1,0 +1,31 @@
+.pagination {
+    margin-top: 3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .5em;
+}
+
+.pagination a {
+    display: inline-block;
+    background-color: #f2f2f2;
+    text-decoration: none;
+    padding: .4em .8em;
+    color: #000;
+    transition: all .3s ease;
+}
+
+.pagination a:hover {
+    background-color: #e5e5e5;
+}
+
+.pages {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: .5em;
+}
+
+.pages .active {
+    background-color: #d8d8d8;
+}
