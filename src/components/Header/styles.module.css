@@ -1,0 +1,6 @@
+.header {
+    background-color: var(--secondary-color);
+    padding: .5em 0;
+    color: #fff;
+    font-size: 2em;
+}
