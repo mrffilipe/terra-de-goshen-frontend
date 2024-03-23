@@ -3,3 +3,31 @@
   padding: 0;
   margin: 0;
 }
+
+:root {
+  --primary-color: #fff;
+  --complementary-color: #262626;
+  --accent-color: #50388C;
+  --alternative-color: #F9F9F9;
+
+  --light-shadow-color: rgba(255, 255, 255, .3);
+  --dark-shadow-color: rgba(0, 0, 0, .3);
+
+  --horizontal-padding: 2em;
+  --vertical-padding: 1em;
+}
+
+body {
+  background: var(--primary-color);
+}
+
+main {
+  padding: var(--vertical-padding) var(--horizontal-padding);
+}
+
+@media screen and (min-width: 960px) {
+  :root {
+    --horizontal-padding: 12em;
+    --vertical-padding: 4em;
+  }
+}
