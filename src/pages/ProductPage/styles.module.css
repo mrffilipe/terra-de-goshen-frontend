@@ -14,5 +14,5 @@
     list-style: none;
     display: flex;
     flex-wrap: wrap;
-    gap: 3em;
+    gap: 2em 3em;
 }

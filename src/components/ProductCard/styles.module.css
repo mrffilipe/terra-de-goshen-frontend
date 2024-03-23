@@ -1,5 +1,5 @@
 .product_card {
-    width: calc((100% - 9em) / 4);
+    width: calc(50% - 1.5em);
     cursor: pointer;
     transition: all .3s ease;
 }
@@ -36,4 +36,12 @@
     color: var(--dark-primary-text-color);
     font-size: 1.1em;
     text-transform: uppercase;
+}
+
+@media screen and (min-width: 960px) {
+    .product_card {
+        width: calc((100% - 9em) / 4);
+        cursor: pointer;
+        transition: all .3s ease;
+    }
 }

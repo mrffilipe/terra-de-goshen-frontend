@@ -9,7 +9,7 @@ const ProductCard = () => {
                 <img src={ProductCardImgMock} alt="" />
             </div>
             <div className={styles.product_details}>
-                <h4>CACETE AZUL COM DETALHES VERMELHOS</h4>
+                <h4>CAMISA AZUL COM DETALHES VERMELHOS</h4>
                 <span><strong>R$ 279,90</strong></span>
             </div>
         </li>
