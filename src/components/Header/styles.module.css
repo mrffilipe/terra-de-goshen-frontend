@@ -1,0 +1,36 @@
+.header {
+    background: var(--accent-color);
+    padding: 1.5em var(--horizontal-padding);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--dark-shadow-color);
+
+    position: sticky;
+    top: 0;
+    z-index: 800;
+}
+
+.logo h1 {
+    color: var(--light-primary-text-color);
+    font-size: 1.8em;
+}
+
+.menu {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1em 3em;
+}
+
+.menu a {
+    text-decoration: none;
+    color: var(--light-primary-text-color);
+    transform: all .3s ease;
+}
+
+.menu a:hover {
+    text-decoration: underline;
+    color: var(--light-complementary-text-color);
+}
