@@ -3,6 +3,8 @@ import styles from './styles.module.css'
 
 import { Menu, Close } from '@mui/icons-material'
 
+import LogoSvg from '../../assets/svg/logo.svg'
+
 const Header = () => {
     const [openMenu, setOpenMenu] = useState<boolean>()
 
@@ -13,7 +15,7 @@ const Header = () => {
     return (
         <header className={styles.header}>
             <div className={styles.logo}>
-                <h1>Terra de Goshen</h1>
+                <img src={LogoSvg} alt="" />
             </div>
             <nav className={styles.nav}>
                 <button className={styles.open_menu} onClick={handleOpenMenu}>

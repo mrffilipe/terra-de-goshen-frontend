@@ -1,15 +1,15 @@
 .header {
-    background: var(--accent-color);
-    padding: 1.5em var(--horizontal-padding);
+    background: var(--primary-color);
+    padding: 1em var(--horizontal-padding);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: var(--dark-shadow-color);
+    /* box-shadow: var(--dark-shadow-color); */
 }
 
-.logo h1 {
-    color: var(--light-primary-text-color);
-    font-size: 1.3em;
+.logo img {
+    width: auto;
+    height: 60px;
 }
 
 .nav {
@@ -26,7 +26,7 @@
 .open_menu svg {
     width: 40px;
     height: 40px;
-    color: var(--light-primary-text-color);
+    color: var(--dark-primary-text-color);
 }
 
 .hidden_menu {
@@ -34,7 +34,7 @@
 }
 
 .menu {
-    background: var(--accent-color);
+    background: var(--primary-color);
     padding: 1.5em;
     border-radius: .5em;
     list-style: none;
@@ -49,13 +49,13 @@
 
 .menu a {
     text-decoration: none;
-    color: var(--light-primary-text-color);
+    color: var(--dark-primary-text-color);
     transform: all .3s ease;
 }
 
 .menu a:hover {
     text-decoration: underline;
-    color: var(--light-complementary-text-color);
+    color: var(--dark-complementary-text-color);
 }
 
 @media screen and (min-width: 960px) {

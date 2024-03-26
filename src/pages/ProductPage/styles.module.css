@@ -1,8 +1,9 @@
 .product_header h1 {
-    background: var(--accent-color);
+    /* background: var(--accent-color); */
     width: fit-content;
-    padding: .25em .5em;
-    color: var(--light-primary-text-color);
+    /* padding: .25em .5em; */
+    /* color: var(--light-primary-text-color); */
+    color: var(--dark-primary-text-color);
     text-transform: uppercase;
 }
 
