@@ -16,6 +16,24 @@
     position: relative;
 }
 
+.close_menu_btn {
+    display: block;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+
+    position: absolute;
+    top: .5em;
+    left: .5em;
+    z-index: 11;
+}
+
+.close_menu_btn svg {
+    color: rgba(32, 19, 64, .19);
+    font-size: 3em;
+}
+
 .product_cover img {
     width: 100%;
     height: auto;

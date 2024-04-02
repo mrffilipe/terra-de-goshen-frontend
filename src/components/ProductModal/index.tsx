@@ -1,5 +1,7 @@
 import styles from './styles.module.css'
 
+import { Close } from '@mui/icons-material'
+
 import ProductImgMock from '../../assets/img/product-card-img-mock-2.png'
 import CoverSlider from './CoverSlider'
 
@@ -7,6 +9,9 @@ const ProductModal = () => {
     return (
         <article className={styles.product_modal}>
             <section className={styles.product_cover}>
+                <button className={styles.close_menu_btn}>
+                    <Close />
+                </button>
                 <CoverSlider />
                 <img src={ProductImgMock} alt="" />
                 <div className={styles.script}>
