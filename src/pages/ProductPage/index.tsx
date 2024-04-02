@@ -1,6 +1,8 @@
 import styles from './styles.module.css'
 
 import ProductCard from '../../components/ProductCard'
+import Overlay from '../../components/Overlay'
+import ProductModal from '../../components/ProductModal'
 
 const ProductPage = () => {
     return (
@@ -19,6 +21,9 @@ const ProductPage = () => {
                     <ProductCard />
                 </ul>
             </section>
+            <Overlay isOverlayOpen>
+                <ProductModal />
+            </Overlay>
         </article>
     )
 }

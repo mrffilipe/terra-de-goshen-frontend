@@ -26,6 +26,11 @@ main {
   padding: var(--vertical-padding) var(--horizontal-padding);
 }
 
+.no-scroll {
+  height: 100%;
+  overflow: hidden;
+}
+
 @media screen and (min-width: 960px) {
   :root {
     --horizontal-padding: 12em;
