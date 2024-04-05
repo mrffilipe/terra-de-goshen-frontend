@@ -1,8 +1,16 @@
 import styles from './styles.module.css'
 
+import { Edit } from '@mui/icons-material'
+
 const ProductCard = (props: ProductCard) => {
     return (
         <li className={styles.product_card}>
+            {
+                props.editable &&
+                <button className={styles.edit_btn}>
+                    <Edit />
+                </button>
+            }
             <div className={styles.product_cover}>
                 <img src={props.imageUrl} alt={props.imageAlt} />
             </div>

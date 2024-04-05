@@ -3,7 +3,8 @@ import styles from './styles.module.css'
 import ProductCard from '../ProductCard'
 
 type Props = {
-    items: Array<ProductCard>
+    items: Array<ProductCard>,
+    onlyReading?: boolean
 }
 
 const ProductList = (props: Props) => {
@@ -15,6 +16,7 @@ const ProductList = (props: Props) => {
                 imageAlt={product.imageAlt}
                 name={product.name}
                 price={product.price}
+                editable={!props.onlyReading && product.editable}
                 key={product.id}
             />
         )

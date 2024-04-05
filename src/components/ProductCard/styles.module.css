@@ -2,10 +2,45 @@
     width: 100%;
     cursor: pointer;
     transition: all .3s ease;
+
+    position: relative;
 }
 
 .product_card:hover {
     transform: translateY(-5px);
+}
+
+.edit_btn {
+    width: 2.5em;
+    height: 2.5em;
+    background: none;
+    border: none;
+    outline: none;
+    padding: .5em;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all .3s ease;
+
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    z-index: 100;
+}
+
+.edit_btn:hover {
+    background: var(--dark-primary-text-color);
+}
+
+.edit_btn:hover svg {
+    color: var(--light-complementary-text-color);
+}
+
+.edit_btn svg {
+    color: var(--dark-complementary-text-color);
+    font-size: 1.5em;
 }
 
 .product_cover {

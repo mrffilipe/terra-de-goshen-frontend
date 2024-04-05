@@ -6,7 +6,7 @@
 
     --light-primary-text-color: #fff;
     --light-complementary-text-color: #e5e5e5;
-    --dark-secondary-text-color: #000;
+    --dark-primary-text-color: #000;
     --dark-complementary-text-color: #262626;
 }
 
@@ -16,7 +16,7 @@ h3,
 h4,
 h5,
 h6 {
-    color: var(--dark-secondary-text-color);
+    color: var(--dark-primary-text-color);
     font-family: var(--primary-font);
 }
 

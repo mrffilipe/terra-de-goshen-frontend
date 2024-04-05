@@ -10,20 +10,23 @@ const products: Array<ProductCard> = [
     {
         id: '123',
         imageUrl: 'https://havaianas.com.br/dw/image/v2/BDDJ_PRD/on/demandware.static/-/Sites-havaianas-master/default/dw9126436c/product-images/4149460_0046_CAMISETA-FEM-HAVAIANAS-ALOHA-VIBES_A.png?sw=680&sh=680',
-        name: 'Camiseta taca coração preto',
-        price: '129,90'
+        name: 'Camiseta fem havaianas aloha vibes',
+        price: '129,90',
+        editable: true
     },
     {
         id: '123',
         imageUrl: 'https://havaianas.com.br/dw/image/v2/BDDJ_PRD/on/demandware.static/-/Sites-havaianas-master/default/dw9126436c/product-images/4149460_0046_CAMISETA-FEM-HAVAIANAS-ALOHA-VIBES_A.png?sw=680&sh=680',
-        name: 'Camiseta taca coração preto',
-        price: '129,90'
+        name: 'Camiseta fem havaianas aloha vibes',
+        price: '129,90',
+        editable: true
     },
     {
         id: '123',
         imageUrl: 'https://havaianas.com.br/dw/image/v2/BDDJ_PRD/on/demandware.static/-/Sites-havaianas-master/default/dw9126436c/product-images/4149460_0046_CAMISETA-FEM-HAVAIANAS-ALOHA-VIBES_A.png?sw=680&sh=680',
-        name: 'Camiseta taca coração preto',
-        price: '129,90'
+        name: 'Camiseta fem havaianas aloha vibes',
+        price: '129,90',
+        editable: true
     },
     {
         id: '123',
@@ -80,7 +83,7 @@ const ProductPage = () => {
         <article className={styles.product_page}>
             <PageHeaderTitle value='Masculino' />
             <ProductSession>
-                <ProductList items={products} />
+                <ProductList items={products} onlyReading />
             </ProductSession>
             {/* <Overlay isOverlayOpen>
                 <ProductModal />
