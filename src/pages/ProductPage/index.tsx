@@ -1,9 +1,10 @@
 import styles from './styles.module.css'
 
 import PageHeaderTitle from '../../components/PageHeaderTitle'
+import ProductSession from '../../components/ProductSession'
+import ProductList from '../../components/ProductList'
 import Overlay from '../../components/Overlay'
 import ProductModal from '../../components/ProductModal'
-import ProductList from '../../components/ProductList'
 
 const products: Array<ProductCard> = [
     {
@@ -78,9 +79,9 @@ const ProductPage = () => {
     return (
         <article className={styles.product_page}>
             <PageHeaderTitle value='Masculino' />
-            <section className={styles.product_result}>
+            <ProductSession>
                 <ProductList items={products} />
-            </section>
+            </ProductSession>
             {/* <Overlay isOverlayOpen>
                 <ProductModal />
             </Overlay> */}
