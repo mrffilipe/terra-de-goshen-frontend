@@ -19,9 +19,11 @@ const Overlay = (props: Props) => {
     }, [props.isOverlayOpen])
 
     return (
-        <div className={styles.overlay}>
-            {props.children}
-        </div>
+        props.isOverlayOpen ?
+            <div className={styles.overlay}>
+                {props.children}
+            </div> :
+            <></>
     )
 }
 

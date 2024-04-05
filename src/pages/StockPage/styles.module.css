@@ -1,0 +1,15 @@
+.new_product_btn {
+    margin-top: .5em;
+}
+
+@media screen and (min-width: 960px) {
+    .stock_header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .new_product_btn {
+        margin-top: 0;
+    }
+}

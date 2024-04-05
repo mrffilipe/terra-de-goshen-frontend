@@ -1,8 +1,11 @@
 import styles from './styles.module.css'
 
+import { useState } from 'react'
 import PageHeaderTitle from '../../components/PageHeaderTitle'
+import { Button } from '../../components/Buttons'
 import ProductSession from '../../components/ProductSession'
 import ProductList from '../../components/ProductList'
+import Overlay from '../../components/Overlay'
 
 const products: Array<ProductCard> = [
     {
@@ -77,15 +80,28 @@ const products: Array<ProductCard> = [
 ]
 
 const StockPage = () => {
+    const [openModal, setOpenModal] = useState<boolean>()
+
+    const handleOpenModal = (): void => {
+        setOpenModal(prev => !prev)
+    }
+
     return (
         <article className={styles.stock_page}>
-            <PageHeaderTitle value='Gerenciar estoque' />
+            <header className={styles.stock_header}>
+                <PageHeaderTitle value='Gerenciar estoque' />
+                <Button
+                    className={styles.new_product_btn}
+                    value='Novo produto'
+                    onClick={handleOpenModal}
+                />
+            </header>
             <ProductSession>
                 <ProductList items={products} />
             </ProductSession>
-            {/* <Overlay isOverlayOpen>
-                
-            </Overlay> */}
+            <Overlay isOverlayOpen={openModal}>
+                <h1>Olá mundo!</h1>
+            </Overlay>
         </article>
     )
 }
