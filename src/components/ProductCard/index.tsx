@@ -1,16 +1,14 @@
 import styles from './styles.module.css'
 
-import ProductCardImgMock from '../../assets/img/product-card-img-mock.png'
-
-const ProductCard = () => {
+const ProductCard = (props: ProductCard) => {
     return (
         <li className={styles.product_card}>
-            <div className={styles.product_img}>
-                <img src={ProductCardImgMock} alt="" />
+            <div className={styles.product_cover}>
+                <img src={props.imageUrl} alt={props.imageAlt} />
             </div>
             <div className={styles.product_details}>
-                <h4>CAMISA AZUL COM DETALHES VERMELHOS</h4>
-                <span><strong>R$ 279,90</strong></span>
+                <h4>{props.name}</h4>
+                <span><strong>R$ {props.price}</strong></span>
             </div>
         </li>
     )
