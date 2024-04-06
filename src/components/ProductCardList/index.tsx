@@ -1,30 +1,31 @@
 import styles from './styles.module.css'
 
-import ProductItem from '../ProductItem'
+import ProductCard from '../ProductCard'
 
 type Props = {
-    items: Array<ProductCard>
+    items: Array<ProductCard>,
+    onlyReading?: boolean
 }
 
-const ProductList = (props: Props) => {
+const ProductCardList = (props: Props) => {
     const listItems = props.items.map(product => {
         return (
-            <ProductItem
+            <ProductCard
                 id={product.id}
                 imageUrl={product.imageUrl}
                 imageAlt={product.imageAlt}
                 name={product.name}
                 price={product.price}
-                editable
+                editable={!props.onlyReading && product.editable}
                 key={product.id} />
         )
     })
 
     return (
-        <ul className={styles.product_list}>
+        <ul className={styles.product_card_list}>
             {listItems}
         </ul>
     )
 }
 
-export default ProductList
+export default ProductCardList

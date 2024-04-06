@@ -1,10 +1,12 @@
 import styles from './styles.module.css'
 
 import { useState } from 'react'
+import { List, GridView } from '@mui/icons-material'
 import PageHeaderTitle from '../../components/PageHeaderTitle'
 import { Button } from '../../components/Buttons'
 import ProductSession from '../../components/ProductSession'
 import ProductList from '../../components/ProductList'
+import ProductCardList from '../../components/ProductCardList'
 import Overlay from '../../components/Overlay'
 import ProductHandlingModal from '../../components/ProductHandlingModal'
 
@@ -81,6 +83,7 @@ const products: Array<ProductCard> = [
 ]
 
 const StockPage = () => {
+    const [listView, setListView] = useState<boolean>()
     const [openModal, setOpenModal] = useState<boolean>()
 
     const handleOpenModal = (): void => {
@@ -91,14 +94,30 @@ const StockPage = () => {
         <article className={styles.stock_page}>
             <header className={styles.stock_header}>
                 <PageHeaderTitle value='Gerenciar estoque' />
-                <Button
-                    className={styles.new_product_btn}
-                    value='Novo produto'
-                    onClick={handleOpenModal}
-                />
+                <div className={styles.actions}>
+                    <button
+                        className={`${styles.btn} ${listView ? '' : styles.btn_selected}`}
+                        onClick={() => setListView(false)}>
+                        <GridView />
+                    </button>
+                    <button
+                        className={`${styles.btn} ${listView ? styles.btn_selected : ''}`}
+                        onClick={() => setListView(true)}>
+                        <List />
+                    </button>
+                    <Button
+                        className={styles.new_product_btn}
+                        value='Novo produto'
+                        onClick={handleOpenModal}
+                    />
+                </div>
             </header>
             <ProductSession>
-                <ProductList items={products} />
+                {
+                    listView ?
+                        <ProductList items={products} /> :
+                        <ProductCardList items={products} />
+                }
             </ProductSession>
             <Overlay isOverlayOpen={openModal}>
                 <ProductHandlingModal />

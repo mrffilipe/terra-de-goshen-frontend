@@ -2,7 +2,7 @@ import styles from './styles.module.css'
 
 import PageHeaderTitle from '../../components/PageHeaderTitle'
 import ProductSession from '../../components/ProductSession'
-import ProductList from '../../components/ProductList'
+import ProductCardList from '../../components/ProductCardList'
 import Overlay from '../../components/Overlay'
 import ProductModal from '../../components/ProductModal'
 
@@ -83,7 +83,7 @@ const ProductPage = () => {
         <article className={styles.product_page}>
             <PageHeaderTitle value='Masculino' />
             <ProductSession>
-                <ProductList items={products} onlyReading />
+                <ProductCardList items={products} onlyReading />
             </ProductSession>
             {/* <Overlay isOverlayOpen>
                 <ProductModal />

@@ -1,0 +1,13 @@
+.product_card_list {
+    margin-top: 2em;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em 2em;
+}
+
+@media screen and (min-width: 960px) {
+    .product_card_list {
+        gap: 2em 3em;
+    }
+}
