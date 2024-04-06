@@ -67,7 +67,7 @@
 
 .product_details h4 {
     color: var(--dark-complementary-text-color);
-    font-family: var(--secondary-font);
+    font-family: var(--aria-font);
     font-size: .8em;
     font-weight: 400;
     text-transform: uppercase;

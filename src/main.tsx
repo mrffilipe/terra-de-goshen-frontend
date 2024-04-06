@@ -5,14 +5,11 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom'
 
-import Header from './components/Header'
-import Footer from './components/Footer'
-
 import Layout from './pages/Layout'
 import App from './pages/App'
 import ProductPage from './pages/ProductPage'
 import StockPage from './pages/StockPage'
-import SignInPage from './pages/AuthPage/SignInPage'
+import SignInPage from './pages/Auth/SignInPage'
 
 const router = createBrowserRouter([
   {

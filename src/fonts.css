@@ -1,8 +1,36 @@
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Prata&display=swap');
+@font-face {
+    font-family: 'AlkalineRegular';
+    src: url('./assets/fonts/alkaline-regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'AlkalineBold';
+    src: url('./assets/fonts//alkaline-bold.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Aria';
+    src: url('./assets/fonts/aria.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'AriaProRegular';
+    src: url('./assets/fonts/ariapro-regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
 
 :root {
-    --primary-font: "Prata", serif;
-    --secondary-font: "Comfortaa", sans-serif;
+    --alkaline-regular-font: 'AlkalineRegular', sans-serif;
+    --alkaline-bold-font: 'AlkalineBold', sans-serif;
+    --aria-font: 'Aria', sans-serif;
+    --aria-pro-regular-font: 'AriaProRegular', sans-serif;
 
     --light-primary-text-color: #fff;
     --light-complementary-text-color: #e5e5e5;
@@ -17,7 +45,7 @@ h4,
 h5,
 h6 {
     color: var(--dark-primary-text-color);
-    font-family: var(--primary-font);
+    font-family: var(--alkaline-bold-font);
 }
 
 h1 {
@@ -38,8 +66,7 @@ a,
 label,
 li,
 button {
-    font-family: var(--secondary-font);
-    font-optical-sizing: auto;
+    font-family: var(--aria-font);
 }
 
 p,

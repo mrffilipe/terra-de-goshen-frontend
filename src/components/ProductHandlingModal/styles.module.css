@@ -56,10 +56,8 @@
     display: block;
     color: rgba(32, 19, 64, .19);
     text-align: center;
-    font-family: var(--primary-font);
+    font-family: var(--aria-font);
     font-size: 3em;
-    font-weight: 700;
-    font-style: italic;
     text-transform: uppercase;
 }
 

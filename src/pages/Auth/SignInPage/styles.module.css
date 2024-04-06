@@ -25,7 +25,8 @@
 .form span {
     display: block;
     color: var(--light-primary-text-color);
-    font-size: 1.5em;
+    font-family: var(--alkaline-bold-font);
+    font-size: 1.8em;
     text-align: center;
 }
 
@@ -40,7 +41,8 @@
     width: 100%;
     display: block;
     color: var(--light-primary-text-color);
-    font-size: 1.1em;
+    font-family: var(--alkaline-regular-font);
+    font-size: 1.3em;
 }
 
 .form input {
@@ -52,6 +54,7 @@
     outline: none;
     padding: .75em 1em;
     border-radius: 1em;
+    font-family: var(--aria-pro-regular-font);
     font-size: 1em;
 }
 
@@ -69,7 +72,8 @@
     outline: none;
     padding: 1em 3em;
     border-radius: 1em;
-    font-size: 1.1em;
+    font-family: var(--aria-pro-regular-font);
+    font-size: 1.3em;
     cursor: pointer;
     transition: all .3s ease;
 }
@@ -84,11 +88,12 @@
     }
 
     .form {
+        max-width: 600px;
         padding: 5em 3em;
     }
 
     .form span {
-        font-size: 2em;
+        font-size: 2.3em;
     }
 
     .form div {
@@ -97,7 +102,7 @@
     }
 
     .form label {
-        font-size: 1.3em;
+        font-size: 1.5em;
     }
 
     .form button {
