@@ -6,6 +6,7 @@ import { Button } from '../../components/Buttons'
 import ProductSession from '../../components/ProductSession'
 import ProductList from '../../components/ProductList'
 import Overlay from '../../components/Overlay'
+import ProductHandlingModal from '../../components/ProductHandlingModal'
 
 const products: Array<ProductCard> = [
     {
@@ -100,7 +101,7 @@ const StockPage = () => {
                 <ProductList items={products} />
             </ProductSession>
             <Overlay isOverlayOpen={openModal}>
-                <h1>Olá mundo!</h1>
+                <ProductHandlingModal />
             </Overlay>
         </article>
     )

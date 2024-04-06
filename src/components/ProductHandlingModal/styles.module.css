@@ -1,0 +1,137 @@
+.product_handling_modal {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    box-shadow: var(--dark-shadow-color);
+}
+
+.product_cover {
+    background: #F9F9F9;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+    position: relative;
+}
+
+.close_menu_btn {
+    display: block;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+
+    position: absolute;
+    top: .5em;
+    left: .5em;
+    z-index: 11;
+}
+
+.close_menu_btn svg {
+    color: rgba(32, 19, 64, .19);
+    font-size: 3em;
+}
+
+.product_cover img {
+    width: 100%;
+    height: auto;
+    z-index: 10;
+}
+
+.script {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+    overflow: hidden;
+
+    position: absolute;
+    top: 0;
+    right: 2em;
+}
+
+.script span {
+    display: block;
+    color: rgba(32, 19, 64, .19);
+    text-align: center;
+    font-family: var(--primary-font);
+    font-size: 3em;
+    font-weight: 700;
+    font-style: italic;
+    text-transform: uppercase;
+}
+
+.product_details {
+    background: linear-gradient(45deg,
+            rgba(79, 9, 168, 1) 0%,
+            rgba(93, 48, 192, 1) 23%,
+            rgba(79, 40, 231, 0.9984189683112545) 51%,
+            rgba(71, 28, 189, 1) 76%,
+            rgba(41, 4, 100, 1) 100%);
+    padding: 3em 1.5em;
+}
+
+.product_details .product_name,
+.product_details span,
+.product_details strong,
+.product_details p {
+    display: block;
+    min-width: 100px;
+    outline: none;
+    padding: .1em;
+}
+
+.product_details strong {
+    display: inline-block;
+}
+
+.product_name {
+    color: var(--light-primary-text-color);
+    font-size: 2.5em;
+    text-transform: uppercase;
+}
+
+.product_resume {
+    margin-top: .5em;
+    color: var(--light-complementary-text-color);
+}
+
+.product_price {
+    margin-top: 2.5em;
+    color: var(--light-primary-text-color);
+    font-size: 1.8em;
+    letter-spacing: 2px;
+}
+
+.product_description {
+    margin-top: 1.5em;
+    color: var(--light-complementary-text-color);
+    font-size: .9em;
+}
+
+@media screen and (min-width: 960px) {
+    .product_handling_modal {
+        flex-direction: row;
+        overflow-y: unset;
+    }
+
+    .product_cover {
+        width: 50%;
+    }
+
+    .script {
+        right: 3em;
+    }
+
+    .script span {
+        font-size: 4em;
+    }
+
+    .product_details {
+        width: 50%;
+        padding: 5em 3em;
+        overflow-y: auto;
+    }
+}
