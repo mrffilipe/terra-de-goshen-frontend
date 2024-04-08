@@ -1,10 +1,11 @@
 import styles from './styles.module.css'
 
+import { useState } from 'react'
 import PageHeaderTitle from '../../components/PageHeaderTitle'
 import ProductSession from '../../components/ProductSession'
 import ProductCardList from '../../components/ProductCardList'
 import Overlay from '../../components/Overlay'
-import ProductModal from '../../components/ProductModal'
+import ProductHandlingModal from '../../components/ProductHandlingModal'
 
 const products: Array<ProductCard> = [
     {
@@ -79,15 +80,21 @@ const products: Array<ProductCard> = [
 ]
 
 const ProductPage = () => {
+    const [openModal, setOpenModal] = useState<boolean>()
+
+    const handleOpenModal = (): void => {
+        setOpenModal(prev => !prev)
+    }
+
     return (
         <article className={styles.product_page}>
-            <PageHeaderTitle value='Masculino' />
+            <PageHeaderTitle value='Feminino' />
             <ProductSession>
                 <ProductCardList items={products} onlyReading />
             </ProductSession>
-            {/* <Overlay isOverlayOpen>
-                <ProductModal />
-            </Overlay> */}
+            <Overlay isOverlayOpen={openModal}>
+                <ProductHandlingModal editable />
+            </Overlay>
         </article>
     )
 }

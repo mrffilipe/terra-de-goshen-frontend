@@ -1,0 +1,23 @@
+.product_price {
+    margin-top: .5em;
+    display: block;
+    min-width: 100px;
+    outline: none;
+    padding: .1em;
+    color: var(--light-primary-text-color);
+    font-size: 1.5em;
+    letter-spacing: 2px;
+}
+
+.product_price strong {
+    display: inline-block;
+    min-width: 100px;
+    outline: none;
+    padding: .1em;
+}
+
+@media screen and (min-width: 960px) {
+    .product_price {
+        font-size: 1.8em;
+    }
+}

@@ -120,7 +120,7 @@ const StockPage = () => {
                 }
             </ProductSession>
             <Overlay isOverlayOpen={openModal}>
-                <ProductHandlingModal />
+                <ProductHandlingModal editable />
             </Overlay>
         </article>
     )

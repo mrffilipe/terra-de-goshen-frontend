@@ -2,27 +2,29 @@ import styles from './styles.module.css'
 
 import { useState } from 'react'
 import { Close } from '@mui/icons-material'
+import ProductName from './ProductName'
+import ProductDescription from './ProductDescription'
+import ProductPrice from './ProductPrice'
 
-const ProductHandlingModal = () => {
-    const [productName, setProductName] = useState<string>()
-    const [productResume, setProductResume] = useState<string>()
-    const [productPrice, setProductPrice] = useState<string>()
-    const [productDescription, setProductDescription] = useState<string>()
+type Props = {
+    editable?: boolean
+}
 
-    const handleProductName = (event): void => {
+const ProductHandlingModal = (props: Props) => {
+    const [productName, setProductName] = useState<string>('')
+    const [productDescription, setProductDescription] = useState<string>('')
+    const [productPrice, setProductPrice] = useState<string>('')
+
+    const handleProductName = (event: any): void => {
         setProductName(event.target.innerText)
     }
 
-    const handleProductResume = (event): void => {
-        setProductResume(event.target.innerText)
-    }
-
-    const handleProductPrice = (event): void => {
-        setProductPrice(event.target.innerText)
-    }
-
-    const handleProductDescription = (event): void => {
+    const handleProductDescription = (event: any): void => {
         setProductDescription(event.target.innerText)
+    }
+
+    const handleProductPrice = (event: any): void => {
+        setProductPrice(event.target.innerText)
     }
 
     return (
@@ -43,45 +45,30 @@ const ProductHandlingModal = () => {
                 </div>
             </section>
             <section className={styles.product_details}>
-                <h1
-                    className={styles.product_name}
-                    contentEditable
-                    onBlur={handleProductName}
-                    suppressContentEditableWarning={true}>
-                    {
-                        productName ? productName : 'Digite o nome do produto'
-                    }
-                </h1>
-                <span
-                    className={styles.product_resume}
-                    contentEditable
-                    onBlur={handleProductResume}
-                    suppressContentEditableWarning={true}>
-                    {
-                        productResume ? productResume : 'Digite o resumo do produto'
-                    }
-                </span>
-                <span className={styles.product_price}>
-                    R$ <strong
-                        contentEditable
-                        onBlur={handleProductPrice}
-                        suppressContentEditableWarning={true}>
-                        {
-                            productPrice ? productPrice : '00,00'
-                        }
-                    </strong>
-                </span>
-                <p
-                    className={styles.product_description}
-                    contentEditable
-                    onBlur={handleProductDescription}
-                    suppressContentEditableWarning={true}>
-                    {
-                        productDescription ? productDescription : 'Digite a descrição do produto'
-                    }
-                </p>
+                <ProductName
+                    value={productName}
+                    onChange={props.editable ? handleProductName : undefined} />
+                <ProductDescription
+                    value={productDescription}
+                    onChange={props.editable ? handleProductDescription : undefined} />
+                <ProductPrice
+                    value={productPrice}
+                    onChange={props.editable ? handleProductPrice : undefined} />
                 <section className={styles.product_attributes}>
-
+                    <ul className={styles.color_attribute}>
+                        <li><span></span></li>
+                        <li><span></span></li>
+                        <li><span></span></li>
+                        <li><span></span></li>
+                        <li><span></span></li>
+                    </ul>
+                    <ul className={styles.size_attribute}>
+                        <li><span>P</span></li>
+                        <li><span>M</span></li>
+                        <li><span>G</span></li>
+                        <li><span>GG</span></li>
+                        <li><span>XG</span></li>
+                    </ul>
                 </section>
             </section>
         </article>
