@@ -3,7 +3,7 @@ import styles from './styles.module.css'
 import ProductCard from '../ProductCard'
 
 type Props = {
-    items: Array<ProductCard>,
+    items: Array<Product>,
     onlyReading?: boolean
 }
 
@@ -12,12 +12,11 @@ const ProductCardList = (props: Props) => {
         return (
             <ProductCard
                 id={product.id}
-                imageUrl={product.imageUrl}
-                imageAlt={product.imageAlt}
+                imageUrl={product.images[0].image.imageUrl}
+                imageAlt={product.images[0].image.imageAlt}
                 name={product.name}
-                price={product.price}
-                editable={!props.onlyReading && product.editable}
-                key={product.id} />
+                price={product.price.toString()}
+                editable={props.onlyReading} /> // conferir
         )
     })
 

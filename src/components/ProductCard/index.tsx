@@ -4,7 +4,7 @@ import { Edit } from '@mui/icons-material'
 
 const ProductCard = (props: ProductCard) => {
     return (
-        <li className={styles.product_card}>
+        <li className={styles.product_card} key={props.id}>
             {
                 props.editable &&
                 <button className={styles.edit_btn}>

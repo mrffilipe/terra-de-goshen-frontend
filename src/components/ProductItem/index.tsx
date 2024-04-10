@@ -4,7 +4,7 @@ import { Edit } from '@mui/icons-material'
 
 const ProductItem = (props: ProductCard) => {
     return (
-        <li className={styles.product_item}>
+        <li className={styles.product_item} key={props.id}>
             <div className={styles.product_cover}>
                 <img src={props.imageUrl} alt={props.imageAlt} />
             </div>

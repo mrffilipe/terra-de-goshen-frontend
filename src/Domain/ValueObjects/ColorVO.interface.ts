@@ -1,0 +1,3 @@
+interface ColorVO {
+    value: string
+}

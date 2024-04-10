@@ -1,0 +1,3 @@
+interface CategoryVO {
+    name: string
+}

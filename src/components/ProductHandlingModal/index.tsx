@@ -2,6 +2,7 @@ import styles from './styles.module.css'
 
 import { useState } from 'react'
 import { Close } from '@mui/icons-material'
+import ProductScript from './ProductScript'
 import ProductName from './ProductName'
 import ProductDescription from './ProductDescription'
 import ProductPrice from './ProductPrice'
@@ -35,10 +36,11 @@ const ProductHandlingModal = (props: Props) => {
                 </button>
                 <img src='https://havaianas.com.br/dw/image/v2/BDDJ_PRD/on/demandware.static/-/Sites-havaianas-master/default/dw9126436c/product-images/4149460_0046_CAMISETA-FEM-HAVAIANAS-ALOHA-VIBES_A.png?sw=680&sh=680' alt="" />
                 <div className={styles.script}>
-                    <span>J</span>
+                    <span>C</span>
                     <span>a</span>
-                    <span>q</span>
-                    <span>u</span>
+                    <span>m</span>
+                    <span>i</span>
+                    <span>s</span>
                     <span>e</span>
                     <span>t</span>
                     <span>a</span>

@@ -3,7 +3,7 @@ import styles from './styles.module.css'
 import ProductItem from '../ProductItem'
 
 type Props = {
-    items: Array<ProductCard>
+    items: Array<Product>
 }
 
 const ProductList = (props: Props) => {
@@ -11,12 +11,11 @@ const ProductList = (props: Props) => {
         return (
             <ProductItem
                 id={product.id}
-                imageUrl={product.imageUrl}
-                imageAlt={product.imageAlt}
+                imageUrl={product.images[0].image.imageUrl}
+                imageAlt={product.images[0].image.imageAlt}
                 name={product.name}
-                price={product.price}
-                editable
-                key={product.id} />
+                price={product.price.toString()}
+                editable />
         )
     })
 
