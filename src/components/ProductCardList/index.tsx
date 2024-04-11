@@ -3,7 +3,8 @@ import styles from './styles.module.css'
 import ProductCard from '../ProductCard'
 
 type Props = {
-    items: Array<Product>,
+    items: Array<Product>
+    onProductClick: (product: Product) => void
     onlyReading?: boolean
 }
 
@@ -16,6 +17,7 @@ const ProductCardList = (props: Props) => {
                 imageAlt={product.images[0].image.imageAlt}
                 name={product.name}
                 price={product.price.toString()}
+                onClick={() => props.onProductClick(product)}
                 editable={props.onlyReading} /> // conferir
         )
     })

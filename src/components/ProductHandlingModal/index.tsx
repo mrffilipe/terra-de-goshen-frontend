@@ -8,6 +8,7 @@ import ProductDescription from './ProductDescription'
 import ProductPrice from './ProductPrice'
 
 type Props = {
+    product: Product
     editable?: boolean
 }
 
