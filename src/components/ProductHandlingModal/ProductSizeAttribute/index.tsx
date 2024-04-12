@@ -1,7 +1,10 @@
 import styles from './styles.module.css'
 
+import SizeRef from '../../../Domain/Entities/SizeRef'
+
 type Props = {
     sizes: SizeRef[]
+    editable?: boolean
 }
 
 const ProductSizeAttribute = (props: Props) => {
@@ -14,6 +17,10 @@ const ProductSizeAttribute = (props: Props) => {
     return (
         <ul className={styles.product_size_attribute}>
             {listSizes}
+            {
+                props.editable &&
+                <button className={styles.add_btn}>+</button>
+            }
         </ul>
     )
 }

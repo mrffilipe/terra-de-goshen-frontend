@@ -16,3 +16,5 @@ class CategoryRef implements Entity {
         this.updatedAt = updatedAt || ""
     }
 }
+
+export default CategoryRef

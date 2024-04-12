@@ -1,3 +1,26 @@
 .product_color_attribute span {
     border: 6px solid var(--primary-color);
 }
+
+.product_color_attribute input {
+    width: 100%;
+    height: 100%;
+    display: block;
+    cursor: pointer;
+}
+
+.add_btn {
+    background: var(--accent-color);
+    border: none;
+    outline: none;
+    padding: 0 .5em;
+    color: var(--primary-color);
+    font-size: 2em;
+    text-align: center;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.add_btn:hover {
+    transform: translateY(-5px);
+}

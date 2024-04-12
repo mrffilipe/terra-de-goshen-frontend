@@ -19,3 +19,5 @@ class ColorRef implements Entity {
         this.updatedAt = updatedAt || ""
     }
 }
+
+export default ColorRef

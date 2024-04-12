@@ -9,6 +9,9 @@ import ProductPrice from './ProductPrice'
 import ProductColorAttribute from './ProductColorAttribute'
 import ProductSizeAttribute from './ProductSizeAttribute'
 
+import Product from '../../Domain/Entities/Product'
+import ColorRef from '../../Domain/Entities/ColorRef'
+
 type Props = {
     product: Product
     onCloseProduct: () => void
@@ -19,6 +22,9 @@ const ProductHandlingModal = (props: Props) => {
     const [productName, setProductName] = useState<string>('')
     const [productDescription, setProductDescription] = useState<string>('')
     const [productPrice, setProductPrice] = useState<string>('')
+    const [productColors, setProductColors] = useState<ColorRef[]>(props.product.colors || [])
+
+    console.log(productColors)
 
     const handleProductName = (event: any): void => {
         setProductName(event.target.innerText)
@@ -61,8 +67,8 @@ const ProductHandlingModal = (props: Props) => {
                     value={props.editable ? productPrice : props.product.price.toString()}
                     onChange={props.editable ? handleProductPrice : undefined} />
                 <section className={styles.product_attributes}>
-                    <ProductColorAttribute colors={props.product.colors} />
-                    <ProductSizeAttribute sizes={props.product.sizes} />
+                    <ProductColorAttribute colors={productColors} onChange={setProductColors} editable />
+                    <ProductSizeAttribute sizes={props.product.sizes} editable />
                 </section>
             </section>
         </article>

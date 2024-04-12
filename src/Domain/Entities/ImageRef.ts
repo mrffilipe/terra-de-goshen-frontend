@@ -16,3 +16,5 @@ class ImageRef implements Entity {
         this.updatedAt = updatedAt || ""
     }
 }
+
+export default ImageRef

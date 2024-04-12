@@ -1,3 +1,8 @@
+import ImageRef from "./ImageRef"
+import ColorRef from "./ColorRef"
+import SizeRef from "./SizeRef"
+import CategoryRef from "./CategoryRef"
+
 class Product implements Entity {
     name: string
     description: string
@@ -37,3 +42,5 @@ class Product implements Entity {
         this.updatedAt = updatedAt || ""
     }
 }
+
+export default Product

@@ -16,3 +16,5 @@ class SizeRef implements Entity {
         this.updatedAt = updatedAt || ""
     }
 }
+
+export default SizeRef

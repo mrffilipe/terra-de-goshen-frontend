@@ -6,6 +6,23 @@
     text-transform: uppercase;
 }
 
+
+.add_btn {
+    background: var(--accent-color);
+    border: none;
+    outline: none;
+    padding: 0 .5em;
+    color: var(--primary-color);
+    font-size: 2em;
+    text-align: center;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.add_btn:hover {
+    transform: translateY(-5px);
+}
+
 @media screen and (min-width: 960px) {
     .product_size_attribute span {
         font-size: 1.2em;
