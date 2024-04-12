@@ -1,0 +1,3 @@
+.product_color_attribute span {
+    border: 6px solid var(--primary-color);
+}

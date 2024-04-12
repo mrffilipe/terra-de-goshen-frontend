@@ -82,30 +82,31 @@
     width: 100%;
     list-style: none;
     display: flex;
-    align-items: center;
     flex-wrap: wrap;
-    gap: 1em;
+    gap: .75em 1.5em;
 }
 
-.product_attributes li {
-    width: 25%;
-    height: 3em;
-    background: var(--accent-color);
+.product_attributes ul li {
+    width: calc(33.33% - (3em / 3));
+    height: 40px;    
+}
+
+.product_attributes ul span {
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.product_attributes ul span {
-    display: block;
-    text-align: center;
-}
+@media screen and (min-width: 1280px) {
+    .product_attributes ul {
+        gap: 1em 2em;
+    }
 
-.size_attribute span {
-    color: var(--light-primary-text-color);
-    font-family: var(--aria-pro-regular-font);
-    font-size: 1.5em;
-    text-transform: uppercase;
+    .product_attributes ul li {
+        width: calc(20% - (8em / 5));
+        height: 50px;
+    }
 }
 
 @media screen and (min-width: 960px) {
@@ -132,33 +133,22 @@
         overflow-y: auto;
 
         scrollbar-width: thin;
-        /* Para Firefox */
         scrollbar-color: #888 #e0e0e0;
-        /* Para Firefox: cor do manipulador e cor do trilho */
     }
 
-    /* Para Chrome, Edge, e Safari */
     .product_details::-webkit-scrollbar {
         width: 8px;
-        /* Largura da scrollbar */
     }
 
     .product_details::-webkit-scrollbar-track {
         background: #e0e0e0;
-        /* Cor do trilho da scrollbar */
     }
 
     .product_details::-webkit-scrollbar-thumb {
         background: #888;
-        /* Cor do manipulador da scrollbar */
     }
 
-    /* Opcional: estiliza o manipulador da scrollbar ao passar o mouse */
     .product_details::-webkit-scrollbar-thumb:hover {
         background: #555;
-    }
-
-    .product_attributes li {
-        width: 15%;
     }
 }

@@ -12,6 +12,7 @@ import { useGetAllProducts } from '../../hooks/product/useProductService'
 
 const ProductPage = () => {
     const [openModal, setOpenModal] = useState<boolean>()
+    const [product, setProduct] = useState<Product>()
     const [products, getAllProducts] = useGetAllProducts()
 
     useEffect(() => {
@@ -19,18 +20,27 @@ const ProductPage = () => {
     }, [getAllProducts])
 
     const handleOpenModal = (): void => {
+        setProduct(undefined)
         setOpenModal(prev => !prev)
+    }
+
+    const handleSetProduct = (product: Product): void => {
+        setOpenModal(true)
+        setProduct(product)
     }
 
     return (
         <article className={styles.product_page}>
             <PageHeaderTitle value='Feminino' />
             <ProductSession>
-                <ProductCardList items={products} onlyReading />
+                <ProductCardList items={products} onProductClick={handleSetProduct} />
             </ProductSession>
-            <Overlay isOverlayOpen={openModal}>
-                <ProductHandlingModal />
-            </Overlay>
+            {
+                product &&
+                <Overlay isOverlayOpen={openModal}>
+                    <ProductHandlingModal product={product} onCloseProduct={handleOpenModal} />
+                </Overlay>
+            }
         </article>
     )
 }

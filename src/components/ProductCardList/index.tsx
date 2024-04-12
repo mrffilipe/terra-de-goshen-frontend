@@ -5,7 +5,7 @@ import ProductCard from '../ProductCard'
 type Props = {
     items: Array<Product>
     onProductClick: (product: Product) => void
-    onlyReading?: boolean
+    editableItems?: boolean
 }
 
 const ProductCardList = (props: Props) => {
@@ -18,7 +18,7 @@ const ProductCardList = (props: Props) => {
                 name={product.name}
                 price={product.price.toString()}
                 onClick={() => props.onProductClick(product)}
-                editable={props.onlyReading} /> // conferir
+                editable={props.editableItems} />
         )
     })
 

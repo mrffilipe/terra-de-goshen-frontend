@@ -1,0 +1,13 @@
+.product_size_attribute span {
+    background: var(--accent-color);
+    color: var(--primary-color);
+    font-size: 1em;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+@media screen and (min-width: 960px) {
+    .product_size_attribute span {
+        font-size: 1.2em;
+    }
+}

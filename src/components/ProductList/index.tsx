@@ -5,6 +5,7 @@ import ProductItem from '../ProductItem'
 type Props = {
     items: Array<Product>
     onProductClick: (product: Product) => void
+    editableItems?: boolean
 }
 
 const ProductList = (props: Props) => {
@@ -17,7 +18,7 @@ const ProductList = (props: Props) => {
                 name={product.name}
                 price={product.price.toString()}
                 onClick={() => props.onProductClick(product)}
-                editable />
+                editable={props.editableItems} />
         )
     })
 

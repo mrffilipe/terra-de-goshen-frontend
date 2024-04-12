@@ -6,9 +6,12 @@ import ProductScript from './ProductScript'
 import ProductName from './ProductName'
 import ProductDescription from './ProductDescription'
 import ProductPrice from './ProductPrice'
+import ProductColorAttribute from './ProductColorAttribute'
+import ProductSizeAttribute from './ProductSizeAttribute'
 
 type Props = {
     product: Product
+    onCloseProduct: () => void
     editable?: boolean
 }
 
@@ -32,7 +35,7 @@ const ProductHandlingModal = (props: Props) => {
     return (
         <article className={styles.product_handling_modal}>
             <section className={styles.product_cover}>
-                <button className={styles.close_menu_btn}>
+                <button className={styles.close_menu_btn} onClick={props.onCloseProduct}>
                     <Close />
                 </button>
                 <img src='https://havaianas.com.br/dw/image/v2/BDDJ_PRD/on/demandware.static/-/Sites-havaianas-master/default/dw9126436c/product-images/4149460_0046_CAMISETA-FEM-HAVAIANAS-ALOHA-VIBES_A.png?sw=680&sh=680' alt="" />
@@ -49,29 +52,17 @@ const ProductHandlingModal = (props: Props) => {
             </section>
             <section className={styles.product_details}>
                 <ProductName
-                    value={productName}
+                    value={props.editable ? productName : props.product.name}
                     onChange={props.editable ? handleProductName : undefined} />
                 <ProductDescription
-                    value={productDescription}
+                    value={props.editable ? productDescription : props.product.description}
                     onChange={props.editable ? handleProductDescription : undefined} />
                 <ProductPrice
-                    value={productPrice}
+                    value={props.editable ? productPrice : props.product.price.toString()}
                     onChange={props.editable ? handleProductPrice : undefined} />
                 <section className={styles.product_attributes}>
-                    <ul className={styles.color_attribute}>
-                        <li><span></span></li>
-                        <li><span></span></li>
-                        <li><span></span></li>
-                        <li><span></span></li>
-                        <li><span></span></li>
-                    </ul>
-                    <ul className={styles.size_attribute}>
-                        <li><span>P</span></li>
-                        <li><span>M</span></li>
-                        <li><span>G</span></li>
-                        <li><span>GG</span></li>
-                        <li><span>XG</span></li>
-                    </ul>
+                    <ProductColorAttribute colors={props.product.colors} />
+                    <ProductSizeAttribute sizes={props.product.sizes} />
                 </section>
             </section>
         </article>

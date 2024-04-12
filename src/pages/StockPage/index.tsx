@@ -16,6 +16,7 @@ import { useGetAllProducts } from '../../hooks/product/useProductService'
 const StockPage = () => {
     const [listView, setListView] = useState<boolean>()
     const [openModal, setOpenModal] = useState<boolean>()
+    const [product, setProduct] = useState<Product>()
     const [products, getAllProducts] = useGetAllProducts()
 
     useEffect(() => {
@@ -23,7 +24,13 @@ const StockPage = () => {
     }, [getAllProducts])
 
     const handleOpenModal = (): void => {
+        setProduct(undefined)
         setOpenModal(prev => !prev)
+    }
+
+    const handleSetProduct = (product: Product): void => {
+        setOpenModal(true)
+        setProduct(product)
     }
 
     return (
@@ -51,13 +58,16 @@ const StockPage = () => {
             <ProductSession>
                 {
                     listView ?
-                        <ProductList items={products} /> :
-                        <ProductCardList items={products} />
+                        <ProductList items={products} onProductClick={handleSetProduct} editableItems /> :
+                        <ProductCardList items={products} onProductClick={handleSetProduct} editableItems />
                 }
             </ProductSession>
-            <Overlay isOverlayOpen={openModal}>
-                <ProductHandlingModal editable />
-            </Overlay>
+            {
+                product &&
+                <Overlay isOverlayOpen={openModal}>
+                    <ProductHandlingModal product={product} onCloseProduct={handleOpenModal} editable />
+                </Overlay>
+            }
         </article>
     )
 }
