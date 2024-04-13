@@ -6,13 +6,13 @@ import { v4 as uuidv4 } from 'uuid'
 import ColorRef from '../../../Domain/Entities/ColorRef'
 
 type Props = {
-    colors?: ColorRef[]
+    value?: ColorRef[]
     onChange?: (colors: ColorRef[]) => void | undefined
     editable?: boolean
 }
 
 const ProductColorAttribute = (props: Props) => {
-    const [colors, setColors] = useState<ColorRef[]>(props.colors || [])
+    const [colors, setColors] = useState<ColorRef[]>(props.value || [])
 
     useEffect(() => {
         if (props.onChange) {

@@ -11,6 +11,7 @@ import ProductSizeAttribute from './ProductSizeAttribute'
 
 import Product from '../../Domain/Entities/Product'
 import ColorRef from '../../Domain/Entities/ColorRef'
+import SizeRef from '../../Domain/Entities/SizeRef'
 
 type Props = {
     product: Product
@@ -22,9 +23,8 @@ const ProductHandlingModal = (props: Props) => {
     const [productName, setProductName] = useState<string>('')
     const [productDescription, setProductDescription] = useState<string>('')
     const [productPrice, setProductPrice] = useState<string>('')
-    const [productColors, setProductColors] = useState<ColorRef[]>(props.product.colors || [])
-
-    console.log(productColors)
+    const [productColors, setProductColors] = useState<ColorRef[]>([])
+    const [productSizes, setProductSizes] = useState<SizeRef[]>([])
 
     const handleProductName = (event: any): void => {
         setProductName(event.target.innerText)
@@ -44,7 +44,7 @@ const ProductHandlingModal = (props: Props) => {
                 <button className={styles.close_menu_btn} onClick={props.onCloseProduct}>
                     <Close />
                 </button>
-                <img src='https://havaianas.com.br/dw/image/v2/BDDJ_PRD/on/demandware.static/-/Sites-havaianas-master/default/dw9126436c/product-images/4149460_0046_CAMISETA-FEM-HAVAIANAS-ALOHA-VIBES_A.png?sw=680&sh=680' alt="" />
+                <img src={props.product.images[0].image.imageUrl} alt={props.product.images[0].image.imageAlt} />
                 <div className={styles.script}>
                     <span>C</span>
                     <span>a</span>
@@ -67,8 +67,14 @@ const ProductHandlingModal = (props: Props) => {
                     value={props.editable ? productPrice : props.product.price.toString()}
                     onChange={props.editable ? handleProductPrice : undefined} />
                 <section className={styles.product_attributes}>
-                    <ProductColorAttribute colors={productColors} onChange={setProductColors} editable />
-                    <ProductSizeAttribute sizes={props.product.sizes} editable />
+                    <ProductColorAttribute
+                        value={props.editable ? productColors : props.product.colors}
+                        onChange={props.editable ? setProductColors : undefined}
+                        editable={props.editable} />
+                    <ProductSizeAttribute
+                        value={props.editable ? productSizes : props.product.sizes}
+                        onChange={props.editable ? setProductSizes : undefined}
+                        editable={props.editable} />
                 </section>
             </section>
         </article>

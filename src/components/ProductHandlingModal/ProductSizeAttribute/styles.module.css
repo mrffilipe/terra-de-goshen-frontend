@@ -6,6 +6,23 @@
     text-transform: uppercase;
 }
 
+.product_size_attribute input {
+    width: 100%;
+    height: 100%;
+    display: block;
+    background: var(--accent-color);
+    border: none;
+    outline: none;
+    color: var(--primary-color);
+    font-size: 1em;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.product_size_attribute input:focus {
+    border: 4px solid var(--primary-color);
+}
 
 .add_btn {
     background: var(--accent-color);
