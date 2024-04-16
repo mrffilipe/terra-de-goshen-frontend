@@ -76,6 +76,12 @@ const ProductHandlingModal = (props: Props) => {
                         onChange={props.editable ? setProductSizes : undefined}
                         editable={props.editable} />
                 </section>
+                {
+                    props.editable &&
+                    <div className={styles.product_footer}>
+                        <button>Salvar</button>
+                    </div>
+                }
             </section>
         </article>
     )
