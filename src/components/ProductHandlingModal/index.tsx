@@ -1,8 +1,7 @@
 import styles from './styles.module.css'
 
 import { useState } from 'react'
-import { Close } from '@mui/icons-material'
-import ProductScript from './ProductScript'
+import ProductCover from './ProductCover'
 import ProductName from './ProductName'
 import ProductDescription from './ProductDescription'
 import ProductPrice from './ProductPrice'
@@ -40,22 +39,9 @@ const ProductHandlingModal = (props: Props) => {
 
     return (
         <article className={styles.product_handling_modal}>
-            <section className={styles.product_cover}>
-                <button className={styles.close_menu_btn} onClick={props.onCloseProduct}>
-                    <Close />
-                </button>
-                <img src={props.product.images[0].image.imageUrl} alt={props.product.images[0].image.imageAlt} />
-                <div className={styles.script}>
-                    <span>C</span>
-                    <span>a</span>
-                    <span>m</span>
-                    <span>i</span>
-                    <span>s</span>
-                    <span>e</span>
-                    <span>t</span>
-                    <span>a</span>
-                </div>
-            </section>
+            <ProductCover
+                images={props.product.images}
+                onCloseProduct={props.onCloseProduct} />
             <section className={styles.product_details}>
                 <ProductName
                     value={props.editable ? productName : props.product.name}
