@@ -41,7 +41,7 @@ const ProductHandlingModal = (props: Props) => {
         <article className={styles.product_handling_modal}>
             <ProductCover
                 images={props.product.images}
-                onCloseProduct={props.onCloseProduct} />
+                onCloseProduct={props.onCloseProduct} editable />
             <section className={styles.product_details}>
                 <ProductName
                     value={props.editable ? productName : props.product.name}

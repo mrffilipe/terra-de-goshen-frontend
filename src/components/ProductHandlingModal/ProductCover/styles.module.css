@@ -1,60 +1,111 @@
 .product_cover {
+    width: 100%;
     background: #F9F9F9;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
+    display: grid;
+    grid-template-rows: 1fr auto;
 
     position: relative;
 }
 
-.close_menu_btn {
-    display: block;
-    background: none;
-    border: none;
-    outline: none;
-    cursor: pointer;
+.main_cover {
+    padding-bottom: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
 
-    position: absolute;
-    top: .5em;
-    left: .5em;
-    z-index: 11;
+    position: relative;
 }
 
-.close_menu_btn svg {
-    color: rgba(32, 19, 64, .19);
-    font-size: 3em;
-    transition: all .3s ease;
-}
-
-.close_menu_btn:hover svg {
-    color: rgba(32, 19, 64, .4);
-}
-
-.product_cover img {
+.main_cover span {
     width: 100%;
-    height: auto;
-    z-index: 10;
-}
-
-.script {
     height: 100%;
     display: flex;
-    flex-direction: column;
-    gap: .5em;
-    overflow: hidden;
+    justify-content: center;
+    align-items: center;
 
     position: absolute;
     top: 0;
-    right: .5em;
+    left: 0;
 }
 
-.script span {
-    display: block;
-    color: rgba(32, 19, 64, .19);
-    text-align: center;
-    font-family: var(--aria-font);
-    font-size: 2.1em;
-    text-transform: uppercase;
+.covers {
+    height: 80px;
+    background: #eaeaea;
+    padding: .3em;
+    display: flex;
+    gap: .3em;
+    overflow-x: auto;
+
+    scrollbar-width: thin;
+    scrollbar-color: #888 #e0e0e0;
+}
+
+.covers::-webkit-scrollbar {
+    width: 8px;
+}
+
+.covers::-webkit-scrollbar-track {
+    background: #e0e0e0;
+}
+
+.covers::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+.covers::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.covers_list {
+    list-style: none;
+    display: flex;
+    gap: .3em;
+}
+
+.covers_list li {
+    background: #F9F9F9;
+}
+
+.covers_list li div {
+    width: calc(80px - .6em);
+    height: calc(80px - .6em);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    cursor: pointer;
+}
+
+.selected_cover {
+    border: 2px solid #888;
+}
+
+.add_cover_btn {
+    width: calc(80px - 0.6em);
+    height: calc(80px - 0.6em);
+    cursor: pointer;
+
+    position: relative;
+}
+
+.add_cover_btn span {
+    width: 100%;
+    height: 100%;
+    background: #F9F9F9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.add_cover_btn input[type="file"] {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+
+    position: absolute;
+    left: 0;
+    top: 0;
 }
 
 @media screen and (min-width: 960px) {
@@ -62,11 +113,21 @@
         width: 45%;
     }
 
-    .script {
-        right: 1em;
+    .main_cover {
+        padding-bottom: 0;
     }
 
-    .script span {
-        font-size: 4.8em;
+    .covers {
+        height: 100px;
+    }
+
+    .covers_list li div {
+        width: calc(100px - .6em);
+        height: calc(100px - .6em);
+    }
+
+    .add_cover_btn {
+        width: calc(100px - 0.6em);
+        height: calc(100px - 0.6em);
     }
 }
