@@ -1,15 +1,21 @@
-.product_name {
-    display: block;
-    min-width: 100px;
-    outline: none;
-    padding: .1em;
+.product_name h1,
+.product_name input {
     color: var(--light-primary-text-color);
     font-size: 2em;
     text-transform: uppercase;
 }
 
+.product_name input {
+    width: 100%;
+    display: block;
+    background: none;
+    border: none;
+    outline: none;
+}
+
 @media screen and (min-width: 960px) {
-    .product_name {
+    .product_name h1,
+    .product_name input {
         font-size: 2.5em;
     }
 }

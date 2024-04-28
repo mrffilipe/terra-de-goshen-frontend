@@ -1,15 +1,27 @@
 .product_description {
     margin-top: 2em;
+}
+
+.product_description p,
+.product_description textarea {
+    width: 100%;
     display: block;
-    min-width: 100px;
+    background: none;
+    border: none;
     outline: none;
-    padding: .1em;
     color: var(--light-complementary-text-color);
     font-size: 1.1em;
 }
 
+.product_description textarea {
+    padding-right: .5em;
+    resize: none;
+}
+
 @media screen and (min-width: 960px) {
-    .product_description {
+
+    .product_description p,
+    .product_description textarea {
         font-size: 1.2em;
     }
 }

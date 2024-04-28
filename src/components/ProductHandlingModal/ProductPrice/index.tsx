@@ -1,22 +1,28 @@
 import styles from './styles.module.css'
 
 type Props = {
-    value: string,
-    onChange?: (event: any) => void | undefined
+    value: string
+    editable?: boolean
+    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 const ProductPrice = (props: Props) => {
     return (
-        <span className={styles.product_price}>
-            R$ <strong
-                contentEditable={props.onChange ? true : false}
-                onBlur={props.onChange}
-                suppressContentEditableWarning={true}>
+        <div className={styles.product_price}>
+            <span>
+                R$
                 {
-                    props.value ? props.value : '00,00'
+                    !props.editable ? (
+                        <strong>{props.value}</strong>
+                    ) : (
+                        <input type="number"
+                            value={props.value}
+                            placeholder='00'
+                            onChange={props.onChange} />
+                    )
                 }
-            </strong>
-        </span>
+            </span>
+        </div>
     )
 }
 

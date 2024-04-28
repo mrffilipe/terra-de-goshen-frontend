@@ -1,21 +1,27 @@
 import styles from './styles.module.css'
 
 type Props = {
-    value: string,
-    onChange?: (event: any) => void | undefined
+    value: string
+    editable?: boolean
+    onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void
 }
 
 const ProductDescription = (props: Props) => {
     return (
-        <p
-            className={styles.product_description}
-            contentEditable={props.onChange ? true : false}
-            onBlur={props.onChange}
-            suppressContentEditableWarning={true}>
+        <div className={styles.product_description}>
             {
-                props.value ? props.value : 'Digite a descrição do produto'
+                !props.editable ? (
+                    <p>{props.value}</p>
+                ) : (
+                    <textarea
+                        value={props.value}
+                        placeholder='Digite a descrição do produto...'
+                        rows={5}
+                        maxLength={255}
+                        onChange={props.onChange} />
+                )
             }
-        </p>
+        </div>
     )
 }
 
