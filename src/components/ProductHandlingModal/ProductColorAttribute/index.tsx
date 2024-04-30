@@ -2,33 +2,40 @@ import styles from './styles.module.css'
 
 import { useEffect, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
+import { Add } from '@mui/icons-material'
 
 import ColorRef from '../../../Domain/Entities/ColorRef'
 
 type Props = {
-    value?: ColorRef[]
-    onChange?: (colors: ColorRef[]) => void | undefined
+    value: ColorRef[]
     editable?: boolean
+    onChange?: (colors: ColorRef[]) => void
 }
 
 const ProductColorAttribute = (props: Props) => {
-    const [colors, setColors] = useState<ColorRef[]>(props.value || [])
+    const [colors, setColors] = useState<ColorRef[]>([])
 
     useEffect(() => {
+        if (props.value !== undefined) {
+            setColors(props.value)
+        }
+
         if (props.onChange) {
             props.onChange(colors)
         }
-    }, [colors, props.onChange])
+    }, [props.value, props.onChange])
 
-    const listColors = colors.map(color => (
+    const colorList = colors.map(color => (
         <li key={color.id || uuidv4()}>
             {
-                (props.editable && colors.length) ?
+                props.editable ? (
                     <input
                         type="color"
                         value={color.color.value}
-                        onChange={e => handleColorChange(color.id, e.target.value)} /> :
+                        onChange={e => handleColorChange(color.id, e.target.value)} />
+                ) : (
                     <span style={{ backgroundColor: color.color.value }}></span>
+                )
             }
         </li>
     ))
@@ -53,10 +60,13 @@ const ProductColorAttribute = (props: Props) => {
 
     return (
         <ul className={styles.product_color_attribute}>
-            {listColors}
+            {colorList}
             {
-                props.editable &&
-                <button className={styles.add_btn} onClick={handleAddColor}>+</button>
+                props.editable && (
+                    <button className={styles.add_btn} onClick={handleAddColor}>
+                        <Add />
+                    </button>
+                )
             }
         </ul>
     )

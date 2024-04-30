@@ -48,6 +48,10 @@ const ProductHandlingModal = (props: Props) => {
         setProductPrice(event.target.value)
     }
 
+    const handleProductColor = (color: ColorRef[]): void => {
+        setProductColors(color)
+    }
+
     return (
         <article className={styles.product_handling_modal}>
             <ProductCover
@@ -70,18 +74,19 @@ const ProductHandlingModal = (props: Props) => {
                 <section className={styles.product_attributes}>
                     <ProductColorAttribute
                         value={productColors}
-                        onChange={props.editable ? setProductColors : undefined}
-                        editable={props.editable} />
+                        editable={props.editable}
+                        onChange={props.editable ? handleProductColor : undefined} />
                     <ProductSizeAttribute
                         value={productSizes}
                         onChange={props.editable ? setProductSizes : undefined}
                         editable={props.editable} />
                 </section>
                 {
-                    props.editable &&
-                    <div className={styles.product_footer}>
-                        <button>Salvar</button>
-                    </div>
+                    props.editable && (
+                        <div className={styles.product_footer}>
+                            <button>Salvar</button>
+                        </div>
+                    )
                 }
             </section>
         </article>
