@@ -2,35 +2,41 @@ import styles from './styles.module.css'
 
 import { useEffect, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
+import { Add } from '@mui/icons-material'
 
 import SizeRef from '../../../Domain/Entities/SizeRef'
 
 type Props = {
-    value?: SizeRef[]
-    onChange?: (sizes: SizeRef[]) => void | undefined
+    value: SizeRef[]
     editable?: boolean
+    onChange?: (sizes: SizeRef[]) => void
 }
 
 const ProductSizeAttribute = (props: Props) => {
-    const [sizes, setSizes] = useState<SizeRef[]>(props.value || [])
+    const [sizes, setSizes] = useState<SizeRef[]>([])
 
     useEffect(() => {
+        if (props.value !== undefined) {
+            setSizes(props.value)
+        }
+
         if (props.onChange) {
             props.onChange(sizes)
         }
-    }, [sizes, props.onChange])
+    }, [sizes])
 
-
-
-    const listSizes = sizes.map(size => (
+    const sizeList = sizes.map(size => (
         <li key={size.id || uuidv4()}>
             {
-                (props.editable && sizes.length) ?
+                props.editable ? (
                     <input
                         type="text"
                         value={size.size.value}
-                        onChange={e => handleColorChange(size.id, e.target.value)} /> :
+                        placeholder='M'
+                        onChange={e => handleColorChange(size.id, e.target.value)} />
+                ) : (
                     <span>{size.size.value}</span>
+                )
             }
         </li>
     ))
@@ -55,10 +61,13 @@ const ProductSizeAttribute = (props: Props) => {
 
     return (
         <ul className={styles.product_size_attribute}>
-            {listSizes}
+            {sizeList}
             {
-                props.editable &&
-                <button className={styles.add_btn} onClick={handleAddSize}>+</button>
+                props.editable && (
+                    <button className={styles.add_btn} onClick={handleAddSize}>
+                        <Add />
+                    </button>
+                )
             }
         </ul>
     )

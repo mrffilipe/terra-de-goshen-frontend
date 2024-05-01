@@ -19,11 +19,7 @@ const ProductColorAttribute = (props: Props) => {
         if (props.value !== undefined) {
             setColors(props.value)
         }
-
-        if (props.onChange) {
-            props.onChange(colors)
-        }
-    }, [props.value, props.onChange])
+    }, [props.value])
 
     const colorList = colors.map(color => (
         <li key={color.id || uuidv4()}>

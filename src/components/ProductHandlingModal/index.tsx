@@ -75,11 +75,11 @@ const ProductHandlingModal = (props: Props) => {
                     <ProductColorAttribute
                         value={productColors}
                         editable={props.editable}
-                        onChange={props.editable ? handleProductColor : undefined} />
+                        onChange={props.editable ? undefined : undefined} />
                     <ProductSizeAttribute
                         value={productSizes}
-                        onChange={props.editable ? setProductSizes : undefined}
-                        editable={props.editable} />
+                        editable={props.editable}
+                        onChange={props.editable ? undefined : undefined} />
                 </section>
                 {
                     props.editable && (
