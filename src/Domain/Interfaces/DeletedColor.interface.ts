@@ -1,0 +1,3 @@
+interface DeletedColor {
+    id: string
+}

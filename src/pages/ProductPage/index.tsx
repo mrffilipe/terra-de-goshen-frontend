@@ -8,6 +8,7 @@ import ProductCardList from '../../components/ProductCardList'
 import Overlay from '../../components/Overlay'
 import ProductHandlingModal from '../../components/ProductHandlingModal'
 
+import Product from '../../Domain/Entities/Product'
 import { useGetAllProducts } from '../../hooks/product/useProductService'
 
 const ProductPage = () => {
@@ -26,7 +27,17 @@ const ProductPage = () => {
 
     const handleSetProduct = (product: Product): void => {
         setOpenModal(true)
-        setProduct(product)
+        setProduct(new Product(
+            "Camiseta polo",
+            "Teste produto",
+            129.90,
+            [{ id: '123', image: { imageAlt: '', imageUrl: 'https://d8vlg9z1oftyc.cloudfront.net/ailos/image/product/7b1ed85e9ec6a3c690e9d8ceab110cfa20221020074114/850/camiseta-feminina-zatom-bicicleta_1928.png' }, createdAt: '', updatedAt: '' }],
+            { existingColors: [{ id: '123', value: '#000', imageId: '', createdAt: '', updatedAt: '' }] },
+            [{ id: '123', size: { value: 'gg' }, createdAt: '', updatedAt: '' }],
+            { id: '123', category: { name: 'Teste' }, createdAt: '', updatedAt: '' },
+            10
+        ))
+        // setProduct(product)
     }
 
     return (

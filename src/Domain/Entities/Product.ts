@@ -1,5 +1,4 @@
 import ImageRef from "./ImageRef"
-import ColorRef from "./ColorRef"
 import SizeRef from "./SizeRef"
 import CategoryRef from "./CategoryRef"
 
@@ -8,7 +7,7 @@ class Product implements Entity {
     description: string
     price: number
     images: Array<ImageRef>
-    colors: Array<ColorRef>
+    colors: Color
     sizes: Array<SizeRef>
     category: CategoryRef
     quantityInStock: number
@@ -21,7 +20,7 @@ class Product implements Entity {
         description: string,
         price: number,
         images: Array<ImageRef>,
-        colors: Array<ColorRef>,
+        colors: Color,
         sizes: Array<SizeRef>,
         category: CategoryRef,
         quantityInStock: number,

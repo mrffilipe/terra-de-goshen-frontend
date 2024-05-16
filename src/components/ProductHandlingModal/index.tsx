@@ -10,7 +10,6 @@ import ProductColorAttribute from './ProductColorAttribute'
 import ProductSizeAttribute from './ProductSizeAttribute'
 
 import Product from '../../Domain/Entities/Product'
-import ColorRef from '../../Domain/Entities/ColorRef'
 import SizeRef from '../../Domain/Entities/SizeRef'
 
 type Props = {
@@ -23,7 +22,11 @@ const ProductHandlingModal = (props: Props) => {
     const [productName, setProductName] = useState<string>('')
     const [productDescription, setProductDescription] = useState<string>('')
     const [productPrice, setProductPrice] = useState<string>('')
-    const [productColors, setProductColors] = useState<ColorRef[]>([])
+    const [productColors, setProductColors] = useState<Color>({
+        existingColors: [],
+        newColors: [],
+        deletedColors: []
+    })
     const [productSizes, setProductSizes] = useState<SizeRef[]>([])
 
     useEffect(() => {
@@ -48,7 +51,8 @@ const ProductHandlingModal = (props: Props) => {
         setProductPrice(event.target.value)
     }
 
-    const handleProductColor = (color: ColorRef[]): void => {
+    const handleProductColor = (color: Color): void => {
+        console.log(color)
         setProductColors(color)
     }
 
@@ -75,7 +79,7 @@ const ProductHandlingModal = (props: Props) => {
                     <ProductColorAttribute
                         value={productColors}
                         editable={props.editable}
-                        onChange={props.editable ? undefined : undefined} />
+                        onChange={e => props.editable ? handleProductColor(e) : undefined} />
                     <ProductSizeAttribute
                         value={productSizes}
                         editable={props.editable}
