@@ -4,60 +4,101 @@ import { useEffect, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { Add } from '@mui/icons-material'
 
-import SizeRef from '../../../Domain/Entities/SizeRef'
-
 type Props = {
-    value: SizeRef[]
+    value: Size
     editable?: boolean
-    onChange?: (sizes: SizeRef[]) => void
+    onChange?: (sizes: Size) => void
 }
 
 const ProductSizeAttribute = (props: Props) => {
-    const [sizes, setSizes] = useState<SizeRef[]>([])
+    const [sizes, setSizes] = useState<Size>({
+        existingSizes: [],
+        newSizes: [],
+        deletedSizes: []
+    })
 
     useEffect(() => {
         if (props.value !== undefined) {
-            setSizes(props.value)
+            setSizes({
+                existingSizes: props.value.existingSizes,
+                newSizes: props.value.newSizes ?? [],
+                deletedSizes: props.value.deletedSizes ?? []
+            })
+        }
+    }, [props.value])
+
+    const handleSizeChange = (sizeId: string, newValue: string): void => {
+        const updatedExistingSizes = sizes.existingSizes.map(size => {
+            if (size.id === sizeId) {
+                return { ...size, value: newValue }
+            }
+
+            return size
+        })
+
+        const updatedNewSizes = (sizes.newSizes ?? []).map(size => {
+            if (size.id === sizeId) {
+                return { ...size, value: newValue }
+            }
+
+            return size
+        })
+
+        const updatedSizes = { ...sizes, existingSizes: updatedExistingSizes, newSizes: updatedNewSizes }
+
+        setSizes(updatedSizes)
+
+        props.onChange && props.onChange(updatedSizes)
+    }
+
+    const handleAddSize = (): void => {
+        const newSize: NewSize = { id: uuidv4(), value: 'p' }
+
+        const updatedSizes = { ...sizes, newSizes: [...(sizes.newSizes ?? []), newSize] }
+
+        setSizes(updatedSizes)
+
+        props.onChange && props.onChange(updatedSizes)
+    }
+
+    const handleDeleteSize = (sizeId: string): void => {
+        const sizeToDelete = sizes.existingSizes.find(size => size.id === sizeId)
+
+        let updatedSizes
+
+        if (sizeToDelete) {
+            updatedSizes = {
+                ...sizes,
+                existingSizes: sizes.existingSizes.filter(size => size.id !== sizeId),
+                deletedSizes: [...(sizes.deletedSizes ?? []), { id: sizeId }]
+            }
+        } else {
+            updatedSizes = {
+                ...sizes,
+                newSizes: (sizes.newSizes ?? []).filter(size => size.id !== sizeId)
+            }
         }
 
-        if (props.onChange) {
-            props.onChange(sizes)
-        }
-    }, [sizes])
+        setSizes(updatedSizes)
 
-    const sizeList = sizes.map(size => (
-        <li key={size.id || uuidv4()}>
+        props.onChange && props.onChange(updatedSizes)
+    }
+
+    const sizeList = [...sizes.existingSizes, ...(sizes.newSizes ?? [])].map(size => (
+        <li key={size.id}>
             {
                 props.editable ? (
                     <input
                         type="text"
-                        value={size.size.value}
+                        value={size.value}
                         placeholder='M'
-                        onChange={e => handleColorChange(size.id, e.target.value)} />
+                        onChange={e => handleSizeChange(size.id, e.target.value)} />
                 ) : (
-                    <span>{size.size.value}</span>
+                    <span>{size.value}</span>
                 )
             }
         </li>
     ))
-
-    const handleColorChange = (sizeId: string, newValue: string): void => {
-        const newSizes = sizes.map(size => {
-            if (size.id === sizeId) {
-                return new SizeRef({ value: newValue }, '', size.id)
-            }
-
-            return size;
-        })
-
-        setSizes(newSizes)
-    }
-
-    const handleAddSize = (): void => {
-        const newSize = new SizeRef({ value: 'm' }, '', uuidv4())
-
-        setSizes([...sizes, newSize])
-    }
 
     return (
         <ul className={styles.product_size_attribute}>

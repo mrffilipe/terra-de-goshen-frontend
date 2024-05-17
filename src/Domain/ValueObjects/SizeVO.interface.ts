@@ -1,3 +1,0 @@
-interface SizeVO {
-    value: string
-}

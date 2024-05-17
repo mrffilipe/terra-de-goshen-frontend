@@ -10,7 +10,6 @@ import ProductColorAttribute from './ProductColorAttribute'
 import ProductSizeAttribute from './ProductSizeAttribute'
 
 import Product from '../../Domain/Entities/Product'
-import SizeRef from '../../Domain/Entities/SizeRef'
 
 type Props = {
     product?: Product
@@ -27,7 +26,11 @@ const ProductHandlingModal = (props: Props) => {
         newColors: [],
         deletedColors: []
     })
-    const [productSizes, setProductSizes] = useState<SizeRef[]>([])
+    const [productSizes, setProductSizes] = useState<Size>({
+        existingSizes: [],
+        newSizes: [],
+        deletedSizes: []
+    })
 
     useEffect(() => {
         if (props.product !== undefined) {
@@ -37,7 +40,7 @@ const ProductHandlingModal = (props: Props) => {
             setProductColors(props.product.colors)
             setProductSizes(props.product.sizes)
         }
-    }, [props.product])
+    }, [])
 
     const handleProductName = (event: React.ChangeEvent<HTMLInputElement>): void => {
         setProductName(event.target.value)
@@ -52,8 +55,11 @@ const ProductHandlingModal = (props: Props) => {
     }
 
     const handleProductColor = (color: Color): void => {
-        console.log(color)
         setProductColors(color)
+    }
+
+    const handleProductSize = (size: Size): void => {
+        setProductSizes(size)
     }
 
     return (
@@ -79,11 +85,11 @@ const ProductHandlingModal = (props: Props) => {
                     <ProductColorAttribute
                         value={productColors}
                         editable={props.editable}
-                        onChange={e => props.editable ? handleProductColor(e) : undefined} />
+                        onChange={props.editable ? handleProductColor : undefined} />
                     <ProductSizeAttribute
                         value={productSizes}
                         editable={props.editable}
-                        onChange={props.editable ? undefined : undefined} />
+                        onChange={props.editable ? handleProductSize : undefined} />
                 </section>
                 {
                     props.editable && (
