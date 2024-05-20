@@ -1,4 +1,3 @@
-import ImageRef from "./ImageRef"
 import CategoryRef from "./CategoryRef"
 
 class Product implements Entity {
