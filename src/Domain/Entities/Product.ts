@@ -5,7 +5,7 @@ class Product implements Entity {
     name: string
     description: string
     price: number
-    images: Array<ImageRef>
+    images: Image
     colors: Color
     sizes: Size
     category: CategoryRef
@@ -18,7 +18,7 @@ class Product implements Entity {
         name: string,
         description: string,
         price: number,
-        images: Array<ImageRef>,
+        images: Image,
         colors: Color,
         sizes: Size,
         category: CategoryRef,

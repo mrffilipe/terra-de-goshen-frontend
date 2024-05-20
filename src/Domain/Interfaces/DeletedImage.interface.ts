@@ -1,0 +1,3 @@
+interface DeletedImage {
+    id: string
+}

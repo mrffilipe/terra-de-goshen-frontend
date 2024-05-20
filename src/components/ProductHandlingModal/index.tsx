@@ -31,6 +31,12 @@ const ProductHandlingModal = (props: Props) => {
         newSizes: [],
         deletedSizes: []
     })
+    const [productImages, setProductImages] = useState<Image>({
+        existingImages: [],
+        newImages: [],
+        deletedImages: [],
+        updatedImages: []
+    })
 
     useEffect(() => {
         if (props.product !== undefined) {
@@ -39,6 +45,7 @@ const ProductHandlingModal = (props: Props) => {
             setProductPrice(props.product.price.toString())
             setProductColors(props.product.colors)
             setProductSizes(props.product.sizes)
+            setProductImages(props.product.images)
         }
     }, [])
 
@@ -62,12 +69,17 @@ const ProductHandlingModal = (props: Props) => {
         setProductSizes(size)
     }
 
+    const handleProductImage = (image: Image): void => {
+        setProductImages(image)
+    }
+
     return (
         <article className={styles.product_handling_modal}>
             <ProductCover
-                images={props.product!.images}
-                onCloseProduct={props.onCloseProduct}
-                editable />
+                value={productImages}
+                editable={props.editable}
+                onChange={props.editable ? handleProductImage : undefined}
+                onCloseProduct={props.onCloseProduct} />
             <section className={styles.product_details}>
                 <ProductName
                     value={productName}

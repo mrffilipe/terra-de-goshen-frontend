@@ -31,7 +31,7 @@ const ProductPage = () => {
             "Camiseta polo",
             "Teste produto",
             129.90,
-            [{ id: '123', image: { imageAlt: '', imageUrl: 'https://d8vlg9z1oftyc.cloudfront.net/ailos/image/product/7b1ed85e9ec6a3c690e9d8ceab110cfa20221020074114/850/camiseta-feminina-zatom-bicicleta_1928.png' }, createdAt: '', updatedAt: '' }],
+            { existingImages: [{ id: '123', imageUrl: 'https://d8vlg9z1oftyc.cloudfront.net/ailos/image/product/7b1ed85e9ec6a3c690e9d8ceab110cfa20221020074114/850/camiseta-feminina-zatom-bicicleta_1928.png' }] },
             { existingColors: [{ id: '123', value: '#000', imageId: '', createdAt: '', updatedAt: '' }] },
             { existingSizes: [{ id: '123', value: 'p', createdAt: '', updatedAt: '' }] },
             { id: '123', category: { name: 'Teste' }, createdAt: '', updatedAt: '' },
