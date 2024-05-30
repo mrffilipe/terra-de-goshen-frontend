@@ -5,8 +5,9 @@ import { useEffect, useState } from 'react';
 import PageHeaderTitle from '../../components/PageHeaderTitle';
 import ProductSession from '../../components/ProductSession';
 import ProductList from '../../components/ProductList';
-import { useGetProductsByParameter } from '../../hooks/product/useProductService';
 import Loading from '../../components/Loading';
+
+import { useGetProductsByParameter } from '../../hooks/product/useProductService';
 
 const SearchPage = () => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -28,7 +29,7 @@ const SearchPage = () => {
         <article className={styles.product_page}>
             <PageHeaderTitle value='Feminino' />
             <ProductSession>
-                <ProductList items={products} onProductClick={handleOpeningProductModal} editableItems />
+                <ProductList items={products} onProductClick={handleOpeningProductModal} />
             </ProductSession>
             <Loading isLoading={isLoading} />
         </article>
