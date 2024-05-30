@@ -1,11 +1,11 @@
-import { useCallback, useState } from "react"
+import { useCallback, useState } from "react";
 
-import axiosConfig from "../../config/axiosConfig"
+import axiosConfig from "../../config/axiosConfig";
 
-const useGetAllProducts = (): [Product[], () => Promise<void>] => {
-    const [products, setProducts] = useState<Array<Product>>([])
+const useGetProductsByParameter = (): [MinimumProductResponseDTO[], () => Promise<void>] => {
+    const [products, setProducts] = useState<MinimumProductResponseDTO[]>([]);
 
-    const getAllProducts = useCallback(async () => {
+    const getProductsByParameter = useCallback(async (params?: any) => {
         try {
             const response = await axiosConfig.get("/product/get-all-products");
 
@@ -17,9 +17,9 @@ const useGetAllProducts = (): [Product[], () => Promise<void>] => {
         }
     }, []);
 
-    return [products, getAllProducts]
+    return [products, getProductsByParameter];
 }
 
 export {
-    useGetAllProducts
-}
+    useGetProductsByParameter
+};

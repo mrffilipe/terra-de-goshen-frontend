@@ -1,11 +1,11 @@
-import styles from './styles.module.css'
+import styles from './styles.module.css';
 
 type Props = {
-    value: string
-}
+    value: string;
+};
 
 const PageHeaderTitle = (props: Props) => {
-    return <h1 className={styles.title}>{props.value}</h1>
-}
+    return <h1 className={styles.title}>{`"${props.value}"`}</h1>
+};
 
-export default PageHeaderTitle
+export default PageHeaderTitle;

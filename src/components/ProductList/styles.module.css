@@ -1,9 +1,13 @@
 .product_list {
-    margin-top: 2em;
+    margin-top: 2rem;
     list-style: none;
     display: flex;
     flex-wrap: wrap;
-    gap: .5em;
+    gap: 1rem 2rem;
 }
 
-@media screen and (min-width: 960px) {}
+@media screen and (min-width: 960px) {
+    .product_list {
+        gap: 2rem 3rem;
+    }
+}

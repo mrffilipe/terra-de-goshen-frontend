@@ -1,30 +1,30 @@
-import styles from './styles.module.css'
+import styles from './styles.module.css';
 
-import { useEffect } from 'react'
+import { useEffect } from 'react';
 
 type Props = {
-    children: React.ReactNode,
-    isOverlayOpen?: boolean
-}
+    children: React.ReactNode;
+    isOverlayOpen: boolean;
+};
 
 const Overlay = (props: Props) => {
     useEffect(() => {
         if (props.isOverlayOpen) {
-            document.body.classList.add('no-scroll')
+            document.body.classList.add('no-scroll');
         } else {
-            document.body.classList.remove('no-scroll')
+            document.body.classList.remove('no-scroll');
         }
 
-        return () => document.body.classList.remove('no-scroll')
-    }, [props.isOverlayOpen])
+        return () => document.body.classList.remove('no-scroll');
+    }, [props.isOverlayOpen]);
 
     return (
-        props.isOverlayOpen ?
+        props.isOverlayOpen && (
             <div className={styles.overlay}>
                 {props.children}
-            </div> :
-            <></>
-    )
-}
+            </div>
+        )
+    );
+};
 
-export default Overlay
+export default Overlay;
