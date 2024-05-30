@@ -1,3 +1,0 @@
-interface DeletedColor {
-    id: string
-}

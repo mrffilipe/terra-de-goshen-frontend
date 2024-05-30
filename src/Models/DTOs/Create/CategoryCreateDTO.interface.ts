@@ -1,0 +1,3 @@
+interface CategoryCreateDTO {
+    name: string;
+}

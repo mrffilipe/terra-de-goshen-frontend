@@ -1,3 +1,0 @@
-interface DeletedSize {
-    id: string
-}

@@ -1,3 +1,0 @@
-interface NewImage {
-    file: File
-}

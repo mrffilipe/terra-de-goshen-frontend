@@ -8,7 +8,7 @@ const useGetAllProducts = (): [Product[], () => Promise<void>] => {
     const getAllProducts = useCallback(async () => {
         try {
             const response = await axiosConfig.get("/product/get-all-products");
-            
+
             if (response !== null) {
                 setProducts(response.data);
             }

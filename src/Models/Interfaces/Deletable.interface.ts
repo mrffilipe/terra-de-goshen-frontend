@@ -1,0 +1,3 @@
+interface Deletable {
+    isDeleted: boolean;
+}

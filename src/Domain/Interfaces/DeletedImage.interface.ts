@@ -1,3 +1,0 @@
-interface DeletedImage {
-    id: string
-}

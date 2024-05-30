@@ -1,0 +1,3 @@
+interface MinimumEntity {
+    id: string;
+}
