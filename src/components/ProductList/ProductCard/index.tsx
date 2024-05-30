@@ -6,6 +6,7 @@ type Props = {
     product: MinimumProductResponseDTO;
     isEditable?: boolean;
     onClick: () => void;
+    onClickEdit?: () => void;
 }
 
 const ProductCard = (props: Props) => {
@@ -17,7 +18,7 @@ const ProductCard = (props: Props) => {
             role='button'>
             {
                 props.isEditable && (
-                    <button className={styles.edit_btn}>
+                    <button className={styles.edit_btn} onClick={props.onClickEdit}>
                         <Edit />
                     </button>
                 )

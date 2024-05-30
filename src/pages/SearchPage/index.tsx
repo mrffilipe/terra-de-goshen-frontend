@@ -9,18 +9,16 @@ import { useGetProductsByParameter } from '../../hooks/product/useProductService
 import Loading from '../../components/Loading';
 
 const SearchPage = () => {
-    const [isLoading, setIsLoading] = useState<boolean>();
+    const [isLoading, setIsLoading] = useState<boolean>(false);
     const [products, getAllProducts] = useGetProductsByParameter();
 
     useEffect(() => {
-        setIsLoading(true);
-        getAllProducts();
-        setIsLoading(false);
+        (async (): Promise<void> => {
+            setIsLoading(true);
+            await getAllProducts();
+            setIsLoading(false);
+        })();
     }, [getAllProducts]);
-
-    if (isLoading) {
-        return <Loading isLoading />
-    }
 
     const handleOpeningProductModal = (id: string): void => {
 
@@ -30,8 +28,9 @@ const SearchPage = () => {
         <article className={styles.product_page}>
             <PageHeaderTitle value='Feminino' />
             <ProductSession>
-                <ProductList items={products} onProductClick={handleOpeningProductModal} />
+                <ProductList items={products} onProductClick={handleOpeningProductModal} editableItems />
             </ProductSession>
+            <Loading isLoading={isLoading} />
         </article>
     );
 };

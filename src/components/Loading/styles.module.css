@@ -2,18 +2,23 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .loading p {
-    color: #f3f3f3;
+    margin-top: 1rem;
+    width: 100%;
+    display: block;
+    color: var(--light-primary-text-color);
     text-align: center;
 }
 
 .loading_spinner {
-    width: 120px;
-    height: 120px;
-    border: 16px solid #f3f3f3;
-    border-top: 16px solid #3498db;
+    width: 60px;
+    height: 60px;
+    border: 6px solid var(--light-primary-text-color);
+    /* border-top: 6px solid var(--dark-primary-text-color); */
+    border-top: 6px solid goldenrod;
     border-radius: 50%;
     animation: spin 2s linear infinite;
 }

@@ -8,7 +8,7 @@ import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Layout from './pages/Layout';
 import App from './pages/App';
 import SearchPage from './pages/SearchPage';
-import StockPage from './pages/StockPage';
+// import StockPage from './pages/StockPage';
 import SignInPage from './pages/Auth/SignInPage';
 
 const router = createBrowserRouter([
@@ -28,10 +28,10 @@ const router = createBrowserRouter([
         path: 'search',
         element: <SearchPage />
       },
-      {
-        path: 'stock',
-        element: <StockPage />
-      },
+      // {
+      //   path: 'stock',
+      //   element: <StockPage />
+      // },
     ]
   },
   {

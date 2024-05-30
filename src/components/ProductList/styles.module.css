@@ -3,7 +3,7 @@
     list-style: none;
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem 2rem;
+    gap: 2rem 0;
 }
 
 @media screen and (min-width: 960px) {

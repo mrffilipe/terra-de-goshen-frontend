@@ -11,12 +11,10 @@
 }
 
 .edit_btn {
-    width: 2.5em;
-    height: 2.5em;
     background: none;
     border: none;
     outline: none;
-    padding: .5em;
+    padding: .5rem;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -25,70 +23,69 @@
     transition: all .3s ease;
 
     position: absolute;
-    top: 1em;
-    right: 1em;
+    top: .75rem;
+    right: .75rem;
     z-index: 100;
 }
 
 .edit_btn:hover {
-    background: var(--dark-primary-text-color);
+    background-color: var(--dark-primary-text-color);
+}
+
+.edit_btn svg {
+    color: var(--dark-primary-text-color);
+    font-size: 1.75rem;
+    transition: all .3s ease;
 }
 
 .edit_btn:hover svg {
     color: var(--light-complementary-text-color);
 }
 
-.edit_btn svg {
-    color: var(--dark-complementary-text-color);
-    font-size: 1.5em;
+.cover {
+    background-color: rgba(0, 0, 0, .05);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    padding-bottom: 100%;
 }
 
-.product_cover {
-    width: 100%;
-    background-image: linear-gradient(to bottom, rgba(38, 38, 38, 0.09), rgba(229, 229, 229, .15));
-    padding-bottom: 120%;
-
-    position: relative;
+.details {
+    margin-top: 1rem;
 }
 
-.product_cover img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-.product_details {
-    margin-top: 1em;
-}
-
-.product_details h4 {
+.details span {
+    display: block;
     color: var(--dark-complementary-text-color);
     font-family: var(--aria-font);
-    font-size: .8em;
+    font-size: 1rem;
     font-weight: 400;
     text-transform: uppercase;
+    transition: all .3s ease;
 }
 
-.product_card:hover .product_details h4 {
+.product_card:hover .details span {
     text-decoration: underline;
 }
 
-.product_details span {
+.details p {
     display: block;
-    margin-top: .5em;
+    margin-top: .5rem;
     color: var(--dark-primary-text-color);
-    font-size: 1.1em;
+    font-size: 1.2rem;
     text-transform: uppercase;
+}
+
+.details p strong {
+    display: inherit;
 }
 
 @media screen and (min-width: 960px) {
     .product_card {
-        width: calc((100% - 9em) / 4);
-        cursor: pointer;
-        transition: all .3s ease;
+        width: calc((100% - 9rem) / 4);
+    }
+
+    .edit_btn svg {
+        font-size: 1.5rem;
     }
 }
