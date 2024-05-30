@@ -1,15 +1,15 @@
-import './index.css'
-import './fonts.css'
+import './index.css';
+import './fonts.css';
 
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
 
-import Layout from './pages/Layout'
-import App from './pages/App'
-import ProductPage from './pages/ProductPage'
-import StockPage from './pages/StockPage'
-import SignInPage from './pages/Auth/SignInPage'
+import Layout from './pages/Layout';
+import App from './pages/App';
+import ProductPage from './pages/ProductPage';
+import StockPage from './pages/StockPage';
+import SignInPage from './pages/Auth/SignInPage';
 
 const router = createBrowserRouter([
   {
@@ -38,10 +38,10 @@ const router = createBrowserRouter([
     path: '/auth/sign-in',
     element: <SignInPage />
   }
-])
+]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <RouterProvider router={router} />
   </React.StrictMode>
-)
+);

@@ -1,9 +1,9 @@
-import Header from "../components/Header"
-import Footer from "../components/Footer"
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 type Props = {
-    children: React.ReactNode
-}
+    children: React.ReactNode;
+};
 
 const Layout = (props: Props) => {
     return (
@@ -12,7 +12,7 @@ const Layout = (props: Props) => {
             <main>{props.children}</main>
             <Footer />
         </>
-    )
-}
+    );
+};
 
-export default Layout
+export default Layout;
