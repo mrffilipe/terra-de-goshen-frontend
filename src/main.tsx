@@ -9,6 +9,7 @@ import Layout from './pages/Layout';
 import App from './pages/App';
 import SearchPage from './pages/SearchPage';
 import StockPage from './pages/StockPage';
+import ManageProductPage from './pages/StockPage/ManageProductPage';
 import SignInPage from './pages/Auth/SignInPage';
 
 const router = createBrowserRouter([
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: 'stock',
         element: <StockPage />
+      },
+      {
+        path: 'stock/manage-product',
+        element: <ManageProductPage />
       }
     ]
   },

@@ -26,7 +26,7 @@ const SearchPage = () => {
     }
 
     return (
-        <article className={styles.product_page}>
+        <article className={styles.search_page}>
             <PageHeaderTitle value='Feminino' />
             <ProductSession>
                 <ProductList items={products} onProductClick={handleOpeningProductModal} />

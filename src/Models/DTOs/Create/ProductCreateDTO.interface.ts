@@ -1,4 +1,4 @@
-interface SizeCreateDTO {
+interface ProductCreateDTO {
     name: string;
     description: string;
     price: number;
