@@ -3,6 +3,7 @@ import styles from './styles.module.css';
 import { useEffect } from 'react';
 
 type Props = {
+    className?: string;
     children: React.ReactNode;
     isOverlayOpen: boolean;
 };
@@ -20,7 +21,7 @@ const Overlay = (props: Props) => {
 
     return (
         props.isOverlayOpen && (
-            <div className={styles.overlay}>
+            <div className={`${styles.overlay} ${props.className}`}>
                 {props.children}
             </div>
         )

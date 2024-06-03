@@ -2,24 +2,43 @@ import { useCallback, useState } from "react";
 
 import axiosConfig from "../../config/axiosConfig";
 
-const useGetProductsByParameter = (): [MinimumProductResponseDTO[], () => Promise<void>] => {
-    const [products, setProducts] = useState<MinimumProductResponseDTO[]>([]);
+const useGetProductById = (): [(id: string) => Promise<ProductResponseDTO | undefined>] => {
+    const getProductById = useCallback(async (id: string): Promise<ProductResponseDTO | undefined> => {
+        try {
+            const response = await axiosConfig.get(`/product/get-product-by-id?id=${id}`);
 
-    const getProductsByParameter = useCallback(async (params?: any) => {
+            if (response !== null) {
+                return response.data;
+            }
+        } catch (error) {
+            console.error("Erro ao listar o produto: ", error);
+        }
+
+        return undefined;
+    }, []);
+
+    return [getProductById];
+};
+
+const useGetProductsByParameter = (): [(params?: any) => Promise<MinimumProductResponseDTO[]>] => {
+    const getProductsByParameter = useCallback(async (params?: any): Promise<MinimumProductResponseDTO[]> => {
         try {
             const response = await axiosConfig.get("/product/get-all-products");
 
             if (response !== null) {
-                setProducts(response.data);
+                return response.data;
             }
         } catch (error) {
             console.error("Erro ao listar todos os produtos: ", error);
         }
+        
+        return [];
     }, []);
 
-    return [products, getProductsByParameter];
-}
+    return [getProductsByParameter];
+};
 
 export {
+    useGetProductById,
     useGetProductsByParameter
 };
