@@ -2,7 +2,6 @@ import styles from './styles.module.css';
 
 import { useEffect, useState } from 'react';
 
-import PageHeaderTitle from '../../components/PageHeaderTitle';
 import ProductSession from '../../components/ProductSession';
 import ProductList from '../../components/ProductList';
 import Loading from '../../components/Loading';
@@ -27,7 +26,7 @@ const StockPage = () => {
 
     return (
         <article className={styles.stock_page}>
-            <PageHeaderTitle value='Feminino' />
+            {/* <PageHeaderTitle value='Feminino' /> */}
             <ProductSession>
                 <ProductList items={products} onProductClick={handleOpeningProductModal} editableItems />
             </ProductSession>

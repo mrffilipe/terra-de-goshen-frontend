@@ -1,5 +1,5 @@
 .product_list {
-    margin-top: 2rem;
+    margin-top: 1rem;
     list-style: none;
     display: flex;
     flex-wrap: wrap;
@@ -8,6 +8,7 @@
 
 @media screen and (min-width: 960px) {
     .product_list {
+        margin-top: 2rem;
         gap: 2rem 3rem;
     }
 }

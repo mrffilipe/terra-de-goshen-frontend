@@ -2,8 +2,8 @@ import styles from './styles.module.css';
 
 import { useEffect, useState } from 'react';
 
-import PageHeaderTitle from '../../components/PageHeaderTitle';
 import ProductSession from '../../components/ProductSession';
+import ProductHeader from '../../components/ProductHeader';
 import ProductList from '../../components/ProductList';
 import Loading from '../../components/Loading';
 import ProductModal from '../../components/ProductModal';
@@ -38,8 +38,8 @@ const SearchPage = () => {
 
     return (
         <article className={styles.search_page}>
-            <PageHeaderTitle value='Feminino' />
             <ProductSession>
+                <ProductHeader />
                 <ProductList items={products} onProductClick={handleOpeningProductModal} />
             </ProductSession>
             <Loading isLoading={isLoading} />

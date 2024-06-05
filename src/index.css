@@ -16,8 +16,8 @@
   --shadow-heavy: 0 8px 16px rgba(0, 0, 0, .3);
 
   /* Padding Settings */
-  --horizontal-padding: 1rem;
-  --vertical-padding: 1rem;
+  --horizontal-padding: 2rem;
+  --vertical-padding: 2rem;
 
   /* Font Settings */
   --font-base: 1rem;
@@ -39,9 +39,9 @@ main {
   overflow: hidden;
 }
 
-@media screen and (min-width: 960px) {
+@media screen and (min-width: 960px) {  
   :root {
-    --horizontal-padding: 12rem;
+    --horizontal-padding: 22rem;
     --vertical-padding: 4rem;
   }
 }
