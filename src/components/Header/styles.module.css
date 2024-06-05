@@ -1,87 +1,104 @@
 .header {
-    background: var(--primary-color);
-    padding: 1em var(--horizontal-padding);
+    background-color: var(--background-color);
+    padding: 1.5rem var(--horizontal-padding);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* box-shadow: var(--dark-shadow-color); */
+    box-shadow: none;
+    transition: all .3s ease;
+    z-index: 500;
+}
+
+.logo {
+    width: 120px;
+}
+
+.logo a {
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
 }
 
 .logo img {
-    width: auto;
-    height: 60px;
+    width: 100%;
+    height: auto;
 }
 
 .nav {
     position: relative;
 }
 
-.open_menu {
-    display: block;
+.open_menu_btn {
     background: none;
     border: none;
     outline: none;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
 }
 
-.open_menu svg {
-    width: 40px;
-    height: 40px;
+.open_menu_btn svg {
     color: var(--dark-primary-text-color);
-}
-
-.hidden_menu {
-    display: none !important;
+    font-size: 2.2rem;
 }
 
 .menu {
-    background: var(--primary-color);
-    padding: 1.5em;
-    border-radius: .5em;
+    background-color: var(--background-color);
+    padding: 2rem;
     list-style: none;
     display: flex;
+    align-items: center;
     flex-direction: column;
-    gap: 1em;
+    gap: .75rem;
+    box-shadow: var(--shadow-medium);
 
     position: absolute;
-    top: 56px;
+    top: 2.5rem;
     right: 0;
+    z-index: 510;
 }
 
 .menu a {
-    text-decoration: none;
+    padding: .5rem;
+    display: block;
+    box-shadow: none;
     color: var(--dark-primary-text-color);
-    transform: all .3s ease;
+    font-size: 1.2rem;
+    text-decoration: none;
+    transition: all .3s ease;
 }
 
 .menu a:hover {
-    text-decoration: underline;
-    color: var(--dark-complementary-text-color);
+    box-shadow: var(--shadow-medium);
 }
 
-@media screen and (min-width: 960px) {
+.hide_menu {
+    display: none;
+}
+
+@media screen and (min-width: 1200px) {
     .header {
         position: sticky;
         top: 0;
-        z-index: 800;
     }
 
-    .logo h1 {
-        font-size: 1.8em;
+    .logo {
+        width: 160px;
     }
 
-    .open_menu {
+    .open_menu_btn {
         display: none;
     }
 
     .menu {
-        display: flex !important;
-        flex-direction: row;
+        padding: 0;
+        display: flex;
         align-items: center;
-        flex-wrap: wrap;
-        gap: 1em 3em;
+        flex-direction: row;
+        gap: 2.5rem;
+        box-shadow: none;
 
         position: static;
         top: 0;
-        right: 0;
     }
 }

@@ -10,7 +10,7 @@ type Props = {
 const ProductHeader = (props: Props) => {
     const [filterMenuOpen, setFilterMenuOpen] = useState<boolean>(false);
 
-    const handleSetFilterMenuOpen = () => {
+    const handleFilterMenuOpen = () => {
         setFilterMenuOpen(prev => !prev);
     };
 
@@ -31,7 +31,7 @@ const ProductHeader = (props: Props) => {
                     </label>
                 </div>
                 <div className={styles.filters}>
-                    <button className={styles.btn_open_filter_menu} onClick={handleSetFilterMenuOpen}>
+                    <button className={styles.btn_open_filter_menu} onClick={handleFilterMenuOpen}>
                         <FilterList />
                     </button>
                     <div className={filterMenuOpen ? styles.filter_container : styles.hide_menu}>

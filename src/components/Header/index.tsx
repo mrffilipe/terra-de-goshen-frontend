@@ -1,47 +1,50 @@
-import { useState } from 'react'
-import styles from './styles.module.css'
+import styles from './styles.module.css';
 
-import { Menu, Close } from '@mui/icons-material'
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Menu, Close } from '@mui/icons-material';
 
-import LogoSvg from '../../assets/svg/logo.svg'
+import Logo from '../../assets/svg/logo.svg';
 
 const Header = () => {
-    const [openMenu, setOpenMenu] = useState<boolean>()
+    const [openMenu, setOpenMenu] = useState<boolean>(false);
 
-    const handleOpenMenu = (): void => {
-        setOpenMenu(prev => !prev)
-    }
+    const handleOpenMenu = () => {
+        setOpenMenu(prev => !prev);
+    };
 
     return (
         <header className={styles.header}>
             <div className={styles.logo}>
-                <img src={LogoSvg} alt="" />
+                <Link to='/'>
+                    <img src={Logo} alt="Logo Terra de Goshen" />
+                </Link>
             </div>
             <nav className={styles.nav}>
-                <button className={styles.open_menu} onClick={handleOpenMenu}>
+                <button className={styles.open_menu_btn} onClick={handleOpenMenu}>
                     {
                         openMenu ?
                             <Close /> :
                             <Menu />
                     }
                 </button>
-                <ul className={`${styles.menu} ${openMenu ? '' : styles.hidden_menu}`}>
+                <ul className={`${styles.menu} ${openMenu ? '' : styles.hide_menu}`}>
                     <li>
-                        <a href="#">Início</a>
+                        <Link to='/'>Início</Link>
                     </li>
                     <li>
-                        <a href="#">Produtos</a>
+                        <Link to='/'>Produtos</Link>
                     </li>
                     <li>
-                        <a href="#">Categorias</a>
+                        <Link to='/'>Categorias</Link>
                     </li>
                     <li>
-                        <a href="#">Promoções</a>
+                        <Link to='/'>Promoções</Link>
                     </li>
                 </ul>
             </nav>
         </header>
-    )
-}
+    );
+};
 
-export default Header
+export default Header;
