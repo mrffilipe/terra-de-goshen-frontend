@@ -1,26 +1,31 @@
 import styles from './styles.module.css';
 
-import { Edit } from '@mui/icons-material';
+import { Edit, Delete } from '@mui/icons-material';
 
 type Props = {
     product: MinimumProductResponseDTO;
     isEditable?: boolean;
     onClick: () => void;
     onClickEdit?: () => void;
+    onClickDelete?: () => void;
 }
 
 const ProductCard = (props: Props) => {
     return (
         <li
             className={styles.product_card}
-            onClick={props.onClick}
-            key={props.product.id}
-            role='button'>
+            role='button'
+            onClick={props.onClick}>
             {
                 props.isEditable && (
-                    <button className={styles.edit_btn} onClick={props.onClickEdit}>
-                        <Edit />
-                    </button>
+                    <div className={styles.actions}>
+                        <button onClick={props.onClickEdit}>
+                            <Edit />
+                        </button>
+                        <button onClick={props.onClickDelete}>
+                            <Delete />
+                        </button>
+                    </div>
                 )
             }
             <div

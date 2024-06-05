@@ -1,5 +1,5 @@
 .footer {
-    background: var(--accent-color);
+    background-color: var(--accent-color);
     padding: 3rem var(--horizontal-padding);
 }
 

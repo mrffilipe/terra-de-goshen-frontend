@@ -1,8 +1,8 @@
 import styles from './styles.module.css';
 
 type Props = {
-    children?: React.ReactNode | undefined;
-    className?: string | undefined;
+    children?: React.ReactNode;
+    className?: string;
 };
 
 const ProductSession = (props: Props) => {

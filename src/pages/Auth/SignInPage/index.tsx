@@ -1,10 +1,10 @@
-import styles from './styles.module.css'
+import styles from './styles.module.css';
 
-import { useState } from 'react'
+import { useState } from 'react';
 
 const SignInPage = () => {
-    const [email, setEmail] = useState<string>()
-    const [password, setPassword] = useState<string>()
+    const [email, setEmail] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
 
     return (
         <article className={styles.sign_in_page}>
@@ -16,7 +16,7 @@ const SignInPage = () => {
                             E-mail
                             <input
                                 type="email"
-                                placeholder='exemplo@exemplo.com'
+                                placeholder='email@terradegoshen.com'
                                 value={email}
                                 onChange={e => setEmail(e.target.value)} />
                         </label>
@@ -33,7 +33,7 @@ const SignInPage = () => {
                 </form>
             </div>
         </article>
-    )
-}
+    );
+};
 
-export default SignInPage
+export default SignInPage;

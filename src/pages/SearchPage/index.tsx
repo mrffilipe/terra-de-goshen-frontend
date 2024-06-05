@@ -11,22 +11,25 @@ import ProductModal from '../../components/ProductModal';
 import { useGetProductById, useGetProductsByParameter } from '../../hooks/product/useProductService';
 
 const SearchPage = () => {
-    const [isLoading, setIsLoading] = useState<boolean>(false);
     const [getAllProducts] = useGetProductsByParameter();
     const [getProductById] = useGetProductById();
+    const [isLoading, setIsLoading] = useState<boolean>(false);
     const [products, setProducts] = useState<MinimumProductResponseDTO[]>([]);
     const [product, setProduct] = useState<ProductResponseDTO | undefined>(undefined);
 
     useEffect(() => {
-        (async (): Promise<void> => {
+        (async () => {
             setIsLoading(true);
+
             const fetchedProducts = await getAllProducts();
+
             setProducts(fetchedProducts);
+
             setIsLoading(false);
         })();
     }, [getAllProducts]);
 
-    const handleOpeningProductModal = async (id: string): Promise<void> => {
+    const handleOpeningProductModal = async (id: string) => {
         setIsLoading(true);
 
         const fetchedProduct = await getProductById(id);

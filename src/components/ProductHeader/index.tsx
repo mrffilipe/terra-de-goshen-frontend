@@ -8,7 +8,7 @@ type Props = {
 };
 
 const ProductHeader = (props: Props) => {
-    const [filterMenuOpen, setFilterMenuOpen] = useState<boolean>();
+    const [filterMenuOpen, setFilterMenuOpen] = useState<boolean>(false);
 
     const handleSetFilterMenuOpen = () => {
         setFilterMenuOpen(prev => !prev);

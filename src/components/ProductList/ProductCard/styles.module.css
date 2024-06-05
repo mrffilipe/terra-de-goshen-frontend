@@ -10,17 +10,10 @@
     transform: translateY(-5px);
 }
 
-.edit_btn {
-    background: none;
-    border: none;
-    outline: none;
-    padding: .5rem;
-    border-radius: 50%;
+.actions {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: all .3s ease;
+    flex-direction: column;
+    gap: .5rem;
 
     position: absolute;
     top: .75rem;
@@ -28,18 +21,31 @@
     z-index: 100;
 }
 
-.edit_btn:hover {
-    background-color: var(--dark-primary-text-color);
-}
-
-.edit_btn svg {
-    color: var(--dark-primary-text-color);
-    font-size: 1.75rem;
+.actions button {
+    background: none;
+    border: none;
+    outline: none;
+    margin: 0;
+    padding: .25em;
+    box-shadow: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     transition: all .3s ease;
 }
 
-.edit_btn:hover svg {
-    color: var(--light-complementary-text-color);
+.actions button:hover {
+    background-color: var(--accent-color);
+}
+
+.actions button:hover svg {
+    color: var(--light-primary-text-color);
+}
+
+.actions button svg {
+    color: var(--dark-primary-text-color);
+    font-size: 1.5rem;
+    transition: all .3s ease;
 }
 
 .cover {
@@ -82,10 +88,6 @@
 
 @media screen and (min-width: 960px) {
     .product_card {
-        width: calc((100% - 9rem) / 4);
-    }
-
-    .edit_btn svg {
-        font-size: 1.5rem;
+        width: calc((100% - 6rem) / 4);
     }
 }

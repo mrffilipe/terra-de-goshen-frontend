@@ -12,6 +12,7 @@ const ProductList = (props: Props) => {
     const listItems = props.items.map(product => {
         return (
             <ProductCard
+                key={product.id}
                 product={{
                     id: product.id,
                     name: product.name,
@@ -20,8 +21,8 @@ const ProductList = (props: Props) => {
                     createdAt: product.createdAt,
                     updatedAt: product.updatedAt
                 }}
-                onClick={() => props.onProductClick(product.id)}
-                isEditable={props.editableItems} />
+                isEditable={props.editableItems}
+                onClick={() => props.onProductClick(product.id)} />
         );
     });
 

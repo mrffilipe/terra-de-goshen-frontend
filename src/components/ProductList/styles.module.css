@@ -3,12 +3,11 @@
     list-style: none;
     display: flex;
     flex-wrap: wrap;
-    gap: 2rem 0;
+    gap: 2rem;
 }
 
 @media screen and (min-width: 960px) {
     .product_list {
-        margin-top: 2rem;
-        gap: 2rem 3rem;
+        margin-top: 3rem;
     }
 }
