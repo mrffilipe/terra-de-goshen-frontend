@@ -1,39 +1,47 @@
 .product_cover {
     width: 100%;
-    background: #F9F9F9;
+    background: var(--alternative-background);
     display: grid;
     grid-template-rows: 1fr auto;
-
-    position: relative;
 }
 
 .main_cover {
     padding-bottom: 100%;
     background-repeat: no-repeat;
-    background-position: center;
     background-size: contain;
+    background-position: center;
 
     position: relative;
 }
 
-.main_cover span {
-    width: 100%;
+.background_text {
     height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    pointer-events: none;
+
+    position: absolute;
+    right: 2rem;
+}
+
+.background_text span {
     display: flex;
     justify-content: center;
     align-items: center;
-
-    position: absolute;
-    top: 0;
-    left: 0;
+    color: #ccc;
+    font-family: var(--alkaline-bold-font);
+    font-size: 2rem;
+    text-transform: uppercase;
 }
 
 .covers {
     height: 80px;
     background: #eaeaea;
-    padding: .3em;
+    padding: .3rem;
     display: flex;
-    gap: .3em;
+    gap: .3rem;
     overflow-x: auto;
 
     scrollbar-width: thin;
@@ -59,53 +67,21 @@
 .covers_list {
     list-style: none;
     display: flex;
-    gap: .3em;
-}
-
-.covers_list li {
-    background: #F9F9F9;
+    gap: .3rem;
 }
 
 .covers_list li div {
-    width: calc(80px - .6em);
-    height: calc(80px - .6em);
+    width: calc(80px - .6rem);
+    height: calc(80px - .6rem);
+    background: var(--alternative-background);
     background-repeat: no-repeat;
-    background-position: center;
     background-size: contain;
+    background-position: center;
     cursor: pointer;
 }
 
 .selected_cover {
     border: 2px solid #888;
-}
-
-.add_cover_btn {
-    width: calc(80px - 0.6em);
-    height: calc(80px - 0.6em);
-    cursor: pointer;
-
-    position: relative;
-}
-
-.add_cover_btn span {
-    width: 100%;
-    height: 100%;
-    background: #F9F9F9;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-}
-
-.add_cover_btn input[type="file"] {
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    cursor: pointer;
-
-    position: absolute;
-    left: 0;
-    top: 0;
 }
 
 @media screen and (min-width: 960px) {
@@ -122,12 +98,7 @@
     }
 
     .covers_list li div {
-        width: calc(100px - .6em);
-        height: calc(100px - .6em);
-    }
-
-    .add_cover_btn {
-        width: calc(100px - 0.6em);
-        height: calc(100px - 0.6em);
+        width: calc(100px - .6rem);
+        height: calc(100px - .6rem);
     }
 }

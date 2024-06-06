@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
 
 import axiosConfig from "../../config/axiosConfig";
 
@@ -31,7 +31,7 @@ const useGetProductsByParameter = (): [(params?: any) => Promise<MinimumProductR
         } catch (error) {
             console.error("Erro ao listar todos os produtos: ", error);
         }
-        
+
         return [];
     }, []);
 

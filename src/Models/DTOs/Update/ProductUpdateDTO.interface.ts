@@ -2,9 +2,10 @@ interface ProductUpdateDTO extends MinimumEntity, Deletable {
     name: string;
     description: string;
     price: number;
-    images: ImageResponseDTO[];
-    colors: ColorResponseDTO[];
-    sizes: SizeResponseDTO[];
-    category: CategoryResponseDTO;
+    backgroundText: string;
+    images: ImageUpdateDTO[];
+    colors: ColorUpdateDTO[];
+    sizes: SizeUpdateDTO[];
+    category: CategoryUpdateDTO;
     quantityInStock: number;
 }

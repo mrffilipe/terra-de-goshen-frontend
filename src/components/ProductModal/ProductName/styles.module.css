@@ -1,21 +1,4 @@
-.product_name h1,
-.product_name input {
+.product_name h1 {
     color: var(--light-primary-text-color);
-    font-size: 2em;
     text-transform: uppercase;
-}
-
-.product_name input {
-    width: 100%;
-    display: block;
-    background: none;
-    border: none;
-    outline: none;
-}
-
-@media screen and (min-width: 960px) {
-    .product_name h1,
-    .product_name input {
-        font-size: 2.5em;
-    }
 }
