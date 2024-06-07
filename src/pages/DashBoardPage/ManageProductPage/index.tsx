@@ -12,6 +12,7 @@ const ManageProductPage = () => {
         name: '',
         description: '',
         price: 0,
+        backgroundText: '',
         quantityInStock: 0,
         category: { name: '' },
         colors: [],

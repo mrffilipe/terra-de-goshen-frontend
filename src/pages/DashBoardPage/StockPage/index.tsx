@@ -2,13 +2,13 @@ import styles from './styles.module.css';
 
 import { useEffect, useState } from 'react';
 
-import ProductSession from '../../components/ProductSession';
-import ProductHeader from '../../components/ProductHeader';
-import ProductList from '../../components/ProductList';
-import Loading from '../../components/Loading';
-import ProductModal from '../../components/ProductModal';
+import ProductSession from '../../../components/ProductSession';
+import ProductHeader from '../../../components/ProductHeader';
+import ProductList from '../../../components/ProductList';
+import Loading from '../../../components/Loading';
+import ProductModal from '../../../components/ProductModal';
 
-import { useGetProductById, useGetProductsByParameter } from '../../hooks/product/useProductService';
+import { useGetProductById, useGetProductsByParameter } from '../../../hooks/product/useProductService';
 
 const StockPage = () => {
     const [getProductsByParameter] = useGetProductsByParameter();
