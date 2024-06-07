@@ -1,8 +1,8 @@
 import { Outlet, RouteObject } from "react-router-dom";
 
 import Layout from "../pages/Layout";
-import StockPage from "../pages/DashBoardPage/StockPage";
-import ManageProductPage from "../pages/DashBoardPage/ManageProductPage";
+import StockPage from "../pages/DashboardPage/StockPage";
+import ManageProductPage from "../pages/DashboardPage/ManageProductPage";
 
 const adminPrivateRoutes: RouteObject = {
     path: 'dashboard',
