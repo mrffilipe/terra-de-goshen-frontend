@@ -1,8 +1,9 @@
 .manage_product_page {
-    background: var(--alternative-background);
-    padding: var(--vertical-padding) var(--horizontal-padding);
-    box-shadow: var(--shadow-medium);
+    margin: 0 auto;
+    background-color: var(--alternative-background);
+    padding: 2rem;
     border-radius: 8px;
+    box-shadow: var(--shadow-medium);
 }
 
 .step_indicator {
@@ -12,42 +13,55 @@
 }
 
 .step_indicator span {
-    color: var(--dark-primary-text-color);
-    font-family: var(--alkaline-bold-font);
+    display: block;
     padding: 0.5rem 1rem;
     border-radius: 4px;
-    cursor: pointer;
+    color: var(--dark-primary-text-color);
+    font-family: var(--alkaline-bold-font);
+    text-align: center;
+    pointer-events: none;
 }
 
-.active_step {
+.step_indicator .active_step {
     background-color: var(--accent-color);
     color: var(--light-primary-text-color);
 }
 
 .navigation {
+    margin-top: 1rem;
     display: flex;
     justify-content: space-between;
-    margin-top: 1rem;
+    flex-wrap: wrap;
+    gap: .25rem;
 }
 
-button {
-    background: var(--accent-color);
-    color: var(--light-primary-text-color);
+.navigation button {
+    width: 100%;
+    background-color: var(--accent-color);
     border: none;
     padding: 0.75rem 1.5rem;
     border-radius: 4px;
-    cursor: pointer;
     box-shadow: var(--shadow-light);
+    color: var(--light-primary-text-color);
     font-family: var(--aria-font);
     font-size: 1rem;
+    cursor: pointer;
+    transition: all .3s ease;
 }
 
-button:disabled {
-    background: var(--alternative-background);
+.navigation button:hover {
+    background-color: rgba(0, 0, 0, .6);
+}
+
+.navigation button:disabled {
+    background-color: var(--alternative-background);
     color: var(--dark-complementary-text-color);
     cursor: not-allowed;
 }
 
-button+button {
-    margin-left: 1rem;
+@media screen and (min-width: 960px) {
+    .manage_product_page {
+        max-width: 600px;
+        padding: 6rem 3rem;
+    }
 }

@@ -1,14 +1,22 @@
 import styles from './styles.module.css';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Step1 from './Step1';
 import Step2 from './Step2';
 import Step3 from './Step3';
+import Loading from '../../../components/Loading';
+import ProductModal from '../../../components/ProductModal';
+
+import { useGetProductById } from '../../../hooks/product/useProductService';
+import { useParams } from 'react-router-dom';
 
 const ManageProductPage = () => {
+    const [getProductById] = useGetProductById();
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [showPreview, setShowPreview] = useState<boolean>(false);
     const [step, setStep] = useState(1);
-    const [product, setProduct] = useState<ProductCreateDTO>({
+    const [product, setProduct] = useState<ProductCreateDTO | ProductResponseDTO | ProductUpdateDTO | undefined>({
         name: '',
         description: '',
         price: 0,
@@ -20,12 +28,33 @@ const ManageProductPage = () => {
         images: []
     });
 
-    const handleNext = () => {
-        if (step < 3) setStep(step + 1);
+    const { productId } = useParams();
+
+    useEffect(() => {
+        (async () => {
+            if (productId) {
+                setIsLoading(true);
+
+                const fetchedProduct = await getProductById(productId);
+
+                setProduct(fetchedProduct);
+                console.log(fetchedProduct)
+                setIsLoading(false);
+            }
+        })();
+    }, [getProductById])
+
+    const handleCancel = () => {
+        // Lógica para abrir modal de cancelamento
+        console.log('Cancelar');
     };
 
     const handleBack = () => {
         if (step > 1) setStep(step - 1);
+    };
+
+    const handleNext = () => {
+        if (step < 3) setStep(step + 1);
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -69,14 +98,10 @@ const ManageProductPage = () => {
         console.log(product);
     };
 
-    const handleCancel = () => {
-        // Lógica para abrir modal de cancelamento
-        console.log('Cancelar');
-    };
-
     const handlePreview = () => {
-        // Lógica para abrir modal de pré-visualização
-        console.log('Pré-visualizar');
+        if (product !== undefined) {
+            setShowPreview(true);
+        }
     };
 
     const steps = [
@@ -95,18 +120,25 @@ const ManageProductPage = () => {
                 ))}
             </div>
             {step === 1 && <Step1 product={product} handleChange={handleChange} />}
-            {step === 2 && <Step2 product={product} handleChange={handleChange} handleAddColor={handleAddColor} handleAddSize={handleAddSize} handleCategoryChange={handleCategoryChange} />}
+            {step === 2 && <Step2
+                product={product}
+                handleChange={handleChange}
+                handleAddColor={handleAddColor}
+                handleAddSize={handleAddSize}
+                handleCategoryChange={handleCategoryChange} />}
             {step === 3 && <Step3 handleAddImage={handleAddImage} />}
             <div className={styles.navigation}>
+                <button onClick={handleCancel}>Cancelar</button>
                 <button onClick={handleBack} disabled={step === 1}>Voltar</button>
                 {step < 3 ? (
                     <button onClick={handleNext}>Próximo</button>
                 ) : (
                     <button onClick={handleSubmit}>Adicionar Produto</button>
                 )}
-                <button onClick={handleCancel}>Cancelar</button>
                 <button onClick={handlePreview}>Pré-visualizar</button>
             </div>
+            <Loading isLoading={isLoading} />
+            {showPreview && <ProductModal product={product!} onCloseProduct={() => setShowPreview(prev => !prev)} />}
         </article>
     );
 };

@@ -21,7 +21,7 @@ const adminPrivateRoutes: RouteObject = {
             element: <StockPage />
         },
         {
-            path: 'manage-product',
+            path: 'manage-product/:productId?',
             element: <ManageProductPage />
         }
     ]
