@@ -1,6 +1,7 @@
 import styles from './styles.module.css';
 
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 import Step1 from './Step1';
 import Step2 from './Step2';
@@ -9,7 +10,6 @@ import Loading from '../../../components/Loading';
 import ProductModal from '../../../components/ProductModal';
 
 import { useGetProductById } from '../../../hooks/product/useProductService';
-import { useParams } from 'react-router-dom';
 
 const ManageProductPage = () => {
     const [getProductById] = useGetProductById();
@@ -57,12 +57,19 @@ const ManageProductPage = () => {
         if (step < 3) setStep(step + 1);
     };
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-        const { name, value } = e.target;
-        setProduct((prevProduct) => ({
-            ...prevProduct,
-            [name]: value
-        }));
+    const handleChangeStep1 = (event: { name: string, description: string, price: number, backgroundText: string, quantityInStock: number }) => {
+        if (product !== undefined) {
+            const productUpdated: ProductCreateDTO | ProductResponseDTO | ProductUpdateDTO = {
+                ...product,
+                name: event.name,
+                description: event.description,
+                price: event.price,
+                backgroundText: event.backgroundText,
+                quantityInStock: event.quantityInStock
+            };
+
+            setProduct(productUpdated);
+        }
     };
 
     const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -101,6 +108,8 @@ const ManageProductPage = () => {
     const handlePreview = () => {
         if (product !== undefined) {
             setShowPreview(true);
+        } else {
+            setShowPreview(false);
         }
     };
 
@@ -119,7 +128,7 @@ const ManageProductPage = () => {
                     </span>
                 ))}
             </div>
-            {step === 1 && <Step1 product={product} handleChange={handleChange} />}
+            {step === 1 && <Step1 product={product!} onChange={handleChangeStep1} />}
             {step === 2 && <Step2
                 product={product}
                 handleChange={handleChange}
