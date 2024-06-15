@@ -2,7 +2,7 @@ import styles from './styles.module.css';
 
 type Props = {
     product: ProductCreateDTO | ProductResponseDTO | ProductUpdateDTO;
-    onChange: (event: { name: string, description: string, price: number, backgroundText: string, quantityInStock: number }) => void;
+    onChange: (e: { name: string, description: string, price: number, backgroundText: string, quantityInStock: number }) => void;
 };
 
 const Step1 = (props: Props) => {

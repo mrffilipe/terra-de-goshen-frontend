@@ -3,9 +3,9 @@ interface ProductCreateDTO {
     description: string;
     price: number;
     backgroundText: string;
-    images: ImageCreateDTO[];
-    colors: ColorCreateDTO[];
-    sizes: SizeCreateDTO[];
-    category: CategoryCreateDTO;
+    images: ImageUpdateDTO[];
+    colors: ColorUpdateDTO[];
+    sizes: SizeUpdateDTO[];
+    category: CategoryUpdateDTO;
     quantityInStock: number;
-}
+};

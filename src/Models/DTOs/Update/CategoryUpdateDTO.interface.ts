@@ -1,3 +1,3 @@
 interface CategoryUpdateDTO extends MinimumEntity, Deletable {
-    name: string;
-}
+    name?: string;
+};

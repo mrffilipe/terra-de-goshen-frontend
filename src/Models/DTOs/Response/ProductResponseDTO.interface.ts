@@ -8,4 +8,4 @@ interface ProductResponseDTO extends Entity {
     sizes: SizeResponseDTO[];
     category: CategoryResponseDTO;
     quantityInStock: number;
-}
+};

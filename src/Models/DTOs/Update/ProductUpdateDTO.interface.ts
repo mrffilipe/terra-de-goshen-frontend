@@ -8,4 +8,4 @@ interface ProductUpdateDTO extends MinimumEntity, Deletable {
     sizes: SizeUpdateDTO[];
     category: CategoryUpdateDTO;
     quantityInStock: number;
-}
+};

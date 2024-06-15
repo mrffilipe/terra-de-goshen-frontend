@@ -1,3 +1,3 @@
 interface MinimumEntity {
     id: string;
-}
+};
