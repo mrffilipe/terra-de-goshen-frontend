@@ -1,72 +1,127 @@
 import styles from './styles.module.css';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+
+import {
+  useGetAllCategories,
+  useGetAllColors,
+  useGetAllSizes
+} from '../../../../hooks/product/useProductService';
+
+type ProductDetails = {
+  category: CategoryBaseDTO;
+  colors: ColorBaseDTO[];
+  sizes: SizeBaseDTO[];
+};
 
 type Props = {
-  product: ProductCreateDTO | ProductUpdateDTO;
-  fetchedColors: ColorResponseDTO[];
-  fetchedSizes: SizeResponseDTO[];
-  onChange: (e: { category: CategoryUpdateDTO, colors: ColorUpdateDTO[], sizes: SizeUpdateDTO[] }) => void;
+  productDetails: ProductDetails;
+  onChange: (event: ProductDetails) => void;
 };
 
 const Step2 = (props: Props) => {
-  const [categories, setCategories] = useState<CategoryResponseDTO[]>([]);
-  const [colors, setColors] = useState<ColorResponseDTO[]>([]);
-  const [sizes, setSizes] = useState<SizeResponseDTO[]>([]);
+  const [getAllCategories] = useGetAllCategories();
+  const [getAllColors] = useGetAllColors();
+  const [getAllSizes] = useGetAllSizes();
+  const [fetchedCategories, setFetchedCategories] = useState<CategoryResponseDTO[]>([]);
+  const [fetchedColors, setFetchedColors] = useState<ColorResponseDTO[]>([]);
+  const [fetchedSizes, setFetchedSizes] = useState<SizeResponseDTO[]>([]);
 
-  const categoryList = categories.map(el => (
+  useEffect(() => {
+    (async () => {
+      setFetchedCategories(await getAllCategories());
+      setFetchedColors(await getAllColors());
+      setFetchedSizes(await getAllSizes());
+    })();
+  }, []);
+
+  const listOfCategoryOptions = fetchedCategories.map(el => (
     <option key={el.id} value={el.id}>{el.name}</option>
   ));
 
-  const colorList = props.product.colors.map(el => (
-    <div className={styles.color}>
-      <select
-        name="colors"
-        value=""
-        onChange={ }>
-        <option value="">Selecione uma cor</option>
-        {colors.map(color => (
-          <option key={color.id} value={color.id}>{color.value}</option>
-        ))}
-      </select>
-      <span key={el.id} style={{ backgroundColor: el.value }}></span>
-    </div>
-  ));
-
   const handleChangeCategory = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedCategory = categories.find(cat => cat.id === e.target.value);
+    const selectedCategory = fetchedCategories.find(c => c.id === e.target.value);
 
     if (selectedCategory !== undefined) {
-      props.onChange({ ...props.product, category: { id: selectedCategory.id, name: selectedCategory.name, isDeleted: false } })
+      props.onChange({
+        ...props.productDetails,
+        category: { id: selectedCategory.id }
+      });
     }
   };
 
-  const handleChangeColors = (e: ColorUpdateDTO[]) => {
-    props.onChange({...props.product, colors: })
+  const handleChangeColor = (event: React.ChangeEvent<HTMLInputElement>, colorId: string) => {
+    const { checked } = event.target;
+    const updatedColors = checked
+      ? [...props.productDetails.colors, { id: colorId }]
+      : props.productDetails.colors.filter(color => color.id !== colorId);
+
+    props.onChange({
+      ...props.productDetails,
+      colors: updatedColors
+    });
   };
 
-  const handleAddColor = () => {
+  const handleChangeSize = (event: React.ChangeEvent<HTMLInputElement>, sizeId: string) => {
+    const { checked } = event.target;
+    const updatedSizes = checked
+      ? [...props.productDetails.sizes, { id: sizeId }]
+      : props.productDetails.sizes.filter(size => size.id !== sizeId);
 
+    props.onChange({
+      ...props.productDetails,
+      sizes: updatedSizes
+    });
   };
+
+  const colorList = fetchedColors.map(el => {
+    return (
+      <div key={el.id} className={styles.color}>
+        <label>
+          <input
+            type="checkbox"
+            value={el.value}
+            checked={props.productDetails.colors.some(color => color.id === el.id)}
+            onChange={e => handleChangeColor(e, el.id)}
+          />
+          {el.value}
+        </label>
+      </div>
+    );
+  });
+
+  const sizeList = fetchedSizes.map(el => (
+    <div key={el.id} className={styles.size}>
+      <label>
+        <input
+          type="checkbox"
+          value={el.value}
+          checked={props.productDetails.sizes.some(size => size.id === el.id)}
+          onChange={e => handleChangeSize(e, el.id)}
+        />
+        {el.value}
+      </label>
+    </div>
+  ));
 
   return (
     <div className={styles.step2}>
       <div className={styles.category}>
         <select
-          name="category"
-          value={props.product.category.name}
-          onChange={handleChangeCategory}>
+          value={props.productDetails.category.id}
+          onChange={handleChangeCategory}
+        >
           <option value="">Selecione uma categoria</option>
-          {categoryList}
+          {listOfCategoryOptions}
         </select>
       </div>
       <div className={styles.colors}>
+        <label>Selecione as cores:</label>
         {colorList}
-        <button onClick={() => props.handleAddColor({ value: 'corExemplo' })}>Adicionar Cor</button>
       </div>
       <div className={styles.sizes}>
-        {/* Implementar lista de tamanhos */}
-        <button onClick={() => props.handleAddSize({ value: 'tamanhoExemplo' })}>Adicionar Tamanho</button>
+        <label>Selecione os tamanhos:</label>
+        {sizeList}
       </div>
     </div>
   );

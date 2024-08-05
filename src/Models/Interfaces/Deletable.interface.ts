@@ -1,3 +1,3 @@
 interface Deletable {
-    isDeleted: boolean;
+    isDeleted?: boolean;
 };

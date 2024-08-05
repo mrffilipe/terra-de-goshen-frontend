@@ -1,3 +1,0 @@
-interface SizeCreateDTO {
-    value: string;
-};

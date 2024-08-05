@@ -1,29 +1,37 @@
 import styles from './styles.module.css';
 
+type ProductDetails = {
+    name: string;
+    description: string;
+    price: number;
+    backgroundText: string;
+    quantityInStock: number;
+};
+
 type Props = {
-    product: ProductCreateDTO | ProductResponseDTO | ProductUpdateDTO;
-    onChange: (e: { name: string, description: string, price: number, backgroundText: string, quantityInStock: number }) => void;
+    productDetails: ProductDetails;
+    onChange: (event: ProductDetails) => void;
 };
 
 const Step1 = (props: Props) => {
     const handleChangeName = (event: React.ChangeEvent<HTMLInputElement>) => {
-        props.onChange({ ...props.product, name: event.target.value });
+        props.onChange({ ...props.productDetails, name: event.target.value });
     };
 
     const handleChangeDescription = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-        props.onChange({ ...props.product, description: event.target.value });
+        props.onChange({ ...props.productDetails, description: event.target.value });
     };
 
     const handleChangePrice = (event: React.ChangeEvent<HTMLInputElement>) => {
-        props.onChange({ ...props.product, price: Number.parseFloat(event.target.value) });
+        props.onChange({ ...props.productDetails, price: Number.parseFloat(event.target.value) });
     };
 
     const handleChangeBackgroundText = (event: React.ChangeEvent<HTMLInputElement>) => {
-        props.onChange({ ...props.product, backgroundText: event.target.value });
+        props.onChange({ ...props.productDetails, backgroundText: event.target.value });
     };
 
     const handleChangeQuantityInStock = (event: React.ChangeEvent<HTMLInputElement>) => {
-        props.onChange({ ...props.product, quantityInStock: Number.parseInt(event.target.value) });
+        props.onChange({ ...props.productDetails, quantityInStock: Number.parseInt(event.target.value) });
     };
 
     return (
@@ -33,7 +41,7 @@ const Step1 = (props: Props) => {
                 <input
                     type="text"
                     name="name"
-                    value={props.product.name}
+                    value={props.productDetails.name}
                     onChange={handleChangeName}
                     placeholder="Ex: Vestido preto com detalhes dourados"
                 />
@@ -42,7 +50,7 @@ const Step1 = (props: Props) => {
                 Descrição (Máx. 255 caracteres)
                 <textarea
                     name="description"
-                    value={props.product.description}
+                    value={props.productDetails.description}
                     onChange={handleChangeDescription}
                     placeholder="Ex: Descrição"
                 />
@@ -52,7 +60,7 @@ const Step1 = (props: Props) => {
                 <input
                     type="number"
                     name="price"
-                    value={props.product.price}
+                    value={props.productDetails.price}
                     onChange={handleChangePrice}
                     placeholder="Ex: 129.90"
                 />
@@ -62,7 +70,7 @@ const Step1 = (props: Props) => {
                 <input
                     type="text"
                     name="backgroundText"
-                    value={props.product.price}
+                    value={props.productDetails.backgroundText}
                     onChange={handleChangeBackgroundText}
                     placeholder="Ex: Goshen"
                 />
@@ -72,7 +80,7 @@ const Step1 = (props: Props) => {
                 <input
                     type="number"
                     name="quantityInStock"
-                    value={props.product.quantityInStock}
+                    value={props.productDetails.quantityInStock}
                     onChange={handleChangeQuantityInStock}
                     placeholder="Ex: 5"
                 />

@@ -38,7 +38,64 @@ const useGetProductsByParameter = (): [(params?: any) => Promise<MinimumProductR
     return [getProductsByParameter];
 };
 
+const useGetAllCategories = (): [() => Promise<CategoryResponseDTO[]>] => {
+    const getAllCategories = useCallback(async (): Promise<CategoryResponseDTO[]> => {
+        try {
+            const response = await axiosConfig.get("/product/get-all-categories");
+
+            if (response !== null) {
+                return response.data;
+            }
+        } catch (error) {
+            console.error("Erro ao listar todas as categorias: ", error);
+        }
+
+        return [];
+    }, []);
+
+    return [getAllCategories];
+};
+
+const useGetAllColors = (): [() => Promise<ColorResponseDTO[]>] => {
+    const getAllColors = useCallback(async (): Promise<ColorResponseDTO[]> => {
+        try {
+            const response = await axiosConfig.get("/product/get-all-colors");
+
+            if (response !== null) {
+                return response.data;
+            }
+        } catch (error) {
+            console.error("Erro ao listar todas as cores: ", error);
+        }
+
+        return [];
+    }, []);
+
+    return [getAllColors];
+};
+
+const useGetAllSizes = (): [() => Promise<SizeResponseDTO[]>] => {
+    const getAllSizes = useCallback(async (): Promise<SizeResponseDTO[]> => {
+        try {
+            const response = await axiosConfig.get("/product/get-all-sizes");
+
+            if (response !== null) {
+                return response.data;
+            }
+        } catch (error) {
+            console.error("Erro ao listar todas os tamanhos: ", error);
+        }
+
+        return [];
+    }, []);
+
+    return [getAllSizes];
+};
+
 export {
     useGetProductById,
-    useGetProductsByParameter
+    useGetProductsByParameter,
+    useGetAllCategories,
+    useGetAllColors,
+    useGetAllSizes
 };

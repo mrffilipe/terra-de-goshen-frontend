@@ -16,33 +16,36 @@ const ManageProductPage = () => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [showPreview, setShowPreview] = useState<boolean>(false);
     const [step, setStep] = useState(1);
-    const [product, setProduct] = useState<ProductCreateDTO | ProductResponseDTO | ProductUpdateDTO | undefined>({
+    const [product, setProduct] = useState<ProductBaseDTO>({
         name: '',
         description: '',
         price: 0,
         backgroundText: '',
-        quantityInStock: 0,
-        category: { name: '' },
+        images: [],
         colors: [],
         sizes: [],
-        images: []
+        category: { id: '' },
+        quantityInStock: 0
     });
 
     const { productId } = useParams();
 
     useEffect(() => {
         (async () => {
-            if (productId) {
+            if (productId !== undefined) {
                 setIsLoading(true);
 
                 const fetchedProduct = await getProductById(productId);
+                if (fetchedProduct !== undefined) {
+                    setProduct(fetchedProduct);
+                }
 
-                setProduct(fetchedProduct);
-                console.log(fetchedProduct)
                 setIsLoading(false);
             }
         })();
-    }, [getProductById])
+    }, [])
+
+    console.log(product)
 
     const handleCancel = () => {
         // Lógica para abrir modal de cancelamento
@@ -58,46 +61,36 @@ const ManageProductPage = () => {
     };
 
     const handleChangeStep1 = (event: { name: string, description: string, price: number, backgroundText: string, quantityInStock: number }) => {
-        if (product !== undefined) {
-            const productUpdated: ProductCreateDTO | ProductResponseDTO | ProductUpdateDTO = {
-                ...product,
-                name: event.name,
-                description: event.description,
-                price: event.price,
-                backgroundText: event.backgroundText,
-                quantityInStock: event.quantityInStock
-            };
+        const productUpdated: ProductBaseDTO = {
+            ...product,
+            name: event.name,
+            description: event.description,
+            price: event.price,
+            backgroundText: event.backgroundText,
+            quantityInStock: event.quantityInStock
+        };
 
-            setProduct(productUpdated);
-        }
+        setProduct(productUpdated);
     };
 
-    const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        setProduct((prevProduct) => ({
-            ...prevProduct,
-            category: { name: e.target.value }
-        }));
+    const handleChangeStep2 = (event: { category: CategoryBaseDTO, colors: ColorBaseDTO[], sizes: SizeBaseDTO[] }) => {
+        const productUpdated: ProductBaseDTO = {
+            ...product,
+            category: event.category,
+            colors: event.colors,
+            sizes: event.sizes
+        };
+
+        setProduct(productUpdated);
     };
 
-    const handleAddColor = (color: { value: string, imageId?: string }) => {
-        setProduct((prevProduct) => ({
-            ...prevProduct,
-            colors: [...prevProduct.colors, color]
-        }));
-    };
+    const handleChangeStep3 = (event: { images: ImageBaseDTO[] }) => {
+        const productUpdated: ProductBaseDTO = {
+            ...product,
+            images: event.images
+        };
 
-    const handleAddSize = (size: { value: string }) => {
-        setProduct((prevProduct) => ({
-            ...prevProduct,
-            sizes: [...prevProduct.sizes, size]
-        }));
-    };
-
-    const handleAddImage = (image: { file: File, isCover?: boolean }) => {
-        setProduct((prevProduct) => ({
-            ...prevProduct,
-            images: [...prevProduct.images, image]
-        }));
+        setProduct(productUpdated);
     };
 
     const handleSubmit = () => {
@@ -106,11 +99,7 @@ const ManageProductPage = () => {
     };
 
     const handlePreview = () => {
-        if (product !== undefined) {
-            setShowPreview(true);
-        } else {
-            setShowPreview(false);
-        }
+        setShowPreview(prev => !prev);
     };
 
     const steps = [
@@ -122,20 +111,24 @@ const ManageProductPage = () => {
     return (
         <article className={styles.manage_product_page}>
             <div className={styles.step_indicator}>
-                {steps.map((s) => (
+                {steps.map(s => (
                     <span key={s.number} className={step === s.number ? styles.active_step : ''}>
                         {s.number}. {s.name}
                     </span>
                 ))}
             </div>
-            {step === 1 && <Step1 product={product!} onChange={handleChangeStep1} />}
+            {step === 1 && <Step1
+                productDetails={product}
+                onChange={handleChangeStep1}
+            />}
             {step === 2 && <Step2
-                product={product}
-                handleChange={handleChange}
-                handleAddColor={handleAddColor}
-                handleAddSize={handleAddSize}
-                handleCategoryChange={handleCategoryChange} />}
-            {step === 3 && <Step3 handleAddImage={handleAddImage} />}
+                productDetails={product}
+                onChange={handleChangeStep2}
+            />}
+            {step === 3 && <Step3
+                productDetails={product}
+                onChange={handleChangeStep3}
+            />}
             <div className={styles.navigation}>
                 <button onClick={handleCancel}>Cancelar</button>
                 <button onClick={handleBack} disabled={step === 1}>Voltar</button>
@@ -147,7 +140,10 @@ const ManageProductPage = () => {
                 <button onClick={handlePreview}>Pré-visualizar</button>
             </div>
             <Loading isLoading={isLoading} />
-            {showPreview && <ProductModal product={product!} onCloseProduct={() => setShowPreview(prev => !prev)} />}
+            {showPreview && <ProductModal
+                product={product}
+                onCloseProduct={() => setShowPreview(prev => !prev)}
+            />}
         </article>
     );
 };

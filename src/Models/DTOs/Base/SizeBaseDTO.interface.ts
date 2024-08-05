@@ -1,0 +1,1 @@
+interface SizeBaseDTO extends Entity { };
