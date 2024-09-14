@@ -1,11 +1,10 @@
 .step2 {
     display: flex;
     flex-direction: column;
+    gap: 1rem;
 }
 
-.category select,
-.colors button,
-.sizes button {
+.category select {
     font-family: var(--aria-font);
     font-size: 1rem;
     padding: 0.75rem;
@@ -15,14 +14,9 @@
     box-shadow: var(--shadow-light);
 }
 
-button {
-    background: var(--accent-color);
-    color: var(--light-primary-text-color);
-    border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 4px;
-    cursor: pointer;
-    box-shadow: var(--shadow-light);
-    font-family: var(--aria-font);
-    font-size: 1rem;
+.color label,
+.size label {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
 }

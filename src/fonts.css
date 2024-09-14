@@ -1,132 +1,31 @@
+/* Alkaline - Regular */
 @font-face {
-    font-family: 'AlkalineRegular';
+    font-family: 'Alkaline';
     src: url('./assets/fonts/alkaline-regular.otf') format('opentype');
-    font-weight: normal;
+    font-weight: 400;
     font-style: normal;
 }
 
+/* Alkaline - Bold */
 @font-face {
-    font-family: 'AlkalineBold';
+    font-family: 'Alkaline';
     src: url('./assets/fonts/alkaline-bold.otf') format('opentype');
-    font-weight: bold;
+    font-weight: 700;
     font-style: normal;
 }
 
+/* Aria - Regular */
 @font-face {
     font-family: 'Aria';
     src: url('./assets/fonts/aria.ttf') format('truetype');
-    font-weight: normal;
+    font-weight: 400;
     font-style: normal;
 }
 
+/* AriaPro - Regular */
 @font-face {
-    font-family: 'AriaProRegular';
+    font-family: 'AriaPro';
     src: url('./assets/fonts/ariapro-regular.otf') format('opentype');
-    font-weight: normal;
+    font-weight: 400;
     font-style: normal;
-}
-
-:root {
-    --alkaline-regular-font: 'AlkalineRegular', sans-serif;
-    --alkaline-bold-font: 'AlkalineBold', sans-serif;
-    --aria-font: 'Aria', sans-serif;
-    --aria-pro-regular-font: 'AriaProRegular', sans-serif;
-
-    --light-primary-text-color: #fff;
-    --light-complementary-text-color: #e5e5e5;
-    --dark-primary-text-color: #000;
-    --dark-complementary-text-color: #262626;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    color: var(--dark-primary-text-color);
-    font-family: var(--alkaline-bold-font);
-}
-
-h1 {
-    font-size: 2rem;
-}
-
-h2 {
-    font-size: 1.5rem;
-}
-
-h3 {
-    font-size: 1.25rem;
-}
-
-h4 {
-    font-size: 1.125rem;
-}
-
-h5 {
-    font-size: 1rem;
-}
-
-h6 {
-    font-size: 0.875rem;
-}
-
-p,
-span,
-a,
-label,
-li,
-button {
-    font-family: var(--aria-font);
-}
-
-p,
-span,
-a,
-label,
-li {
-    font-size: 1rem;
-}
-
-button {
-    font-size: 1.1rem;
-}
-
-@media screen and (min-width: 960px) {
-    h1 {
-        font-size: 2.5rem;
-    }
-
-    h2 {
-        font-size: 2rem;
-    }
-
-    h3 {
-        font-size: 1.75rem;
-    }
-
-    h4 {
-        font-size: 1.5rem;
-    }
-
-    h5 {
-        font-size: 1.25rem;
-    }
-
-    h6 {
-        font-size: 1rem;
-    }
-
-    p,
-    span,
-    a,
-    label,
-    li {
-        font-size: 1.125rem;
-    }
-
-    button {
-        font-size: 1.25rem;
-    }
 }

@@ -5,26 +5,22 @@ import { useEffect } from 'react';
 type Props = {
     className?: string;
     children: React.ReactNode;
-    isOverlayOpen: boolean;
+    activeOverlay: boolean;
 };
 
 const Overlay = (props: Props) => {
     useEffect(() => {
-        if (props.isOverlayOpen) {
-            document.body.classList.add('no-scroll');
+        if (!props.activeOverlay) {
+            document.body.style.overflow = 'hidden';
         } else {
-            document.body.classList.remove('no-scroll');
+            document.body.style.overflow = '';
         }
-
-        return () => document.body.classList.remove('no-scroll');
-    }, [props.isOverlayOpen]);
+    }, [props.activeOverlay]);
 
     return (
-        props.isOverlayOpen && (
-            <div className={`${styles.overlay} ${props.className}`}>
-                {props.children}
-            </div>
-        )
+        <div className={`${styles.overlay} ${props.activeOverlay ? styles.visible : ''}`}>
+            {props.children}
+        </div>
     );
 };
 

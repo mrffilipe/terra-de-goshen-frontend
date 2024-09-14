@@ -1,15 +1,13 @@
 import { Outlet, RouteObject } from "react-router-dom";
 
-import Layout from "../pages/Layout";
 import StockPage from "../pages/DashBoardPage/StockPage";
 import ManageProductPage from "../pages/DashBoardPage/ManageProductPage";
 
 const adminPrivateRoutes: RouteObject = {
     path: 'dashboard',
     element: (
-        <Layout>
-            <Outlet />
-        </Layout>
+        // componente para verificar (autenticado ? se sim, componente; se nao, redireciona para login ou pagina inicial)
+        <Outlet />
     ),
     children: [
         {

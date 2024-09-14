@@ -1,54 +1,30 @@
+@import url('fonts.css');
+
+/* Global Reset */
 * {
   box-sizing: border-box;
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
 
+/* Core Variables */
 :root {
-  /* Core Colors */
-  --background-color: #fff;
-  --accent-color: #000;
-  --alternative-background: #F9F9F9;
-
-  /* Shadow Settings */
-  --shadow-light: 0 2px 4px rgba(0, 0, 0, .1);
-  --shadow-medium: 0 4px 8px rgba(0, 0, 0, .2);
-  --shadow-heavy: 0 8px 16px rgba(0, 0, 0, .3);
-
-  /* Padding Settings */
-  --horizontal-padding: 2rem;
-  --vertical-padding: 2rem;
-
-  /* Font Settings */
-  --font-base: 1rem;
+  --primary-color: #F4F4F9;
+  --complementary-color: #333333;
+  --highlight-color: #9C27B0;
+  --text-color-main: #333333;
+  --text-color-secondary: #F4F4F9;
+  --background-color: #E0E0E0;
+  --border-color: #000000;
+  --hover-color: #D1C4E9;
 }
 
+
+/* Global Styles */
 html,
 body {
-  background: var(--background-color);
-  font-size: var(--font-base);
-  font-family: Arial, sans-serif;
-}
-
-main {
-  padding: var(--vertical-padding) var(--horizontal-padding);
-}
-
-.no-scroll {
-  height: 100vh;
-  overflow: hidden;
-}
-
-@media screen and (min-width: 960px) {
-  :root {
-    --horizontal-padding: 4rem;
-    --vertical-padding: 2rem;
-  }
-}
-
-@media screen and (min-width: 1200px) {
-  :root {
-    --horizontal-padding: 14rem;
-    --vertical-padding: 3rem;
-  }
+  background: var(--primary-color);
+  color: var(--text-color-main);
+  font-family: 'Arial', sans-serif;
+  font-size: 1rem;
 }

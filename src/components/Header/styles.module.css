@@ -1,104 +1,161 @@
 .header {
-    background-color: var(--background-color);
-    padding: 1.5rem var(--horizontal-padding);
+    position: relative;
+    background-color: var(--primary-color);
+    color: var(--text-color-main);
+    padding: 10px;
+}
+
+.container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: none;
-    transition: all .3s ease;
-    z-index: 500;
-}
-
-.logo {
-    width: 120px;
-}
-
-.logo a {
-    width: 100%;
-    height: 100%;
-    text-decoration: none;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .logo img {
+    height: 40px;
+    pointer-events: none;
+}
+
+.menu_button {
+    background: none;
+    border: none;
+    font-size: 32px;
+    color: var(--text-color-main);
+    cursor: pointer;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: auto;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 999;
+}
+
+.overlay.visible {
+    display: block;
 }
 
 .nav {
-    position: relative;
+    position: fixed;
+    top: 0;
+    right: -80%;
+    width: 80%;
+    height: 100%;
+    background-color: var(--complementary-color);
+    transition: right 0.3s ease;
+    z-index: 1000;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-.open_menu_btn {
+.nav.open {
+    right: 0;
+}
+
+.close_button {
     background: none;
     border: none;
-    outline: none;
-    margin: 0;
-    padding: 0;
-    box-shadow: none;
-}
-
-.open_menu_btn svg {
-    color: var(--dark-primary-text-color);
-    font-size: 2.2rem;
-}
-
-.menu {
-    background-color: var(--background-color);
-    padding: 2rem;
-    list-style: none;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    gap: .75rem;
-    box-shadow: var(--shadow-medium);
-
+    font-size: 36px;
+    color: var(--text-color-secondary);
     position: absolute;
-    top: 2.5rem;
-    right: 0;
-    z-index: 510;
-}
-
-.menu a {
-    padding: .5rem;
-    display: block;
-    box-shadow: none;
-    color: var(--dark-primary-text-color);
-    font-size: 1.2rem;
-    text-decoration: none;
-    transition: all .3s ease;
-}
-
-.menu a:hover {
-    box-shadow: var(--shadow-medium);
-}
-
-.hide_menu {
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
     display: none;
 }
 
-@media screen and (min-width: 1200px) {
-    .header {
-        position: sticky;
-        top: 0;
-    }
+.nav.open .close_button {
+    display: block;
+}
 
-    .logo {
-        width: 160px;
-    }
+.menu_list {
+    list-style: none;
+    padding: 0;
+}
 
-    .open_menu_btn {
+.menu_list li {
+    margin: 15px 0;
+}
+
+.menu_list a {
+    text-decoration: none;
+    color: var(--text-color-secondary);
+    font-size: 24px;
+    transition: all 0.3s ease;
+}
+
+.menu_list a:hover {
+    color: #fff;
+    text-decoration: underline;
+    transform: scale(1.05);
+}
+
+@media (min-width: 768px) {
+    .menu_button {
         display: none;
     }
 
-    .menu {
-        padding: 0;
-        display: flex;
-        align-items: center;
-        flex-direction: row;
-        gap: 2.5rem;
-        box-shadow: none;
+    .overlay {
+        display: none;
+    }
 
+    .nav {
         position: static;
-        top: 0;
+        width: auto;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        background-color: transparent;
+    }
+
+    .nav.open {
+        display: none;
+    }
+
+    .close_button {
+        display: none;
+    }
+
+    .menu_list {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .menu_list li {
+        margin: 0 20px;
+    }
+
+    .menu_list a {
+        font-size: 16px;
+        color: var(--text-color-main);
+    }
+
+    .menu_list a:hover {
+        color: #000;
+    }
+}
+
+@media (min-width: 1024px) {
+    .header {
+        padding: 20px;
+    }
+
+    .logo img {
+        height: 60px;
+    }
+
+    .menu_list a {
+        font-size: 18px;
     }
 }

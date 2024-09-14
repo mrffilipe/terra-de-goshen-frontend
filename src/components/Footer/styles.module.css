@@ -1,10 +1,9 @@
 .footer {
-    background-color: var(--accent-color);
-    padding: 3rem var(--horizontal-padding);
+    background-color: var(--complementary-color);
+    padding: 2rem 0;
 }
 
 .footer p {
     text-align: center;
-    color: var(--light-primary-text-color);
-    font-size: 1rem;
+    color: var(--text-color-secondary);
 }
