@@ -5,21 +5,21 @@
     flex-wrap: wrap;
 }
 
-.loading p {
-    margin-top: 1rem;
-    width: 100%;
-    display: block;
-    color: var(--light-primary-text-color);
-    text-align: center;
-}
-
 .loading_spinner {
     width: 60px;
     height: 60px;
-    border: 6px solid var(--light-primary-text-color);
-    border-top: 6px solid goldenrod;
+    border: 6px solid transparent;
+    border-top: 6px solid var(--primary-color);
     border-radius: 50%;
     animation: spin 2s linear infinite;
+}
+
+.loading p {
+    margin-top: 10px;
+    width: 100%;
+    display: block;
+    color: var(--primary-color);
+    text-align: center;
 }
 
 @keyframes spin {

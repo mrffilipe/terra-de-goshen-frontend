@@ -10,7 +10,7 @@ type Props = {
 
 const Overlay = (props: Props) => {
     useEffect(() => {
-        if (!props.activeOverlay) {
+        if (props.activeOverlay) {
             document.body.style.overflow = 'hidden';
         } else {
             document.body.style.overflow = '';

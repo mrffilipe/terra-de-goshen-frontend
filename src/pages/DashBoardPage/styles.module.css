@@ -1,0 +1,86 @@
+.dashboard_page {
+    padding: 20px;
+    background-color: var(--background-color);
+}
+
+.balance_card {
+    background-color: var(--highlight-color);
+    padding: 15px;
+    border-radius: 8px;
+    color: var(--text-color-secondary);
+    text-align: center;
+}
+
+.balance_card p {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.navigation_links_section {
+    margin-top: 20px;
+}
+
+.links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.link {
+    flex: 1;
+    min-width: calc(50% - 20px);
+    padding: 10px 20px;
+    border: 2px solid var(--highlight-color);
+    color: var(--highlight-color);
+    border-radius: 5px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.link:hover {
+    color: var(--text-color-secondary);
+    background-color: var(--highlight-color);
+}
+
+.transactions_section {
+    margin-top: 40px;
+}
+
+.transactions_section {
+    margin-top: 40px;
+}
+
+.table_container {
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.table th,
+.table td {
+    border: 1px solid var(--border-color);
+    padding: 12px 16px;
+    text-align: center;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+.table th {
+    background-color: var(--highlight-color);
+    color: var(--text-color-secondary);
+    font-weight: bold;
+}
+
+.table td {
+    background-color: var(--primary-color);
+    color: var(--text-color-main);
+}
+
+.table tr:hover td {
+    background-color: var(--hover-color);
+}

@@ -8,7 +8,7 @@ type Props = {
 
 const Loading = (props: Props) => {
     return (
-        <Overlay isOverlayOpen={props.isLoading}>
+        <Overlay activeOverlay={props.isLoading}>
             <div className={styles.loading}>
                 <div className={styles.loading_spinner}></div>
                 <p>Carregando...</p>

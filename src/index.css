@@ -11,12 +11,12 @@
 :root {
   --primary-color: #F4F4F9;
   --complementary-color: #333333;
-  --highlight-color: #9C27B0;
+  --highlight-color: #49006F;
   --text-color-main: #333333;
   --text-color-secondary: #F4F4F9;
-  --background-color: #E0E0E0;
+  --background-color: #f7f7fa;
   --border-color: #000000;
-  --hover-color: #D1C4E9;
+  --hover-color: #dacce2;
 }
 
 
