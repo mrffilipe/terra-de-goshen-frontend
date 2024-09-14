@@ -1,3 +1,5 @@
+import styles from './styles.module.css';
+
 import Footer from "../Footer";
 import Header from "../Header";
 
@@ -9,7 +11,11 @@ const Layout = (props: Props) => {
     return (
         <>
             <Header />
-            <main>{props.children}</main>
+            <main className={styles.main}>
+                <div className={styles.container}>
+                    {props.children}
+                </div>
+            </main>
             <Footer />
         </>
     );
