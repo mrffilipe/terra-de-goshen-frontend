@@ -1,0 +1,1 @@
+interface CustomerCreateDTO extends CustomerBaseDTO { };

@@ -142,7 +142,7 @@
     }
 
     .menu_list a:hover {
-        color: #000;
+        color: var(--highlight-color);
     }
 }
 

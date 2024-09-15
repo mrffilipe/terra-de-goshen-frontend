@@ -1,4 +1,4 @@
-interface TransactionResponseDTO extends Entity, BaseEntity {
+interface TransactionResponseDTO extends BaseEntity {
     amount: number;
     transactionType: TransactionType;
     paymentMethod: PaymentMethod;

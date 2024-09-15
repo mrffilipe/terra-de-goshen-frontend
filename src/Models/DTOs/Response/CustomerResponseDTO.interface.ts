@@ -1,0 +1,1 @@
+interface CustomerResponseDTO extends BaseEntity, CustomerBaseDTO { };

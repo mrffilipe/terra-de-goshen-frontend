@@ -1,11 +1,12 @@
 import { Outlet, RouteObject } from "react-router-dom";
 
 import DashboardPage from "../pages/DashboardPage";
+import CustomersPage from "../pages/DashboardPage/CustomersPage";
 import StockPage from "../pages/DashboardPage/StockPage";
 import ManageProductPage from "../pages/DashboardPage/ManageProductPage";
 
 const adminPrivateRoutes: RouteObject = {
-    path: 'dashboard',
+    path: '/dashboard',
     element: (
         // componente para verificar (autenticado ? se sim, componente; se nao, redireciona para login ou pagina inicial)
         <Outlet />
@@ -14,6 +15,10 @@ const adminPrivateRoutes: RouteObject = {
         {
             index: true,
             element: <DashboardPage />
+        },
+        {
+            path: 'customers',
+            element: <CustomersPage />
         },
         {
             path: 'stock',

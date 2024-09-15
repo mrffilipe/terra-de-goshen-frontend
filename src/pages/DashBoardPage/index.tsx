@@ -3,6 +3,7 @@ import styles from './styles.module.css';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import TableData from '../../components/TableData';
 import Loading from '../../components/Loading';
 
 import {
@@ -34,7 +35,11 @@ const DashboardPage = () => {
         })();
     }, []);
 
-    const transactionList = transactions?.map(transaction => (
+    const headerNames = [
+        "ID", "Valor", "Tipo de Transação", "Método de pagamento", "Data"
+    ];
+
+    const dataList = transactions?.map(transaction => (
         <tr key={transaction.id}>
             <td>{transaction.id}</td>
             <td>R$ {transaction.amount}</td>
@@ -52,41 +57,28 @@ const DashboardPage = () => {
                     <p>R$ {balance}</p>
                 </div>
             </section>
+
             <section className={styles.navigation_links_section}>
                 <div className={styles.links}>
-                    <Link to="/dashboard/customers" className={styles.link}>
+                    <Link to="/dashboard/products" className={styles.link}>
                         Gerenciar Produtos
                     </Link>
-                    <Link to="/dashboard/debts" className={styles.link}>
+                    <Link to="/dashboard/customers" className={styles.link}>
                         Gerenciar Clientes
                     </Link>
                     <Link to="/dashboard/debts" className={styles.link}>
                         Gerenciar Dívidas
                     </Link>
-                    <Link to="/dashboard/debts" className={styles.link}>
+                    <Link to="/dashboard/others" className={styles.link}>
                         Outros
                     </Link>
                 </div>
             </section>
+
             <section className={styles.transactions_section}>
-                <h2>Últimas Transações</h2>
-                <div className={styles.table_container}>
-                    <table className={styles.table}>
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Valor</th>
-                                <th>Tipo da Transação</th>
-                                <th>Método de Pagamento</th>
-                                <th>Data</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {transactionList}
-                        </tbody>
-                    </table>
-                </div>
+                <TableData title='Últimas Transações' headerNames={headerNames} data={dataList} />
             </section>
+
             <Loading isLoading={isLoading} />
         </div>
     );
