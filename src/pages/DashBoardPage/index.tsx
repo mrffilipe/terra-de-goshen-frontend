@@ -66,12 +66,6 @@ const DashboardPage = () => {
                     <Link to="/dashboard/customers" className={styles.link}>
                         Gerenciar Clientes
                     </Link>
-                    <Link to="/dashboard/debts" className={styles.link}>
-                        Gerenciar Dívidas
-                    </Link>
-                    <Link to="/dashboard/others" className={styles.link}>
-                        Outros
-                    </Link>
                 </div>
             </section>
 

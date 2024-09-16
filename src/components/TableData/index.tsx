@@ -3,7 +3,7 @@ import styles from './styles.module.css';
 type Props = {
     title: string;
     headerNames: string[];
-    data: JSX.Element[] | undefined;
+    data: JSX.Element | JSX.Element[] | undefined;
 };
 
 const TableData = (props: Props) => {

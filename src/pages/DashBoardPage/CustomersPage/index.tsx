@@ -1,6 +1,6 @@
 import styles from './styles.module.css';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import TableData from '../../../components/TableData';
 import Modal from '../../../components/Modal';
@@ -21,51 +21,34 @@ const CustomersPage = () => {
     const [newCustomer, setNewCustomer] = useState<CustomerCreateDTO | null>(null);
     const [editCustomer, setEditCustomer] = useState<CustomerUpdateDTO | null>(null);
 
+    const fetchAndSetCustomers = useCallback(async () => {
+        setIsLoading(true);
+        const fetchedCustomers = await getAllCustomers();
+        setCustomers(fetchedCustomers);
+        setIsLoading(false);
+    }, [getAllCustomers]);
+
     useEffect(() => {
-        (async () => {
-            setIsLoading(true);
-
-            const fetchedCustomers = await getAllCustomers();
-
-            setCustomers(fetchedCustomers);
-
-            setIsLoading(false);
-        })();
-    }, []);
+        fetchAndSetCustomers();
+    }, [fetchAndSetCustomers]);
 
     const handleAddCustomer = async (e: React.FormEvent) => {
         e.preventDefault();
-
         if (newCustomer) {
             setIsLoading(true);
-
             await addCustomer(newCustomer);
-
-            const updatedCustomers = await getAllCustomers();
-
-            setCustomers(updatedCustomers);
-
+            fetchAndSetCustomers();
             setNewCustomer(null);
-
-            setIsLoading(false);
         }
     };
 
     const handleEditCustomer = async (e: React.FormEvent) => {
         e.preventDefault();
-
         if (editCustomer) {
             setIsLoading(true);
-
             await updateCustomer(editCustomer);
-
-            const updatedCustomers = await getAllCustomers();
-
-            setCustomers(updatedCustomers);
-
+            fetchAndSetCustomers();
             setEditCustomer(null);
-
-            setIsLoading(false);
         }
     };
 
@@ -85,17 +68,23 @@ const CustomersPage = () => {
         "ID", "Nome", "Sobrenome", "Data", "Ações"
     ];
 
-    const dataList = customers?.map((customer) => (
-        <tr key={customer.id}>
-            <td>{customer.id}</td>
-            <td>{customer.firstName}</td>
-            <td>{customer.lastName}</td>
-            <td>{customer.createdAt}</td>
-            <td>
-                <button onClick={() => setEditCustomer(customer)}>Editar</button>
-            </td>
+    const dataList = customers ? (
+        customers.map((customer) => (
+            <tr key={customer.id}>
+                <td>{customer.id}</td>
+                <td>{customer.firstName}</td>
+                <td>{customer.lastName}</td>
+                <td>{customer.createdAt}</td>
+                <td>
+                    <button onClick={() => setEditCustomer(customer)}>Editar</button>
+                </td>
+            </tr>
+        ))
+    ) : (
+        <tr>
+            <td colSpan={5}>Nenhum cliente encontrado</td>
         </tr>
-    ))
+    );
 
     return (
         <div className={styles.customers_page}>
@@ -113,24 +102,14 @@ const CustomersPage = () => {
                             value={newCustomer?.firstName}
                             placeholder="Nome"
                             required
-                            onChange={e => {
-                                newCustomer ? (
-                                    setNewCustomer({ ...newCustomer, firstName: e.target.value })) : (
-                                    undefined
-                                )
-                            }}
+                            onChange={e => setNewCustomer(prev => prev ? { ...prev, firstName: e.target.value } : null)}
                         />
                         <input
                             type="text"
                             value={newCustomer?.lastName}
                             placeholder="Sobrenome"
                             required
-                            onChange={e => {
-                                newCustomer ? (
-                                    setNewCustomer({ ...newCustomer, lastName: e.target.value })) : (
-                                    undefined
-                                )
-                            }}
+                            onChange={e => setNewCustomer(prev => prev ? { ...prev, lastName: e.target.value } : null)}
                         />
                         <button type="submit">Cadastrar cliente</button>
                     </form>
@@ -145,29 +124,20 @@ const CustomersPage = () => {
                             value={editCustomer?.firstName}
                             placeholder="Nome"
                             required
-                            onChange={e => {
-                                editCustomer ? (
-                                    setEditCustomer({ ...editCustomer, firstName: e.target.value })) : (
-                                    undefined
-                                )
-                            }}
+                            onChange={e => setEditCustomer(prev => prev ? { ...prev, firstName: e.target.value } : null)}
                         />
                         <input
                             type="text"
                             value={editCustomer?.lastName}
                             placeholder="Sobrenome"
                             required
-                            onChange={e => {
-                                editCustomer ? (
-                                    setEditCustomer({ ...editCustomer, lastName: e.target.value })) : (
-                                    undefined
-                                )
-                            }}
+                            onChange={e => setEditCustomer(prev => prev ? { ...prev, lastName: e.target.value } : null)}
                         />
                         <button type="submit">Salvar alterações</button>
                     </form>
                 </div>
             </Modal>
+
 
             <section className={styles.customers_section}>
                 <TableData title='Lista de Cientes' headerNames={headerNames} data={dataList} />
