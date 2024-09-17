@@ -1,0 +1,1 @@
+interface InstallmentResponseDTO extends BaseEntity, InstallmentBaseDTO { };

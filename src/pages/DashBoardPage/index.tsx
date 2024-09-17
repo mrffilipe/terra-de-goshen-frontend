@@ -6,11 +6,16 @@ import { Link } from 'react-router-dom';
 import TableData from '../../components/TableData';
 import Loading from '../../components/Loading';
 
+import TransactionResponseDTO from '../../Models/DTOs/Response/TransactionResponseDTO.interface';
+
 import {
     useGetBalanceByCashRegisterId,
     useGetTransactionsByCashRegisterId
 } from '../../hooks/cashRegister/useCashRegisterService';
+
 import { getPaymentMethodName, getTransactionTypeName } from '../../utils/enumerationUtils';
+import { formatCurrencyBRL } from '../../utils/moneyUtils';
+import { formatDate } from '../../utils/dateUtils';
 
 const DashboardPage = () => {
     const [getBalanceByCashRegisterId] = useGetBalanceByCashRegisterId();
@@ -42,10 +47,10 @@ const DashboardPage = () => {
     const dataList = transactions?.map(transaction => (
         <tr key={transaction.id}>
             <td>{transaction.id}</td>
-            <td>R$ {transaction.amount}</td>
+            <td>{formatCurrencyBRL(transaction.amount)}</td>
             <td>{getTransactionTypeName(transaction.transactionType)}</td>
             <td>{getPaymentMethodName(transaction.paymentMethod)}</td>
-            <td>{transaction.createdAt}</td>
+            <td>{formatDate(transaction.createdAt)}</td>
         </tr>
     ));
 

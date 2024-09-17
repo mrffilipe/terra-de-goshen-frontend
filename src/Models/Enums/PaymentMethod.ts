@@ -6,3 +6,5 @@ enum PaymentMethod {
     CASH,
     OTHER
 };
+
+export default PaymentMethod;

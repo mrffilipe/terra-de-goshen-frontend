@@ -12,6 +12,8 @@ import {
     useUpdateCustomer
 } from '../../../hooks/customer/useCustomerService';
 
+import { formatDate } from '../../../utils/dateUtils';
+
 const CustomersPage = () => {
     const [getAllCustomers] = useGetAllCustomers();
     const [addCustomer] = useAddCustomer();
@@ -74,7 +76,7 @@ const CustomersPage = () => {
                 <td>{customer.id}</td>
                 <td>{customer.firstName}</td>
                 <td>{customer.lastName}</td>
-                <td>{customer.createdAt}</td>
+                <td>{formatDate(customer.createdAt)}</td>
                 <td>
                     <button onClick={() => setEditCustomer(customer)}>Editar</button>
                 </td>

@@ -1,4 +1,4 @@
-.customers_page {
+.debts_page {
     padding: 20px;
     background-color: var(--background-color);
 }
@@ -21,6 +21,10 @@
 .actions button:hover {
     color: var(--text-color-secondary);
     background-color: var(--highlight-color);
+}
+
+.debts_section {
+    margin-top: 40px;
 }
 
 .form_container {
@@ -56,10 +60,6 @@
 .form_container button:hover {
     color: var(--text-color-secondary);
     background-color: var(--highlight-color);
-}
-
-.customers_section {
-    margin-top: 40px;
 }
 
 @media (min-width: 1024px) {
