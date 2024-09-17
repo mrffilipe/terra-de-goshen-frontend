@@ -1,0 +1,27 @@
+.button {
+    width: 100%;
+    padding: 10px 20px;
+    border: 1px solid var(--highlight-color);
+    border-radius: 5px;
+    color: var(--highlight-color);
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.button:hover {
+    background-color: var(--highlight-color);
+    color: var(--text-color-secondary);
+}
+
+.button:disabled {
+    background-color: #ccc;
+    border-color: #ccc;
+    color: #fff;
+}
+
+@media (min-width: 1024px) {
+    .button {
+        width: auto;
+    }
+}

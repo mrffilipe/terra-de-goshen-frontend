@@ -35,13 +35,21 @@
 .table button {
     padding: 5px 10px;
     border: 1px solid var(--highlight-color);
-    color: var(--highlight-color);
     border-radius: 5px;
-    cursor: pointer;
+    color: var(--highlight-color);
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: .9rem;
     transition: all 0.3s ease;
 }
 
 .table button:hover {
     background-color: var(--highlight-color);
     color: var(--text-color-secondary);
+}
+
+.table button:disabled {
+    background-color: #ccc;
+    border-color: #ccc;
+    color: #fff;
 }

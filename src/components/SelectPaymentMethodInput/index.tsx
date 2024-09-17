@@ -1,5 +1,3 @@
-import styles from './styles.module.css';
-
 import PaymentMethod from '../../Models/Enums/PaymentMethod';
 
 import { getPaymentMethodName } from '../../utils/enumerationUtils';
@@ -12,7 +10,6 @@ type Props = {
 const SelectPaymentMethodInput = (props: Props) => {
     return (
         <select
-            className={styles.select}
             value={props.value}
             onChange={e => props.onChange(parseInt(e.target.value))}
         >

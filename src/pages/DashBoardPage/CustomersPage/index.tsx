@@ -2,8 +2,10 @@ import styles from './styles.module.css';
 
 import { useCallback, useEffect, useState } from 'react';
 
+import Button from '../../../components/Button';
 import TableData from '../../../components/TableData';
 import Modal from '../../../components/Modal';
+import Form from '../../../components/Form';
 import Loading from '../../../components/Loading';
 
 import {
@@ -93,53 +95,52 @@ const CustomersPage = () => {
             <h2>Gerenciar Clientes</h2>
 
             <div className={styles.actions}>
-                <button onClick={() => setNewCustomer({ firstName: '', lastName: '' })}>Novo cliente</button>
+                <Button
+                    value='Novo cliente'
+                    disable={isLoading}
+                    onClick={() => setNewCustomer({ firstName: '', lastName: '' })}
+                />
             </div>
 
             <Modal title='Novo Cliente' activeModal={newCustomer !== null} onCloseClick={handleCloseNewCustomerModal}>
-                <div className={styles.form_container}>
-                    <form onSubmit={handleAddCustomer}>
-                        <input
-                            type="text"
-                            value={newCustomer?.firstName}
-                            placeholder="Nome"
-                            required
-                            onChange={e => setNewCustomer(prev => prev ? { ...prev, firstName: e.target.value } : null)}
-                        />
-                        <input
-                            type="text"
-                            value={newCustomer?.lastName}
-                            placeholder="Sobrenome"
-                            required
-                            onChange={e => setNewCustomer(prev => prev ? { ...prev, lastName: e.target.value } : null)}
-                        />
-                        <button type="submit">Cadastrar cliente</button>
-                    </form>
-                </div>
+                <Form onSubmit={handleAddCustomer}>
+                    <input
+                        type="text"
+                        value={newCustomer?.firstName}
+                        placeholder="Nome"
+                        required
+                        onChange={e => setNewCustomer(prev => prev ? { ...prev, firstName: e.target.value } : null)}
+                    />
+                    <input
+                        type="text"
+                        value={newCustomer?.lastName}
+                        placeholder="Sobrenome"
+                        required
+                        onChange={e => setNewCustomer(prev => prev ? { ...prev, lastName: e.target.value } : null)}
+                    />
+                    <Button type="submit" value='Cadastrar cliente' />
+                </Form>
             </Modal>
 
             <Modal title='Editar Cliente' activeModal={editCustomer !== null} onCloseClick={handleCloseEditCustomerModal}>
-                <div className={styles.form_container}>
-                    <form onSubmit={handleEditCustomer}>
-                        <input
-                            type="text"
-                            value={editCustomer?.firstName}
-                            placeholder="Nome"
-                            required
-                            onChange={e => setEditCustomer(prev => prev ? { ...prev, firstName: e.target.value } : null)}
-                        />
-                        <input
-                            type="text"
-                            value={editCustomer?.lastName}
-                            placeholder="Sobrenome"
-                            required
-                            onChange={e => setEditCustomer(prev => prev ? { ...prev, lastName: e.target.value } : null)}
-                        />
-                        <button type="submit">Salvar alterações</button>
-                    </form>
-                </div>
+                <Form onSubmit={handleEditCustomer}>
+                    <input
+                        type="text"
+                        value={editCustomer?.firstName}
+                        placeholder="Nome"
+                        required
+                        onChange={e => setEditCustomer(prev => prev ? { ...prev, firstName: e.target.value } : null)}
+                    />
+                    <input
+                        type="text"
+                        value={editCustomer?.lastName}
+                        placeholder="Sobrenome"
+                        required
+                        onChange={e => setEditCustomer(prev => prev ? { ...prev, lastName: e.target.value } : null)}
+                    />
+                    <Button type="submit" value='Salvar alterações' />
+                </Form>
             </Modal>
-
 
             <section className={styles.customers_section}>
                 <TableData title='Lista de Cientes' headerNames={headerNames} data={dataList} />
