@@ -19,7 +19,7 @@ const TableData = (props: Props) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {props.data}
+                    {Array.isArray(props.data) ? props.data : <tr><td>{props.data}</td></tr>}
                 </tbody>
             </table>
         </div>

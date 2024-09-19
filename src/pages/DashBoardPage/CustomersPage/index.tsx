@@ -97,7 +97,7 @@ const CustomersPage = () => {
             <div className={styles.actions}>
                 <Button
                     value='Novo cliente'
-                    disable={isLoading}
+                    disabled={isLoading}
                     onClick={() => setNewCustomer({ firstName: '', lastName: '' })}
                 />
             </div>

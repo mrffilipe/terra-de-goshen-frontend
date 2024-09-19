@@ -2,16 +2,18 @@ import { useCallback } from "react";
 
 import axiosConfig from "../../config/axiosConfig";
 
+import TransactionResponseDTO from "../../Models/DTOs/Response/TransactionResponseDTO.interface";
+
 const useGetBalanceByCashRegisterId = (): [(cashRegisterId: string) => Promise<number | undefined>] => {
     const getBalanceByCashRegisterId = useCallback(async (cashRegisterId: string): Promise<number | undefined> => {
         try {
             const response = await axiosConfig.get(`/cashregister/${cashRegisterId}/balance`);
 
-            if (response !== null) {
+            if (response.status === 200) {
                 return response.data;
             }
         } catch (error) {
-            console.error("Erro ao listar o produto: ", error);
+            console.error("Erro ao obter o saldo do caixa: ", error);
         }
 
         return undefined;
@@ -25,11 +27,11 @@ const useGetTransactionsByCashRegisterId = (): [(cashRegisterId: string) => Prom
         try {
             const response = await axiosConfig.get(`/cashregister/${cashRegisterId}/transactions`);
 
-            if (response !== null) {
+            if (response.status === 200) {
                 return response.data;
             }
         } catch (error) {
-            console.error("Erro ao listar o produto: ", error);
+            console.error("Erro ao obter as transações do caixa: ", error);
         }
 
         return undefined;

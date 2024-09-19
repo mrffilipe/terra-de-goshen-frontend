@@ -139,7 +139,7 @@ const DebtsPage = () => {
             <div className={styles.actions}>
                 <Button
                     value='Novo débito'
-                    disable={isLoading}
+                    disabled={isLoading}
                     onClick={() => setNewDebt({
                         totalAmount: 0, installmentCount: 0, dueDate: '', paymentMethod: 0, initialPayment: 0, customerId: ''
                     })}
@@ -148,44 +148,71 @@ const DebtsPage = () => {
 
             <Modal title='Novo Débito' activeModal={newDebt !== null} onCloseClick={handleCloseAddDebtModal}>
                 <Form onSubmit={handleAddDebt}>
-                    <input
-                        type="number"
-                        value={newDebt?.totalAmount === 0 ? '' : newDebt?.totalAmount || 0}
-                        placeholder="Valor total (R$)"
-                        required
-                        onChange={e => setNewDebt(prev => prev ? { ...prev, totalAmount: parseFloat(e.target.value) } : null)}
-                    />
-                    <input
-                        type="number"
-                        value={newDebt?.installmentCount === 0 ? '' : newDebt?.installmentCount || 0}
-                        placeholder="Qtd. parcelas"
-                        required
-                        onChange={e => setNewDebt(prev => prev ? { ...prev, installmentCount: parseFloat(e.target.value) } : null)}
-                    />
-                    <SelectPaymentMethodInput
-                        value={newDebt?.paymentMethod || PaymentMethod.CREDIT_CARD}
-                        onChange={e => setNewDebt(prev => prev ? { ...prev, paymentMethod: e } : null)}
-                    />
-                    <input
-                        type="number"
-                        value={newDebt?.initialPayment === 0 ? '' : newDebt?.initialPayment || 0}
-                        placeholder="Entrada (R$)"
-                        required
-                        onChange={e => setNewDebt(prev => prev ? { ...prev, initialPayment: parseFloat(e.target.value) } : null)}
-                    />
+                    <label>
+                        Valor total (R$)
+                        <input
+                            type="number"
+                            value={newDebt?.totalAmount === 0 ? '' : newDebt?.totalAmount || 0}
+                            placeholder="Ex: 200,00"
+                            required
+                            onChange={e => setNewDebt(prev => prev ? { ...prev, totalAmount: parseFloat(e.target.value) } : null)}
+                        />
+                    </label>
+                    <label>
+                        Parcelas
+                        <select
+                            value={newDebt?.installmentCount}
+                            onChange={
+                                e => setNewDebt(prev => prev ? { ...prev, installmentCount: parseFloat(e.target.value) } : null)
+                            }
+                        >
+                            <option value="1">1x</option>
+                            <option value="2">2x</option>
+                            <option value="3">3x</option>
+                            <option value="4">4x</option>
+                            <option value="5">5x</option>
+                            <option value="6">6x</option>
+                            <option value="7">7x</option>
+                            <option value="8">8x</option>
+                            <option value="9">9x</option>
+                            <option value="10">10x</option>
+                            <option value="11">11x</option>
+                            <option value="12">12x</option>
+                        </select>
+                    </label>
+                    <label>
+                        Método de pagamento
+                        <SelectPaymentMethodInput
+                            value={newDebt?.paymentMethod || PaymentMethod.CREDIT_CARD}
+                            onChange={e => setNewDebt(prev => prev ? { ...prev, paymentMethod: e } : null)}
+                        />
+                    </label>
+                    <label>
+                        Valor de entrada (R$)
+                        <input
+                            type="number"
+                            value={newDebt?.initialPayment === 0 ? '' : newDebt?.initialPayment || 0}
+                            placeholder="Ex: 50,00"
+                            required
+                            onChange={e => setNewDebt(prev => prev ? { ...prev, initialPayment: parseFloat(e.target.value) } : null)}
+                        />
+                    </label>
                     <Button type='submit' value='Cadastrar débito' />
                 </Form>
             </Modal>
 
             <Modal title='Parcela' activeModal={selectedInstallment !== null} onCloseClick={handleCloseRegisterPaymentModal}>
                 <Form onSubmit={handleRegisterPayment}>
-                    <input
-                        type="number"
-                        value={paymentAmount === 0 ? '' : paymentAmount || 0}
-                        placeholder="Valor (R$)"
-                        required
-                        onChange={e => setPaymentAmount(parseFloat(e.target.value))}
-                    />
+                    <label>
+                        Valor do pagamento (R$)
+                        <input
+                            type="number"
+                            value={paymentAmount === 0 ? '' : paymentAmount || 0}
+                            placeholder="Ex: 100,00"
+                            required
+                            onChange={e => setPaymentAmount(parseFloat(e.target.value))}
+                        />
+                    </label>
                     <Button type='submit' value='Registrar pagamento' />
                 </Form>
             </Modal>

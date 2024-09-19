@@ -1,5 +1,7 @@
 import styles from './styles.module.css';
 
+import { useEffect } from 'react';
+
 import Overlay from '../Overlay';
 
 type Props = {
@@ -10,9 +12,23 @@ type Props = {
 };
 
 const Modal = (props: Props) => {
+    useEffect(() => {
+        const handleEsc = (event: KeyboardEvent) => {
+            if (event.key === 'Escape') {
+                props.onCloseClick();
+            }
+        };
+
+        window.addEventListener('keydown', handleEsc);
+
+        return () => {
+            window.removeEventListener('keydown', handleEsc);
+        };
+    }, [props]);
+
     return (
         <Overlay activeOverlay={props.activeModal}>
-            <div className={styles.modal}>
+            <div className={styles.modal} aria-modal="true">
                 <button className={styles.close_button} onClick={props.onCloseClick}>
                     X
                 </button>

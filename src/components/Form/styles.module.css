@@ -2,12 +2,23 @@
     background-color: var(--background-color);
     padding: 20px;
     border-radius: 8px;
+    max-width: 500px;
+    margin: 0 auto;
 }
 
 .form_container form {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
+}
+
+.form_container label {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 5px;
+    color: var(--text-color-main);
+    font-size: 1rem;
 }
 
 .form_container input,
@@ -16,6 +27,11 @@
     border: 1px solid var(--border-color);
     border-radius: 4px;
     font-size: 1rem;
+}
+
+.form_container input::placeholder,
+.form_container select::placeholder {
+    font-size: .9rem;
 }
 
 .form_container button {

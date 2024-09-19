@@ -6,11 +6,15 @@
     height: 100%;
     padding: 10px;
     background: rgba(0, 0, 0, 0.5);
-    display: none;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.3s ease;
     z-index: 999;
 }
 
 .overlay.visible {
+    visibility: visible;
+    opacity: 1;
     display: flex;
     justify-content: center;
     align-items: center;
