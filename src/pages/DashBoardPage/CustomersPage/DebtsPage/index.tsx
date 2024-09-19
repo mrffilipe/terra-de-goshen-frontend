@@ -16,7 +16,8 @@ import PaymentMethod from '../../../../Models/Enums/PaymentMethod';
 
 import {
     useAddDebtByCashRegisterId,
-    useGetDebtsByCustomerId
+    useGetDebtsByCustomerId,
+    useRegisterInstallmentPayment
 } from '../../../../hooks/debt/useDebtService';
 
 import { getPaymentMethodName } from '../../../../utils/enumerationUtils';
@@ -24,11 +25,15 @@ import { formatCurrencyBRL } from '../../../../utils/moneyUtils';
 import { formatDate } from '../../../../utils/dateUtils';
 
 const DebtsPage = () => {
-    const [getDebtsByCustomerId] = useGetDebtsByCustomerId();
     const [addDebtByCashRegisterId] = useAddDebtByCashRegisterId();
+    const [getDebtsByCustomerId] = useGetDebtsByCustomerId();
+    const [registerInstallmentPayment] = useRegisterInstallmentPayment();
     const [isLoading, setIsLoading] = useState(false);
     const [newDebt, setNewDebt] = useState<DebtCreateDTO | null>(null);
     const [debts, setDebts] = useState<DebtResponseDTO[] | undefined>([]);
+    const [selectedDebt, setSelectedDebt] = useState<DebtResponseDTO | null>(null);
+    const [selectedInstallment, setSelectedInstallment] = useState<InstallmentResponseDTO | null>(null);
+    const [paymentAmount, setPaymentAmount] = useState(0);
 
     const { customerId } = useParams();
 
@@ -67,15 +72,34 @@ const DebtsPage = () => {
         }
     };
 
+    const handleRegisterPayment = async (e: React.FormEvent) => {
+        e.preventDefault();
+
+        if (selectedInstallment) {
+            setIsLoading(true);
+            const cashRegisterId = "bfda369b-bf91-46ef-bfba-f34ee3e5c85d";
+            await registerInstallmentPayment(selectedInstallment.id, cashRegisterId, paymentAmount);
+            fetchAndSetDebts();
+            setSelectedInstallment(null);
+            setPaymentAmount(0);
+            setSelectedDebt(null);
+            setIsLoading(false);
+        }
+    };
+
     const handleCloseAddDebtModal = () => {
         setNewDebt(null);
-    }
+    };
 
-    const headerNames = [
+    const handleCloseRegisterPaymentModal = () => {
+        setSelectedInstallment(null);
+    };
+
+    const debitHeaderNames = [
         "ID", "Valor Total", "Qtd. Parcelas", "Método de pagamento", "Entrada", "Data", "Ações"
     ];
 
-    const dataList = debts?.map((debt) => (
+    const debitDataList = debts?.map(debt => (
         <tr key={debt.id}>
             <td>{debt.id}</td>
             <td>{formatCurrencyBRL(debt.totalAmount)}</td>
@@ -84,9 +108,26 @@ const DebtsPage = () => {
             <td>{formatCurrencyBRL(debt.initialPayment)}</td>
             <td>{formatDate(debt.createdAt)}</td>
             <td>
-                <button onClick={undefined}>
-                    Detalhes
+                <button onClick={() => debt.id === selectedDebt?.id ? setSelectedDebt(null) : setSelectedDebt(debt)}>
+                    {debt.id === selectedDebt?.id ? 'Fechar' : 'Detalhes'}
                 </button>
+            </td>
+        </tr>
+    ));
+
+    const installmentHeaderNames = [
+        "ID", "Valor", "Valor Pago", "Status", "Vencimento", "Ações"
+    ];
+
+    const installmentDataList = selectedDebt?.installments.map(installment => (
+        <tr key={installment.id}>
+            <td>{installment.id}</td>
+            <td>{formatCurrencyBRL(installment.amount)}</td>
+            <td>{formatCurrencyBRL(installment.amountPaid)}</td>
+            <td>{installment.isPaid ? 'Pago' : 'Pendente'}</td>
+            <td>{formatDate(installment.dueDate)}</td>
+            <td>
+                <button onClick={() => setSelectedInstallment(installment)}>Pagar</button>
             </td>
         </tr>
     ));
@@ -104,10 +145,6 @@ const DebtsPage = () => {
                     })}
                 />
             </div>
-
-            <section className={styles.debts_section}>
-                <TableData title='Lista de Débitos' headerNames={headerNames} data={dataList} />
-            </section>
 
             <Modal title='Novo Débito' activeModal={newDebt !== null} onCloseClick={handleCloseAddDebtModal}>
                 <Form onSubmit={handleAddDebt}>
@@ -139,6 +176,29 @@ const DebtsPage = () => {
                     <Button type='submit' value='Cadastrar débito' />
                 </Form>
             </Modal>
+
+            <Modal title='Parcela' activeModal={selectedInstallment !== null} onCloseClick={handleCloseRegisterPaymentModal}>
+                <Form onSubmit={handleRegisterPayment}>
+                    <input
+                        type="number"
+                        value={paymentAmount === 0 ? '' : paymentAmount || 0}
+                        placeholder="Valor (R$)"
+                        required
+                        onChange={e => setPaymentAmount(parseFloat(e.target.value))}
+                    />
+                    <Button type='submit' value='Registrar pagamento' />
+                </Form>
+            </Modal>
+
+            <section className={styles.debts_section}>
+                <TableData title='Lista de Débitos' headerNames={debitHeaderNames} data={debitDataList} />
+            </section>
+
+            {selectedDebt && (
+                <section className={styles.debt_details}>
+                    <TableData title={`Detalhes do parcelamento (${selectedDebt.id})`} headerNames={installmentHeaderNames} data={installmentDataList} />
+                </section>
+            )}
 
             <Loading isLoading={isLoading} />
         </div>
