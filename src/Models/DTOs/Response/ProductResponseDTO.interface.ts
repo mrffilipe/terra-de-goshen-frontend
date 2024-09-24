@@ -1,11 +1,3 @@
-interface ProductResponseDTO extends Entity {
-    name: string;
-    description: string;
-    price: number;
-    backgroundText: string;
-    images: ImageResponseDTO[];
-    colors: ColorResponseDTO[];
-    sizes: SizeResponseDTO[];
+interface ProductResponseDTO extends BaseEntity, ProductBaseDTO {
     category: CategoryResponseDTO;
-    quantityInStock: number;
 };

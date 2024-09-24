@@ -20,6 +20,24 @@ const useGetProductById = (): [(id: string) => Promise<ProductResponseDTO | unde
     return [getProductById];
 };
 
+const useGetAllProducts = (): [() => Promise<ProductResponseDTO[] | undefined>] => {
+    const getAllProducts = useCallback(async (): Promise<ProductResponseDTO[] | undefined> => {
+        try {
+            const response = await axiosConfig.get('product/get-all-products');
+
+            if (response !== null) {
+                return response.data;
+            }
+        } catch (error) {
+            console.error("Erro ao listar produtos: ", error);
+        }
+
+        return undefined;
+    }, []);
+
+    return [getAllProducts];
+};
+
 const useGetProductsByParameter = (): [(params?: any) => Promise<MinimumProductResponseDTO[]>] => {
     const getProductsByParameter = useCallback(async (params?: any): Promise<MinimumProductResponseDTO[]> => {
         try {
@@ -94,6 +112,7 @@ const useGetAllSizes = (): [() => Promise<SizeResponseDTO[]>] => {
 
 export {
     useGetProductById,
+    useGetAllProducts,
     useGetProductsByParameter,
     useGetAllCategories,
     useGetAllColors,

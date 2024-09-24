@@ -1,0 +1,12 @@
+.products_page {
+    padding: 20px;
+    background-color: var(--background-color);
+}
+
+.actions {
+    margin-top: 10px;
+}
+
+.products_section {
+    margin-top: 40px;
+}

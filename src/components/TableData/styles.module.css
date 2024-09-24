@@ -33,12 +33,14 @@
 }
 
 .table button {
+    background-color: transparent;
     padding: 5px 10px;
     border: 1px solid var(--highlight-color);
     border-radius: 5px;
     color: var(--highlight-color);
     text-decoration: none;
     font-size: .9rem;
+    cursor: pointer;
     transition: all 0.3s ease;
 }
 

@@ -3,9 +3,7 @@ import { Outlet, RouteObject } from "react-router-dom";
 import DashboardPage from "../pages/DashboardPage";
 import CustomersPage from "../pages/DashboardPage/CustomersPage";
 import DebtsPage from "../pages/DashboardPage/CustomersPage/DebtsPage";
-
-import StockPage from "../pages/DashboardPage/StockPage";
-import ManageProductPage from "../pages/DashboardPage/ManageProductPage";
+import ProductsPage from "../pages/DashboardPage/ProductsPage";
 
 const adminPrivateRoutes: RouteObject = {
     path: '/dashboard',
@@ -19,7 +17,7 @@ const adminPrivateRoutes: RouteObject = {
             element: <DashboardPage />
         },
         {
-            path: 'customers',
+            path: '/dashboard/customers',
             element: <CustomersPage />
         },
         {
@@ -27,12 +25,8 @@ const adminPrivateRoutes: RouteObject = {
             element: <DebtsPage />
         },
         {
-            path: 'stock',
-            element: <StockPage />
-        },
-        {
-            path: 'manage-product/:productId?',
-            element: <ManageProductPage />
+            path: '/dashboard/products',
+            element: <ProductsPage />
         }
     ]
 };

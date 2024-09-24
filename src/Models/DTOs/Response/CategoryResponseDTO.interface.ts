@@ -1,3 +1,1 @@
-interface CategoryResponseDTO extends Entity {
-    name: string;
-};
+interface CategoryResponseDTO extends BaseEntity, CategoryBaseDTO { };
