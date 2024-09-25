@@ -1,4 +1,1 @@
-interface ImageResponseDTO extends Entity {
-    url: string;
-    isCover: boolean;
-};
+interface ImageResponseDTO extends BaseEntity, ImageBaseDTO { };

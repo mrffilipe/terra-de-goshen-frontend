@@ -1,9 +1,11 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-import Layout from '../components/Layout';
 import { Outlet } from "react-router-dom";
+
+import Layout from '../components/Layout';
 import adminPrivateRoutes from './adminPrivateRoutes';
 import publicRoutes from './publicRoutes';
+import SignInPage from '../pages/AuthPage/SignInPage';
 
 const router = createBrowserRouter([
     {
@@ -17,6 +19,10 @@ const router = createBrowserRouter([
             publicRoutes,
             adminPrivateRoutes
         ]
+    },
+    {
+        path: '/auth',
+        element: <SignInPage />
     }
 ]);
 

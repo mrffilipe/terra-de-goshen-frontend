@@ -1,4 +1,1 @@
-interface ColorResponseDTO extends Entity {
-    value: string;
-    imageId?: string;
-};
+interface ColorResponseDTO extends BaseEntity, ColorBaseDTO { };

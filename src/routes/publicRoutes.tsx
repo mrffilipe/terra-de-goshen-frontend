@@ -1,20 +1,21 @@
-import { RouteObject } from "react-router-dom";
+import { Outlet, RouteObject } from "react-router-dom";
 
 import IndexPage from "../pages";
-import SignInPage from "../pages/AuthPage/SignInPage";
+import CatalogPage from "../pages/CatalogPage";
 
 const publicRoutes: RouteObject = {
     path: '/',
-    element: <IndexPage />,
+    element: (
+        <Outlet />
+    ),
     children: [
         {
-            path: 'auth',
-            children: [
-                {
-                    index: true,
-                    element: <SignInPage />
-                }
-            ]
+            index: true,
+            element: <IndexPage />
+        },
+        {
+            path: '/catalog/:productId?',
+            element: <CatalogPage />
         }
     ]
 };

@@ -7,7 +7,10 @@ import { SearchInputSubmit } from '../../../components/SearchInput';
 import TableData from '../../../components/TableData';
 import Loading from '../../../components/Loading';
 
-import { useGetAllProducts, useGetProductsByParameter } from '../../../hooks/product/useProductService';
+import {
+    useGetAllProducts,
+    useGetProductsByParameter
+} from '../../../hooks/product/useProductService';
 
 import { formatCurrencyBRL } from '../../../utils/moneyUtils';
 import { formatDate } from '../../../utils/dateUtils';

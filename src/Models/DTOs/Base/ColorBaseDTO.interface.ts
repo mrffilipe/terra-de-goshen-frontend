@@ -1,1 +1,1 @@
-interface ColorBaseDTO extends Entity { };
+interface ColorBaseDTO { };

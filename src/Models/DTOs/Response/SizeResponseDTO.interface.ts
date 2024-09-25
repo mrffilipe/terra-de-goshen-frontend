@@ -1,3 +1,1 @@
-interface SizeResponseDTO extends Entity {
-    value: string;
-};
+interface SizeResponseDTO extends BaseEntity, SizeBaseDTO { };
