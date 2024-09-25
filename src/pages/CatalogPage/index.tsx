@@ -11,7 +11,6 @@ import {
 } from '../../hooks/product/useProductService';
 
 import { formatCurrencyBRL } from '../../utils/moneyUtils';
-import { formatDate } from '../../utils/dateUtils';
 
 const CatalogPage = () => {
     const [getAllProducts] = useGetAllProducts();

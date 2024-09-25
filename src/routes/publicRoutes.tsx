@@ -1,6 +1,6 @@
 import { Outlet, RouteObject } from "react-router-dom";
 
-import IndexPage from "../pages";
+// import IndexPage from "../pages";
 import CatalogPage from "../pages/CatalogPage";
 
 const publicRoutes: RouteObject = {
@@ -11,12 +11,13 @@ const publicRoutes: RouteObject = {
     children: [
         {
             index: true,
-            element: <IndexPage />
+            path: '/:productId?',
+            element: <CatalogPage />
         },
-        {
+        /*{
             path: '/catalog/:productId?',
             element: <CatalogPage />
-        }
+        }*/
     ]
 };
 
