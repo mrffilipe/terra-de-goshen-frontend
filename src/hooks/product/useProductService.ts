@@ -38,8 +38,8 @@ const useGetAllProducts = (): [() => Promise<ProductResponseDTO[] | undefined>] 
     return [getAllProducts];
 };
 
-const useGetProductsByParameter = (): [(params?: any) => Promise<MinimumProductResponseDTO[]>] => {
-    const getProductsByParameter = useCallback(async (params?: any): Promise<MinimumProductResponseDTO[]> => {
+const useGetProductsByParameter = (): [(params?: any) => Promise<ProductResponseDTO[]>] => {
+    const getProductsByParameter = useCallback(async (params?: any): Promise<ProductResponseDTO[]> => {
         try {
             const response = await axiosConfig.get("/product/get-all-products");
 

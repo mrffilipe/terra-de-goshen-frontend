@@ -1,0 +1,38 @@
+.search_container {
+    width: 100%;
+}
+
+.search_container form {
+    display: flex;
+}
+
+.search_container input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.search_container button {
+    padding: 10px 15px;
+    border: none;
+    background-color: var(--highlight-color);
+    color: var(--text-color-secondary);
+    cursor: pointer;
+    margin-left: 10px;
+    border-radius: 4px;
+    font-size: 16px;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+}
+
+.search_container button:hover {
+    opacity: 0.5;
+}
+
+@media (min-width: 768px) {
+    .search_container {
+        width: auto;
+    }
+}

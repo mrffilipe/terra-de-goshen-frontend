@@ -3,16 +3,18 @@ import styles from './styles.module.css';
 import { useCallback, useEffect, useState } from 'react';
 
 import Button from '../../../components/Button';
+import { SearchInputSubmit } from '../../../components/SearchInput';
 import TableData from '../../../components/TableData';
 import Loading from '../../../components/Loading';
 
-import { useGetAllProducts } from '../../../hooks/product/useProductService';
+import { useGetAllProducts, useGetProductsByParameter } from '../../../hooks/product/useProductService';
 
 import { formatCurrencyBRL } from '../../../utils/moneyUtils';
 import { formatDate } from '../../../utils/dateUtils';
 
 const ProductsPage = () => {
     const [getAllProducts] = useGetAllProducts();
+    const [getProductsByParameter] = useGetProductsByParameter();
     const [isLoading, setIsLoading] = useState(false);
     const [products, setProducts] = useState<ProductResponseDTO[] | undefined>([]);
 
@@ -26,6 +28,13 @@ const ProductsPage = () => {
     useEffect(() => {
         fetchAndSetProducts();
     }, [fetchAndSetProducts]);
+
+    const handleSearchSubmit = async (query: string) => {
+        setIsLoading(true);
+        const searchResults = await getProductsByParameter(query);
+        setProducts(searchResults);
+        setIsLoading(false);
+    };
 
     const headerNames = [
         "ID", "Nome", "Valor de venda", "Custo do produto", "Estoque", "Categoria", "Data", "Ações"
@@ -48,7 +57,7 @@ const ProductsPage = () => {
         ))
     ) : (
         <tr>
-            <td colSpan={5}>Nenhum produto encontrado</td>
+            <td colSpan={8}>Nenhum produto encontrado</td>
         </tr>
     );
 
@@ -61,6 +70,11 @@ const ProductsPage = () => {
                     value='Novo produto'
                     disabled={isLoading}
                     onClick={undefined}
+                />
+
+                <SearchInputSubmit
+                    placeholder="Buscar produto por nome"
+                    onSubmitSearch={handleSearchSubmit}
                 />
             </div>
 
