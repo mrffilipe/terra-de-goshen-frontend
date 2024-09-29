@@ -5,22 +5,22 @@ import axiosConfig from "../../config/axiosConfig";
 import DebtCreateDTO from "../../Models/DTOs/Create/DebtCreateDTO.interface";
 import DebtResponseDTO from "../../Models/DTOs/Response/DebtResponseDTO.interface";
 
-const useAddDebtByCashRegisterId = (): [(cashRegisterId: string, debt: DebtCreateDTO) => Promise<DebtResponseDTO | undefined>] => {
-    const addDebtByCashRegisterId = useCallback(async (cashRegisterId: string, debt: DebtCreateDTO): Promise<DebtResponseDTO | undefined> => {
+const useAddDebt = (): [(debt: DebtCreateDTO) => Promise<DebtResponseDTO | undefined>] => {
+    const addDebt = useCallback(async (debt: DebtCreateDTO): Promise<DebtResponseDTO | undefined> => {
         try {
-            const response = await axiosConfig.post(`/debt/cash-register/${cashRegisterId}`, debt);
+            const response = await axiosConfig.post('/debt', debt);
 
             if (response !== null) {
                 return response.data;
             }
         } catch (error) {
-            console.error("Erro ao registrar novo débito: ", error);
+            console.error("Erro ao adicionar débito: ", error);
         }
 
         return undefined;
     }, []);
 
-    return [addDebtByCashRegisterId];
+    return [addDebt];
 };
 
 const useGetDebtsByCustomerId = (): [(customerId: string) => Promise<DebtResponseDTO[] | undefined>] => {
@@ -32,7 +32,7 @@ const useGetDebtsByCustomerId = (): [(customerId: string) => Promise<DebtRespons
                 return response.data;
             }
         } catch (error) {
-            console.error("Erro ao listar débitos: ", error);
+            console.error("Erro ao buscar débitos: ", error);
         }
 
         return undefined;
@@ -41,10 +41,10 @@ const useGetDebtsByCustomerId = (): [(customerId: string) => Promise<DebtRespons
     return [getDebtsByCustomerId];
 };
 
-const useRegisterInstallmentPayment = (): [(installmentId: string, cashRegisterId: string, amount: number) => Promise<DebtResponseDTO[] | undefined>] => {
-    const registerInstallmentPayment = useCallback(async (installmentId: string, cashRegisterId: string, paymentAmount: number): Promise<DebtResponseDTO[] | undefined> => {
+const useRegisterInstallmentPayment = (): [(installmentId: string, paymentAmount: number) => Promise<DebtResponseDTO[] | undefined>] => {
+    const registerInstallmentPayment = useCallback(async (installmentId: string, paymentAmount: number): Promise<DebtResponseDTO[] | undefined> => {
         try {
-            const response = await axiosConfig.post(`/debt/installments/${installmentId}/cash-register/${cashRegisterId}/payment`, paymentAmount);
+            const response = await axiosConfig.post(`/debt/installment/${installmentId}/payment`, paymentAmount);
 
             if (response !== null) {
                 return response.data;
@@ -60,7 +60,7 @@ const useRegisterInstallmentPayment = (): [(installmentId: string, cashRegisterI
 };
 
 export {
-    useAddDebtByCashRegisterId,
+    useAddDebt,
     useGetDebtsByCustomerId,
     useRegisterInstallmentPayment
 };

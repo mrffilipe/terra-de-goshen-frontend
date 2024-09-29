@@ -15,7 +15,7 @@ import DebtResponseDTO from '../../../../Models/DTOs/Response/DebtResponseDTO.in
 import PaymentMethod from '../../../../Models/Enums/PaymentMethod';
 
 import {
-    useAddDebtByCashRegisterId,
+    useAddDebt,
     useGetDebtsByCustomerId,
     useRegisterInstallmentPayment
 } from '../../../../hooks/debt/useDebtService';
@@ -25,7 +25,7 @@ import { formatCurrencyBRL } from '../../../../utils/moneyUtils';
 import { formatDate } from '../../../../utils/dateUtils';
 
 const DebtsPage = () => {
-    const [addDebtByCashRegisterId] = useAddDebtByCashRegisterId();
+    const [addDebt] = useAddDebt();
     const [getDebtsByCustomerId] = useGetDebtsByCustomerId();
     const [registerInstallmentPayment] = useRegisterInstallmentPayment();
     const [isLoading, setIsLoading] = useState(false);
@@ -64,8 +64,7 @@ const DebtsPage = () => {
             };
 
             setIsLoading(true);
-            const cashRegisterId = "bfda369b-bf91-46ef-bfba-f34ee3e5c85d";
-            await addDebtByCashRegisterId(cashRegisterId, debt);
+            await addDebt(debt);
             fetchAndSetDebts();
             setNewDebt(null);
             setIsLoading(false);
@@ -77,8 +76,7 @@ const DebtsPage = () => {
 
         if (selectedInstallment) {
             setIsLoading(true);
-            const cashRegisterId = "bfda369b-bf91-46ef-bfba-f34ee3e5c85d";
-            await registerInstallmentPayment(selectedInstallment.id, cashRegisterId, paymentAmount);
+            await registerInstallmentPayment(selectedInstallment.id, paymentAmount);
             fetchAndSetDebts();
             setSelectedInstallment(null);
             setPaymentAmount(0);
@@ -99,38 +97,51 @@ const DebtsPage = () => {
         "ID", "Valor Total", "Qtd. Parcelas", "Método de pagamento", "Entrada", "Data", "Ações"
     ];
 
-    const debitDataList = debts?.map(debt => (
-        <tr key={debt.id}>
-            <td>{debt.id}</td>
-            <td>{formatCurrencyBRL(debt.totalAmount)}</td>
-            <td>{debt.installmentCount}x</td>
-            <td>{getPaymentMethodName(debt.paymentMethod)}</td>
-            <td>{formatCurrencyBRL(debt.initialPayment)}</td>
-            <td>{formatDate(debt.createdAt)}</td>
-            <td>
-                <button onClick={() => debt.id === selectedDebt?.id ? setSelectedDebt(null) : setSelectedDebt(debt)}>
-                    {debt.id === selectedDebt?.id ? 'Fechar' : 'Detalhes'}
-                </button>
-            </td>
+    const debitDataList = debts ? (
+        debts.map(debt => (
+            <tr key={debt.id}>
+                <td>{debt.id}</td>
+                <td>{formatCurrencyBRL(debt.totalAmount)}</td>
+                <td>{debt.installmentCount}x</td>
+                <td>{getPaymentMethodName(debt.paymentMethod)}</td>
+                <td>{formatCurrencyBRL(debt.initialPayment)}</td>
+                <td>{formatDate(debt.createdAt)}</td>
+                <td>
+                    <button onClick={() => debt.id === selectedDebt?.id ? setSelectedDebt(null) : setSelectedDebt(debt)}>
+                        {debt.id === selectedDebt?.id ? 'Fechar' : 'Detalhes'}
+                    </button>
+                </td>
+            </tr>
+        ))
+    ) : (
+        <tr>
+            <td colSpan={8}>Nenhum débito encontrado</td>
         </tr>
-    ));
+    );
 
     const installmentHeaderNames = [
         "ID", "Valor", "Valor Pago", "Status", "Vencimento", "Ações"
     ];
 
-    const installmentDataList = selectedDebt?.installments.map(installment => (
-        <tr key={installment.id}>
-            <td>{installment.id}</td>
-            <td>{formatCurrencyBRL(installment.amount)}</td>
-            <td>{formatCurrencyBRL(installment.amountPaid)}</td>
-            <td>{installment.isPaid ? 'Pago' : 'Pendente'}</td>
-            <td>{formatDate(installment.dueDate)}</td>
-            <td>
-                <button onClick={() => setSelectedInstallment(installment)}>Pagar</button>
-            </td>
-        </tr>
-    ));
+    const installmentDataList = selectedDebt ?
+        (
+            selectedDebt.installments.map(installment => (
+                <tr key={installment.id}>
+                    <td>{installment.id}</td>
+                    <td>{formatCurrencyBRL(installment.amount)}</td>
+                    <td>{formatCurrencyBRL(installment.amountPaid)}</td>
+                    <td>{installment.isPaid ? 'Pago' : 'Pendente'}</td>
+                    <td>{formatDate(installment.dueDate)}</td>
+                    <td>
+                        <button onClick={() => setSelectedInstallment(installment)}>Pagar</button>
+                    </td>
+                </tr>
+            ))
+        ) : (
+            <tr>
+                <td colSpan={6}>Nenhuma parcela encontrado</td>
+            </tr>
+        );
 
     return (
         <div className={styles.debts_page}>
