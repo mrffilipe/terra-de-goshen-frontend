@@ -9,8 +9,8 @@ import Loading from '../../components/Loading';
 import TransactionResponseDTO from '../../Models/DTOs/Response/TransactionResponseDTO.interface';
 
 import {
-    useGetBalanceByCashRegisterId,
-    useGetTransactionsByCashRegisterId
+    useGetCurrentBalance,
+    useGetTransactions
 } from '../../hooks/cashRegister/useCashRegisterService';
 
 import { getPaymentMethodName, getTransactionTypeName } from '../../utils/enumerationUtils';
@@ -18,8 +18,8 @@ import { formatCurrencyBRL } from '../../utils/moneyUtils';
 import { formatDate } from '../../utils/dateUtils';
 
 const DashboardPage = () => {
-    const [getBalanceByCashRegisterId] = useGetBalanceByCashRegisterId();
-    const [getTransactionsByCashRegisterId] = useGetTransactionsByCashRegisterId();
+    const [getCurrentBalance] = useGetCurrentBalance();
+    const [getTransactions] = useGetTransactions();
     const [isLoading, setIsLoading] = useState(false);
     const [balance, setBalance] = useState<number | undefined>(0);
     const [transactions, setTransactions] = useState<TransactionResponseDTO[] | undefined>([]);
@@ -28,10 +28,8 @@ const DashboardPage = () => {
         (async () => {
             setIsLoading(true);
 
-            const cashRegisterId = "bfda369b-bf91-46ef-bfba-f34ee3e5c85d";
-
-            const fetchedBalance = await getBalanceByCashRegisterId(cashRegisterId);
-            const fetchedTransactions = await getTransactionsByCashRegisterId(cashRegisterId);
+            const fetchedBalance = await getCurrentBalance();
+            const fetchedTransactions = await getTransactions();
 
             setBalance(fetchedBalance);
             setTransactions(fetchedTransactions);
@@ -44,15 +42,22 @@ const DashboardPage = () => {
         "ID", "Valor", "Tipo de Transação", "Método de pagamento", "Data"
     ];
 
-    const dataList = transactions?.map(transaction => (
-        <tr key={transaction.id}>
-            <td>{transaction.id}</td>
-            <td>{formatCurrencyBRL(transaction.amount)}</td>
-            <td>{getTransactionTypeName(transaction.transactionType)}</td>
-            <td>{getPaymentMethodName(transaction.paymentMethod)}</td>
-            <td>{formatDate(transaction.createdAt)}</td>
-        </tr>
-    ));
+    const dataList = transactions ?
+        (
+            transactions.map(transaction => (
+                <tr key={transaction.id}>
+                    <td>{transaction.id}</td>
+                    <td>{formatCurrencyBRL(transaction.amount)}</td>
+                    <td>{getTransactionTypeName(transaction.transactionType)}</td>
+                    <td>{getPaymentMethodName(transaction.paymentMethod)}</td>
+                    <td>{formatDate(transaction.createdAt)}</td>
+                </tr>
+            ))
+        ) : (
+            <tr>
+                <td colSpan={5}>Nenhuma transação encontrada</td>
+            </tr>
+        );
 
     return (
         <div className={styles.dashboard_page}>
