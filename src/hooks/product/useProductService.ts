@@ -5,13 +5,13 @@ import axiosConfig from "../../config/axiosConfig";
 const useGetProductById = (): [(id: string) => Promise<ProductResponseDTO | undefined>] => {
     const getProductById = useCallback(async (id: string): Promise<ProductResponseDTO | undefined> => {
         try {
-            const response = await axiosConfig.get(`/product/get-product-by-id?id=${id}`);
+            const response = await axiosConfig.get(`/product/${id}`);
 
             if (response !== null) {
                 return response.data;
             }
         } catch (error) {
-            console.error("Erro ao listar o produto: ", error);
+            console.error("Erro ao buscar produto: ", error);
         }
 
         return undefined;
@@ -20,16 +20,34 @@ const useGetProductById = (): [(id: string) => Promise<ProductResponseDTO | unde
     return [getProductById];
 };
 
-const useGetAllProducts = (): [() => Promise<ProductResponseDTO[] | undefined>] => {
-    const getAllProducts = useCallback(async (): Promise<ProductResponseDTO[] | undefined> => {
+const useGetProductsByName = (): [(productName: string) => Promise<ProductResponseDTO[]>] => {
+    const getProductsByName = useCallback(async (productName: string): Promise<ProductResponseDTO[]> => {
         try {
-            const response = await axiosConfig.get('product/get-all-products');
+            const response = await axiosConfig.get(`/product/search/${productName}`);
 
             if (response !== null) {
                 return response.data;
             }
         } catch (error) {
-            console.error("Erro ao listar produtos: ", error);
+            console.error(`Erro ao buscar produtos com nome "${productName}"`, error);
+        }
+
+        return [];
+    }, []);
+
+    return [getProductsByName];
+};
+
+const useGetAllProducts = (): [() => Promise<ProductResponseDTO[] | undefined>] => {
+    const getAllProducts = useCallback(async (): Promise<ProductResponseDTO[] | undefined> => {
+        try {
+            const response = await axiosConfig.get('/product');
+
+            if (response !== null) {
+                return response.data;
+            }
+        } catch (error) {
+            console.error("Erro ao buscar produtos: ", error);
         }
 
         return undefined;
@@ -38,52 +56,16 @@ const useGetAllProducts = (): [() => Promise<ProductResponseDTO[] | undefined>] 
     return [getAllProducts];
 };
 
-const useGetProductsByParameter = (): [(params?: any) => Promise<ProductResponseDTO[]>] => {
-    const getProductsByParameter = useCallback(async (params?: any): Promise<ProductResponseDTO[]> => {
-        try {
-            const response = await axiosConfig.get("/product/get-all-products");
-
-            if (response !== null) {
-                return response.data;
-            }
-        } catch (error) {
-            console.error("Erro ao listar todos os produtos: ", error);
-        }
-
-        return [];
-    }, []);
-
-    return [getProductsByParameter];
-};
-
-const useGetAllCategories = (): [() => Promise<CategoryResponseDTO[]>] => {
-    const getAllCategories = useCallback(async (): Promise<CategoryResponseDTO[]> => {
-        try {
-            const response = await axiosConfig.get("/product/get-all-categories");
-
-            if (response !== null) {
-                return response.data;
-            }
-        } catch (error) {
-            console.error("Erro ao listar todas as categorias: ", error);
-        }
-
-        return [];
-    }, []);
-
-    return [getAllCategories];
-};
-
 const useGetAllColors = (): [() => Promise<ColorResponseDTO[]>] => {
     const getAllColors = useCallback(async (): Promise<ColorResponseDTO[]> => {
         try {
-            const response = await axiosConfig.get("/product/get-all-colors");
+            const response = await axiosConfig.get("/product/color");
 
             if (response !== null) {
                 return response.data;
             }
         } catch (error) {
-            console.error("Erro ao listar todas as cores: ", error);
+            console.error("Erro ao buscar as cores: ", error);
         }
 
         return [];
@@ -95,13 +77,13 @@ const useGetAllColors = (): [() => Promise<ColorResponseDTO[]>] => {
 const useGetAllSizes = (): [() => Promise<SizeResponseDTO[]>] => {
     const getAllSizes = useCallback(async (): Promise<SizeResponseDTO[]> => {
         try {
-            const response = await axiosConfig.get("/product/get-all-sizes");
+            const response = await axiosConfig.get("/product/size");
 
             if (response !== null) {
                 return response.data;
             }
         } catch (error) {
-            console.error("Erro ao listar todas os tamanhos: ", error);
+            console.error("Erro ao buscar os tamanhos: ", error);
         }
 
         return [];
@@ -110,11 +92,29 @@ const useGetAllSizes = (): [() => Promise<SizeResponseDTO[]>] => {
     return [getAllSizes];
 };
 
+const useGetAllCategories = (): [() => Promise<CategoryResponseDTO[]>] => {
+    const getAllCategories = useCallback(async (): Promise<CategoryResponseDTO[]> => {
+        try {
+            const response = await axiosConfig.get("/product/category");
+
+            if (response !== null) {
+                return response.data;
+            }
+        } catch (error) {
+            console.error("Erro ao buscar as categorias: ", error);
+        }
+
+        return [];
+    }, []);
+
+    return [getAllCategories];
+};
+
 export {
     useGetProductById,
+    useGetProductsByName,
     useGetAllProducts,
-    useGetProductsByParameter,
-    useGetAllCategories,
     useGetAllColors,
-    useGetAllSizes
+    useGetAllSizes,
+    useGetAllCategories
 };

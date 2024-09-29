@@ -9,7 +9,7 @@ import Loading from '../../../components/Loading';
 
 import {
     useGetAllProducts,
-    useGetProductsByParameter
+    useGetProductsByName
 } from '../../../hooks/product/useProductService';
 
 import { formatCurrencyBRL } from '../../../utils/moneyUtils';
@@ -17,7 +17,7 @@ import { formatDate } from '../../../utils/dateUtils';
 
 const ProductsPage = () => {
     const [getAllProducts] = useGetAllProducts();
-    const [getProductsByParameter] = useGetProductsByParameter();
+    const [getProductsByName] = useGetProductsByName();
     const [isLoading, setIsLoading] = useState(false);
     const [products, setProducts] = useState<ProductResponseDTO[] | undefined>([]);
 
@@ -32,9 +32,9 @@ const ProductsPage = () => {
         fetchAndSetProducts();
     }, [fetchAndSetProducts]);
 
-    const handleSearchSubmit = async (query: string) => {
+    const handleSearchSubmit = async (productName: string) => {
         setIsLoading(true);
-        const searchResults = await getProductsByParameter(query);
+        const searchResults = await getProductsByName(productName);
         setProducts(searchResults);
         setIsLoading(false);
     };

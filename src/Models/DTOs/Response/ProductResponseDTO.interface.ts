@@ -1,6 +1,6 @@
 interface ProductResponseDTO extends BaseEntity, ProductBaseDTO {
-    images?: ImageResponseDTO[];
-    colors?: ColorResponseDTO[];
-    sizes?: SizeResponseDTO[];
+    images: ImageResponseDTO[];
+    colors: ColorResponseDTO[];
+    sizes: SizeResponseDTO[];
     category: CategoryResponseDTO;
 };

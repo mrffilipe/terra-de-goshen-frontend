@@ -7,14 +7,14 @@ import Loading from '../../components/Loading';
 
 import {
     useGetAllProducts,
-    useGetProductsByParameter
+    useGetProductsByName
 } from '../../hooks/product/useProductService';
 
 import { formatCurrencyBRL } from '../../utils/moneyUtils';
 
 const CatalogPage = () => {
     const [getAllProducts] = useGetAllProducts();
-    const [getProductsByParameter] = useGetProductsByParameter();
+    const [getProductsByName] = useGetProductsByName();
     const [isLoading, setIsLoading] = useState(false);
     const [products, setProducts] = useState<ProductResponseDTO[] | undefined>([]);
 
@@ -29,9 +29,9 @@ const CatalogPage = () => {
         fetchAndSetProducts();
     }, [fetchAndSetProducts]);
 
-    const handleSearchSubmit = async (query: string) => {
+    const handleSearchSubmit = async (productName: string) => {
         setIsLoading(true);
-        const searchResults = await getProductsByParameter(query);
+        const searchResults = await getProductsByName(productName);
         setProducts(searchResults);
         setIsLoading(false);
     };
@@ -39,8 +39,7 @@ const CatalogPage = () => {
     const productList = products?.map((product) => (
         <div key={product.id} className={styles.product_card}>
             <img
-                // src={product.images[0]?.url || 'https://d8vlg9z1oftyc.cloudfront.net/ailos/image/product/7b1ed85e9ec6a3c690e9d8ceab110cfa20221020074114/original/camiseta-feminina-zatom-bicicleta_1928.png'}
-                src='https://d8vlg9z1oftyc.cloudfront.net/ailos/image/product/7b1ed85e9ec6a3c690e9d8ceab110cfa20221020074114/original/camiseta-feminina-zatom-bicicleta_1928.png'
+                src={product.images[0].url}
                 alt={product.name}
                 className={styles.product_image}
             />
