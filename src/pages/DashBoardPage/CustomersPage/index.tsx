@@ -1,6 +1,7 @@
 import styles from './styles.module.css';
 
 import { useCallback, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import Button from '../../../components/Button';
 import TableData from '../../../components/TableData';
@@ -25,6 +26,8 @@ const CustomersPage = () => {
     const [newCustomer, setNewCustomer] = useState<CustomerCreateDTO | null>(null);
     const [editCustomer, setEditCustomer] = useState<CustomerUpdateDTO | null>(null);
 
+    const navigate = useNavigate();
+
     const fetchAndSetCustomers = useCallback(async () => {
         setIsLoading(true);
         const fetchedCustomers = await getAllCustomers();
@@ -35,6 +38,10 @@ const CustomersPage = () => {
     useEffect(() => {
         fetchAndSetCustomers();
     }, [fetchAndSetCustomers]);
+
+    const handleViewDebts = (customerId: string) => {
+        navigate(`/dashboard/customers/${customerId}/debts`);
+    };
 
     const handleAddCustomer = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -69,7 +76,7 @@ const CustomersPage = () => {
     }
 
     const headerNames = [
-        "ID", "Nome", "Sobrenome", "Data", "Ações"
+        "ID", "Nome", "Sobrenome", "Data", "Débitos", "Ações"
     ];
 
     const dataList = customers ? (
@@ -79,6 +86,9 @@ const CustomersPage = () => {
                 <td>{customer.firstName}</td>
                 <td>{customer.lastName}</td>
                 <td>{formatDate(customer.createdAt)}</td>
+                <td>
+                    <button onClick={() => handleViewDebts(customer.id)}>Ver</button>
+                </td>
                 <td>
                     <button onClick={() => setEditCustomer(customer)}>Editar</button>
                 </td>
