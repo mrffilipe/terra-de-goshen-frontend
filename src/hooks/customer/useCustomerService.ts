@@ -11,7 +11,7 @@ const useAddCustomer = (): [(customer: CustomerCreateDTO) => Promise<CustomerRes
                 return response.data;
             }
         } catch (error) {
-            console.error("Erro ao adicionar o cliente: ", error);
+            console.error("Erro ao adicionar cliente: ", error);
         }
 
         return undefined;
@@ -23,13 +23,13 @@ const useAddCustomer = (): [(customer: CustomerCreateDTO) => Promise<CustomerRes
 const useGetAllCustomers = (): [() => Promise<CustomerResponseDTO[] | undefined>] => {
     const getAllCustomers = useCallback(async (): Promise<CustomerResponseDTO[] | undefined> => {
         try {
-            const response = await axiosConfig.get('customer');
+            const response = await axiosConfig.get('/customer');
 
             if (response !== null) {
                 return response.data;
             }
         } catch (error) {
-            console.error("Erro ao listar os clientes: ", error);
+            console.error("Erro ao buscar os clientes: ", error);
         }
 
         return undefined;
@@ -41,13 +41,13 @@ const useGetAllCustomers = (): [() => Promise<CustomerResponseDTO[] | undefined>
 const useUpdateCustomer = (): [(customer: CustomerUpdateDTO) => Promise<CustomerResponseDTO | undefined>] => {
     const updateCustomer = useCallback(async (customer: CustomerUpdateDTO): Promise<CustomerResponseDTO | undefined> => {
         try {
-            const response = await axiosConfig.put('customer', customer);
+            const response = await axiosConfig.put(`/customer/${customer.id}`, customer);
 
             if (response !== null) {
                 return response.data;
             }
         } catch (error) {
-            console.error("Erro ao atualizar o cliente: ", error);
+            console.error("Erro ao atualizar cliente: ", error);
         }
 
         return undefined;

@@ -64,7 +64,7 @@ const DashboardPage = () => {
             <section className={styles.balance_section}>
                 <div className={styles.balance_card}>
                     <h3>Valor Total</h3>
-                    <p>R$ {balance}</p>
+                    <p>{formatCurrencyBRL(balance!)}</p>
                 </div>
             </section>
 

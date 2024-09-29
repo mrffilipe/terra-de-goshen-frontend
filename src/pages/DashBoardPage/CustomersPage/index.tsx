@@ -17,8 +17,8 @@ import {
 import { formatDate } from '../../../utils/dateUtils';
 
 const CustomersPage = () => {
-    const [getAllCustomers] = useGetAllCustomers();
     const [addCustomer] = useAddCustomer();
+    const [getAllCustomers] = useGetAllCustomers();
     const [updateCustomer] = useUpdateCustomer();
     const [isLoading, setIsLoading] = useState(false);
     const [customers, setCustomers] = useState<CustomerResponseDTO[] | undefined>([]);
