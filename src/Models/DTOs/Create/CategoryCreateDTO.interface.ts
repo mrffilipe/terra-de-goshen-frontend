@@ -1,0 +1,1 @@
+interface CategoryCreateDTO extends Entity { };

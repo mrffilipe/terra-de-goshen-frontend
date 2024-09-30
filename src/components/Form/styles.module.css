@@ -22,6 +22,7 @@
 }
 
 .form_container input,
+.form_container textarea,
 .form_container select {
     padding: 8px;
     border: 1px solid var(--border-color);
@@ -30,6 +31,7 @@
 }
 
 .form_container input::placeholder,
+.form_container textarea::placeholder,
 .form_container select::placeholder {
     font-size: .9rem;
 }

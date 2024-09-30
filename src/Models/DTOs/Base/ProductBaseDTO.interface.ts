@@ -3,6 +3,5 @@ interface ProductBaseDTO {
     description: string;
     price: number;
     costPrice: number;
-    backgroundText?: string;
     stock: number;
 };

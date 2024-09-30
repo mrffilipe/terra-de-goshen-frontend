@@ -1,1 +1,3 @@
-interface SizeBaseDTO { };
+interface SizeBaseDTO { 
+    value: string;
+};

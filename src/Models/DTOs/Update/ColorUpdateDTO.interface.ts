@@ -1,0 +1,1 @@
+interface ColorUpdateDTO extends Entity { };

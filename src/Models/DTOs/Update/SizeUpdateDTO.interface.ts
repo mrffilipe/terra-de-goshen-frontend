@@ -1,0 +1,1 @@
+interface SizeUpdateDTO extends Entity { };

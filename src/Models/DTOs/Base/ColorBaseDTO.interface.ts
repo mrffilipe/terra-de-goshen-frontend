@@ -1,1 +1,3 @@
-interface ColorBaseDTO { };
+interface ColorBaseDTO {
+    value: string;
+};
