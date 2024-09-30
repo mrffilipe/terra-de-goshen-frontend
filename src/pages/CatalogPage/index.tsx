@@ -11,12 +11,14 @@ import {
 } from '../../hooks/product/useProductService';
 
 import { formatCurrencyBRL } from '../../utils/moneyUtils';
+import ProductModal from '../../components/ProductModal';
 
 const CatalogPage = () => {
     const [getAllProducts] = useGetAllProducts();
     const [getProductsByName] = useGetProductsByName();
     const [isLoading, setIsLoading] = useState(false);
     const [products, setProducts] = useState<ProductResponseDTO[] | undefined>([]);
+    const [selectedProduct, setSelectedProduct] = useState<ProductResponseDTO | null>(null);
 
     const fetchAndSetProducts = useCallback(async () => {
         setIsLoading(true);
@@ -36,8 +38,14 @@ const CatalogPage = () => {
         setIsLoading(false);
     };
 
+    const handleCloseProductModal = () => {
+        if (selectedProduct) {
+            setSelectedProduct(null);
+        }
+    }
+
     const productList = products?.map((product) => (
-        <div key={product.id} className={styles.product_card}>
+        <div key={product.id} className={styles.product_card} onClick={() => setSelectedProduct(product)}>
             <img
                 src={product.images[0].url}
                 alt={product.name}
@@ -70,6 +78,9 @@ const CatalogPage = () => {
                     <p>Nenhum produto encontrado.</p>
                 )}
             </section>
+
+            {selectedProduct && (
+                <ProductModal product={selectedProduct} onCloseClick={handleCloseProductModal} />)}
 
             <Loading isLoading={isLoading} />
         </div>
