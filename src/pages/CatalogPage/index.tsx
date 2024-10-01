@@ -46,11 +46,13 @@ const CatalogPage = () => {
 
     const productList = products?.map((product) => (
         <div key={product.id} className={styles.product_card} onClick={() => setSelectedProduct(product)}>
-            <img
-                src={product.images[0].url}
-                alt={product.name}
-                className={styles.product_image}
-            />
+            <div className={styles.image_container}>
+                <img
+                    src={product.images[0].url}
+                    alt={product.name}
+                    className={styles.product_image}
+                />
+            </div>
             <h3 className={styles.product_name}>{product.name}</h3>
             <p className={styles.product_price}>
                 {formatCurrencyBRL(product.price)}

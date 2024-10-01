@@ -31,15 +31,26 @@
     transform: translateY(-5px);
 }
 
-.product_image {
+.image_container {
+    background-color: #e0e0e5;
     width: 100%;
-    height: auto;
+    height: 360px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product_image {
+    width: auto;
+    height: 100%;
+    max-width: 100%;
     object-fit: cover;
+    border-radius: 4px;
 }
 
 .product_name {
     font-size: 1.1rem;
-    margin-top: 10px;
+    margin-top: 20px;
     color: var(--text-color-main);
     font-weight: normal;
 }
