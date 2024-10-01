@@ -1,7 +1,9 @@
 import styles from './styles.module.css';
 
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { useAddProduct } from '../../../../hooks/product/useProductService';
 
 import Form from '../../../../components/Form';
 import Button from '../../../../components/Button';
@@ -9,8 +11,10 @@ import ProductColors from '../../../../components/ProductColors';
 import ProductSizes from '../../../../components/ProductSizes';
 import ProductCategory from '../../../../components/ProductCategory';
 import ProductImages from '../../../../components/ProductImages';
+import Loading from '../../../../components/Loading';
 
 const ProductEditorPage = () => {
+    const [addProduct] = useAddProduct();
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState(0);
@@ -20,15 +24,28 @@ const ProductEditorPage = () => {
     const [sizes, setSizes] = useState<SizeCreateDTO[] | SizeUpdateDTO[]>([]);
     const [category, setCategory] = useState<CategoryCreateDTO | CategoryUpdateDTO>({ id: '' });
     const [images, setImages] = useState<ImageCreateDTO[] | ImageUpdateDTO[]>([]);
+    const [isLoading, setIsLoading] = useState(false);
 
+    const navigate = useNavigate();
     const { productId } = useParams();
+
+    const addNewProduct = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!productId) {
+            const imgs = images as ImageCreateDTO[]
+            setIsLoading(true);
+            await addProduct({ name, description, price, costPrice, stock, colors, sizes, category, images: imgs });
+            setIsLoading(false);
+            navigate(`/dashboard/products`);
+        }
+    };
 
     return (
         <div className={styles.product_editor_page}>
             <h2>{productId ? `Editar produto (${productId})` : 'Novo produto'}</h2>
 
             <section className={styles.product_section}>
-                <Form>
+                <Form onSubmit={productId ? undefined : addNewProduct}>
                     <label>
                         Nome
                         <input
@@ -88,6 +105,8 @@ const ProductEditorPage = () => {
                     />
                 </Form>
             </section>
+
+            <Loading isLoading={isLoading} />
         </div>
     );
 };

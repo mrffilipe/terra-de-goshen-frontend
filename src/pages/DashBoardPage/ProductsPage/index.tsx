@@ -1,6 +1,7 @@
 import styles from './styles.module.css';
 
 import { useCallback, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import Button from '../../../components/Button';
 import { SearchInputSubmit } from '../../../components/SearchInput';
@@ -21,6 +22,8 @@ const ProductsPage = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [products, setProducts] = useState<ProductResponseDTO[] | undefined>([]);
 
+    const navigate = useNavigate();
+
     const fetchAndSetProducts = useCallback(async () => {
         setIsLoading(true);
         const fetchedProducts = await getAllProducts();
@@ -31,6 +34,10 @@ const ProductsPage = () => {
     useEffect(() => {
         fetchAndSetProducts();
     }, [fetchAndSetProducts]);
+
+    const handleViewEditorPage = () => {
+        navigate(`/dashboard/products/editor`);
+    };
 
     const handleSearchSubmit = async (productName: string) => {
         setIsLoading(true);
@@ -72,7 +79,7 @@ const ProductsPage = () => {
                 <Button
                     value='Novo produto'
                     disabled={isLoading}
-                    onClick={undefined}
+                    onClick={handleViewEditorPage}
                 />
 
                 <SearchInputSubmit

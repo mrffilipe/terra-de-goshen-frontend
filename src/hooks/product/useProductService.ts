@@ -1,6 +1,66 @@
 import { useCallback } from "react";
 
 import axiosConfig from "../../config/axiosConfig";
+import axios from "axios";
+
+const useAddProduct = (): [({
+    name, description, price, costPrice, stock, colors, sizes, category, images
+}: ProductCreateDTO) => Promise<ProductResponseDTO | undefined>] => {
+    const AddProduct = useCallback(async ({
+        name, description, price, costPrice, stock, colors, sizes, category, images
+    }: ProductCreateDTO): Promise<ProductResponseDTO | undefined> => {
+        try {
+            const formData = new FormData();
+
+            formData.append('name', name);
+            formData.append('description', description);
+            formData.append('price', price.toString());
+            formData.append('costPrice', costPrice.toString());
+            formData.append('stock', stock.toString());
+            formData.append('category.id', category.id);
+
+            if (colors) {
+                colors.forEach((color, index) => {
+                    formData.append(`colors[${index}].id`, color.id);
+                });
+            }
+
+            if (sizes) {
+                sizes.forEach((size, index) => {
+                    formData.append(`sizes[${index}].id`, size.id);
+                });
+            }
+
+            if (images) {
+                images.forEach((image, index) => {
+                    formData.append(`images[${index}].file`, image.file);
+                    formData.append(`images[${index}].isCover`, image.isCover ? 'true' : 'false');
+                });
+            }
+
+            const response = await axiosConfig.post('/product', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+
+            if (response !== null) {
+                return response.data as ProductResponseDTO;
+            }
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                console.error('Erro ao adicionar produto:', error.response?.data || error.message);
+            } else {
+                console.error('Erro inesperado:', error);
+            }
+            // console.error("Erro ao adicionar produto: ", error);
+        }
+
+        return undefined;
+    }, []);
+
+    return [AddProduct];
+};
 
 const useGetProductById = (): [(id: string) => Promise<ProductResponseDTO | undefined>] => {
     const getProductById = useCallback(async (id: string): Promise<ProductResponseDTO | undefined> => {
@@ -111,6 +171,7 @@ const useGetAllCategories = (): [() => Promise<CategoryResponseDTO[]>] => {
 };
 
 export {
+    useAddProduct,
     useGetProductById,
     useGetProductsByName,
     useGetAllProducts,
