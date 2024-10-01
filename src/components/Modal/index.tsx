@@ -30,7 +30,7 @@ const Modal = (props: Props) => {
         <Overlay activeOverlay={props.activeModal}>
             <div className={styles.modal} aria-modal="true">
                 <button className={styles.close_button} onClick={props.onCloseClick}>
-                    X
+                    &times;
                 </button>
                 <div className={styles.modal_header}>
                     <h2>{props.title}</h2>
