@@ -1,6 +1,7 @@
 import styles from "./styles.module.css";
 
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 import LogoSvg from "../../assets/svg/logo.svg";
 
@@ -30,12 +31,16 @@ const Header = () => {
                 <nav className={`${styles.nav} ${isMenuOpen ? styles.open : ''}`}>
                     <button className={styles.close_button} onClick={toggleMenu}>X</button>
                     <ul className={styles.menu_list}>
-                        <li><a href="#">Início</a></li>
-                        <li><a href="#">Item 1</a></li>
-                        <li><a href="#">Item 2</a></li>
-                        <li><a href="#">Item 3</a></li>
-                        <li><a href="#">Item 4</a></li>
-                        <li><a href="#">Item 5</a></li>
+                        <li>
+                            <Link to="/">
+                                Catálogo
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/auth">
+                                Login
+                            </Link>
+                        </li>
                     </ul>
                 </nav>
             </div>

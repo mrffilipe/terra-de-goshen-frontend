@@ -8,18 +8,22 @@ type Props = {
     activeOverlay: boolean;
 };
 
-const Overlay = (props: Props) => {
+const Overlay = ({ children, activeOverlay }: Props) => {
     useEffect(() => {
-        if (props.activeOverlay) {
+        if (activeOverlay) {
             document.body.style.overflow = 'hidden';
         } else {
             document.body.style.overflow = '';
         }
-    }, [props.activeOverlay]);
+
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, [activeOverlay]);
 
     return (
-        <div className={`${styles.overlay} ${props.activeOverlay ? styles.visible : ''}`}>
-            {props.children}
+        <div className={`${styles.overlay} ${activeOverlay ? styles.visible : ''}`}>
+            {children}
         </div>
     );
 };
