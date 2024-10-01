@@ -54,12 +54,16 @@ const ProductSizes = ({ value, onChange }: Props) => {
     ));
 
     return (
-        <div className={styles.product_sizes}>
-            <label>Selecione os tamanhos</label>
-            <ul className={styles.size_list}>
-                {sizeList}
-            </ul>
-        </div>
+        allSizes && allSizes.length > 0 ? (
+            <div className={styles.product_sizes}>
+                <label>Selecione os tamanhos</label>
+                <ul className={styles.size_list}>
+                    {sizeList}
+                </ul>
+            </div>
+        ) : (
+            <p>Carregando tamanhos...</p>
+        )
     );
 };
 

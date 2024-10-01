@@ -52,12 +52,16 @@ const ProductColors = ({ value, onChange }: Props) => {
     ));
 
     return (
-        <div className={styles.product_colors}>
-            <label>Selecione as cores</label>
-            <ul className={styles.color_list}>
-                {colorList}
-            </ul>
-        </div>
+        allColors && allColors.length > 0 ? (
+            <div className={styles.product_colors}>
+                <label>Selecione as cores</label>
+                <ul className={styles.color_list}>
+                    {colorList}
+                </ul>
+            </div>
+        ) : (
+            <p>Carregando cores...</p>
+        )
     );
 };
 

@@ -34,13 +34,17 @@ const ProductCategory = ({ value, onChange }: Props) => {
     ));
 
     return (
-        <select
-            value={value.id}
-            onChange={handleCategoryChange}
-        >
-            <option value="">Selecione uma categoria</option>
-            {listCategorias}
-        </select>
+        allCategories && allCategories.length > 0 ? (
+            <select
+                value={value.id}
+                onChange={handleCategoryChange}
+            >
+                <option value="">Selecione uma categoria</option>
+                {listCategorias}
+            </select>
+        ) : (
+            <p>Carregando categorias...</p>
+        )
     );
 };
 

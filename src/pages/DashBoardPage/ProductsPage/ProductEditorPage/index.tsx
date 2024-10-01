@@ -8,6 +8,7 @@ import Button from '../../../../components/Button';
 import ProductColors from '../../../../components/ProductColors';
 import ProductSizes from '../../../../components/ProductSizes';
 import ProductCategory from '../../../../components/ProductCategory';
+import ProductImages from '../../../../components/ProductImages';
 
 const ProductEditorPage = () => {
     const [name, setName] = useState('');
@@ -18,6 +19,7 @@ const ProductEditorPage = () => {
     const [colors, setColors] = useState<ColorCreateDTO[] | ColorUpdateDTO[]>([]);
     const [sizes, setSizes] = useState<SizeCreateDTO[] | SizeUpdateDTO[]>([]);
     const [category, setCategory] = useState<CategoryCreateDTO | CategoryUpdateDTO>({ id: '' });
+    const [images, setImages] = useState<ImageCreateDTO[] | ImageUpdateDTO[]>([]);
 
     const { productId } = useParams();
 
@@ -79,6 +81,7 @@ const ProductEditorPage = () => {
                     <ProductColors value={colors} onChange={e => setColors(e)} />
                     <ProductSizes value={sizes} onChange={e => setSizes(e)} />
                     <ProductCategory value={category} onChange={e => setCategory(e)} />
+                    <ProductImages value={images} productId={productId} onChange={e => setImages(e)} />
                     <Button type='submit' value={
                         productId ? 'Salvar alterações' : 'Cadastrar produto'
                     }
