@@ -13,11 +13,7 @@ const publicRoutes: RouteObject = {
             index: true,
             path: '/:productId?',
             element: <CatalogPage />
-        },
-        /*{
-            path: '/catalog/:productId?',
-            element: <CatalogPage />
-        }*/
+        }
     ]
 };
 
